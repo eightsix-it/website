@@ -4,7 +4,7 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Free Security Tools | Eight Six IT Engineering</title>
-<meta name="description" content="Free browser-based security tools: password strength checker, password generator, email breach checker, phishing URL analyzer, and a HIPAA readiness quiz."/>
+<meta name="description" content="Free browser-based security tools: password strength checker, password generator, email breach checker, phishing URL analyzer, a HIPAA readiness quiz, and an AI readiness quiz."/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
@@ -54,7 +54,7 @@
     .quiz-option.selected-yes { border-color:#22c55e; background:rgba(34,197,94,0.1); }
     .quiz-option.selected-no { border-color:#ef4444; background:rgba(239,68,68,0.1); }
 </style>
-<link href="site.css?v=20260616a" rel="stylesheet"/>
+<link href="site.css?v=20260617a" rel="stylesheet"/>
 <script id="e86-bootstrap">(function(){try{var d=document.documentElement;if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)return;if(sessionStorage.getItem('e86t')){sessionStorage.removeItem('e86t');d.classList.add('e86-curtain');}else if(!sessionStorage.getItem('e86v')){sessionStorage.setItem('e86v','1');d.classList.add('e86-loading');}}catch(e){}})();</script>
 </head>
 <body class="bg-background-dark font-display text-slate-200 antialiased selection:bg-primary selection:text-white">
@@ -85,7 +85,7 @@
         </nav>
         <div class="flex items-center gap-4">
             <a href="https://console.eightsix.co" target="_blank" rel="noopener" class="hidden rounded bg-white/5 px-4 py-2 text-sm font-semibold text-white transition-all hover:bg-white/10 sm:block">Client Login</a>
-            <a href="assessment.html" class="e86-btn-shine hidden lg:block rounded bg-primary px-5 py-2 text-sm font-bold text-white shadow-[0_0_20px_rgba(31,58,137,0.4)] transition-all hover:scale-105 hover:bg-primary/90">Free AI Assessment</a>
+            <a href="assessment.html" class="e86-btn-shine hidden lg:block rounded bg-primary px-5 py-2 text-sm font-bold text-white shadow-[0_0_20px_rgba(31,58,137,0.4)] transition-all hover:scale-105 hover:bg-primary/90">Free Assessment</a>
         </div>
         <button id="mobile-menu-btn" class="lg:hidden flex items-center justify-center p-2 rounded text-slate-400 hover:text-white hover:bg-white/10 transition-colors" aria-label="Toggle menu">
             <span class="material-symbols-outlined" id="menu-icon">menu</span>
@@ -102,7 +102,7 @@
             <a class="text-sm font-medium py-3 border-b border-white/5 text-primary" href="tools.html">Free Tools</a>
             <div class="pt-4 flex flex-col gap-3">
                 <a href="https://console.eightsix.co" target="_blank" rel="noopener" class="w-full text-center rounded bg-white/5 px-4 py-2.5 text-sm font-semibold text-white transition-all hover:bg-white/10">Client Login</a>
-                <a href="assessment.html" class="block w-full text-center rounded bg-primary px-5 py-2.5 text-sm font-bold text-white shadow-[0_0_20px_rgba(31,58,137,0.4)] transition-all hover:bg-primary/90">Free AI Assessment</a>
+                <a href="assessment.html" class="block w-full text-center rounded bg-primary px-5 py-2.5 text-sm font-bold text-white shadow-[0_0_20px_rgba(31,58,137,0.4)] transition-all hover:bg-primary/90">Free Assessment</a>
             </div>
         </nav>
     </div>
@@ -252,6 +252,24 @@
             <button id="quiz-reset" class="hidden mt-3 w-full rounded-lg bg-white/5 border border-white/10 px-6 py-3 text-sm font-semibold text-slate-300 hover:bg-white/10 transition-colors">Retake Quiz</button>
         </div>
 
+        <!-- ── TOOL 6: AI Readiness Quiz ── -->
+        <div class="tool-card p-8">
+            <div class="flex items-center gap-3 mb-2">
+                <span class="material-symbols-outlined text-primary text-3xl">smart_toy</span>
+                <div>
+                    <h2 class="text-xl font-bold text-white">AI Readiness Quiz</h2>
+                    <p class="text-sm text-slate-400">10 quick questions to gauge how ready your business is to adopt AI safely.</p>
+                </div>
+            </div>
+            <p class="text-xs text-slate-500 mb-6">Results are not stored. This is a self-assessment only.</p>
+            <div id="ai-quiz-container" class="space-y-6"></div>
+            <div id="ai-quiz-result" class="hidden mt-8 rounded-xl p-6 border"></div>
+            <button id="ai-quiz-submit" class="hidden mt-6 w-full rounded-lg bg-primary px-6 py-3 text-sm font-bold text-white hover:bg-primary/90 transition-colors flex items-center justify-center gap-2">
+                <span class="material-symbols-outlined text-base">check_circle</span> See My Results
+            </button>
+            <button id="ai-quiz-reset" class="hidden mt-3 w-full rounded-lg bg-white/5 border border-white/10 px-6 py-3 text-sm font-semibold text-slate-300 hover:bg-white/10 transition-colors">Retake Quiz</button>
+        </div>
+
     </div>
 </section>
 
@@ -288,7 +306,7 @@
                 <div class="flex items-center gap-3 mb-6">
                     <a href="index.html"><img alt="Eight Six IT logo" class="w-auto object-contain opacity-90 h-[50px]" src="logo.svg"/></a>
                 </div>
-                <p class="max-w-sm text-sm leading-relaxed">We build, integrate, and secure AI for businesses across Puerto Rico — on a foundation of managed IT and cybersecurity. Engineering reliability since 2010.</p>
+                <p class="max-w-sm text-sm leading-relaxed">One engineering partner for managed IT, cybersecurity, and practical AI — serving businesses across Puerto Rico since 2010.</p>
             </div>
             <div>
                 <h4 class="mb-6 text-sm font-bold uppercase tracking-widest text-white">Quick Links</h4>
@@ -640,12 +658,94 @@
         quizSubmit.classList.add('hidden');
     });
 
+
+    /* ══════════════════════════════════════
+       TOOL 6 — AI Readiness Quiz
+    ══════════════════════════════════════ */
+    var aiQuizQuestions = [
+        { q: 'Do you have a written policy on which AI tools staff may use with company data?' },
+        { q: 'Do you know which AI tools your staff are already using today (including personal accounts)?' },
+        { q: 'Is sensitive data (client, patient, financial) blocked or controlled from being pasted into public AI tools?' },
+        { q: 'Are your documents and data organized enough that an AI assistant could answer from them reliably?' },
+        { q: 'Do your AI tools run under business accounts, with training on your data disabled?' },
+        { q: 'Is access to AI tools tied to your company identity (SSO/MFA), not personal logins?' },
+        { q: 'Have staff received basic training on safe and effective AI use?' },
+        { q: 'Do you have at least one workflow where AI is already saving measurable time?' },
+        { q: 'Is someone in your organization accountable for AI usage and its risks?' },
+        { q: 'Could you produce an audit trail of what data your AI tools have accessed, if asked?' }
+    ];
+
+    var aiQuizAnswers = {};
+    var aiQuizContainer = document.getElementById('ai-quiz-container');
+    var aiQuizSubmit    = document.getElementById('ai-quiz-submit');
+    var aiQuizReset     = document.getElementById('ai-quiz-reset');
+    var aiQuizResult    = document.getElementById('ai-quiz-result');
+
+    aiQuizQuestions.forEach(function (item, i) {
+        var div = document.createElement('div');
+        div.innerHTML =
+            '<p class="text-sm font-semibold text-slate-200 mb-3"><span class="text-primary font-bold mr-1">' + (i + 1) + '.</span>' + item.q + '</p>' +
+            '<div class="flex gap-3">' +
+            '<div class="quiz-option flex-1 text-center text-sm font-bold" data-q="' + i + '" data-a="yes">Yes</div>' +
+            '<div class="quiz-option flex-1 text-center text-sm font-bold" data-q="' + i + '" data-a="no">No</div>' +
+            '</div>';
+        aiQuizContainer.appendChild(div);
+    });
+
+    aiQuizContainer.addEventListener('click', function (e) {
+        var opt = e.target.closest('.quiz-option');
+        if (!opt) return;
+        var q = opt.dataset.q;
+        var a = opt.dataset.a;
+        aiQuizAnswers[q] = a;
+        var siblings = aiQuizContainer.querySelectorAll('[data-q="' + q + '"]');
+        siblings.forEach(function (s) {
+            s.classList.remove('selected-yes', 'selected-no');
+            if (s.dataset.a === a) s.classList.add(a === 'yes' ? 'selected-yes' : 'selected-no');
+        });
+        if (Object.keys(aiQuizAnswers).length === aiQuizQuestions.length) {
+            aiQuizSubmit.classList.remove('hidden');
+        }
+    });
+
+    aiQuizSubmit.addEventListener('click', function () {
+        var yes = Object.values(aiQuizAnswers).filter(function (v) { return v === 'yes'; }).length;
+        var pct = Math.round((yes / aiQuizQuestions.length) * 100);
+        var level, color, border, advice;
+        if (pct >= 90)      { level = 'AI-Ready';            color = 'text-green-400';  border = 'border-green-500/30 bg-green-500/10';   advice = 'Your foundations are strong. The next step is picking the highest-ROI workflow and shipping a pilot.'; }
+        else if (pct >= 70) { level = 'Nearly Ready';        color = 'text-yellow-400'; border = 'border-yellow-500/30 bg-yellow-500/10'; advice = 'You are closer than most. Close the gaps above — especially governance — and you can adopt AI with confidence.'; }
+        else if (pct >= 50) { level = 'Foundations Needed';  color = 'text-orange-400'; border = 'border-orange-500/30 bg-orange-500/10'; advice = 'AI would help your business, but adopting it now would create real data risk. Identity, data hygiene, and policy come first.'; }
+        else                { level = 'Start With Governance'; color = 'text-red-400';  border = 'border-red-500/30 bg-red-500/10';       advice = 'Your staff are likely already using AI without controls. Getting visibility and policy in place should happen before anything else.'; }
+
+        aiQuizResult.className = 'mt-8 rounded-xl p-6 border ' + border;
+        aiQuizResult.innerHTML =
+            '<div class="flex items-center gap-3 mb-3">' +
+            '<span class="text-4xl font-bold ' + color + '">' + pct + '%</span>' +
+            '<div><p class="font-bold text-white">' + level + '</p><p class="text-xs text-slate-400">' + yes + ' of ' + aiQuizQuestions.length + ' readiness checks in place</p></div>' +
+            '</div>' +
+            '<p class="text-sm text-slate-300 mb-4">' + advice + '</p>' +
+            '<a href="assessment.html" class="inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-2.5 text-sm font-bold text-white hover:bg-primary/90 transition-colors"><span class="material-symbols-outlined text-base">arrow_forward</span>Get a Free Assessment</a>';
+        aiQuizResult.classList.remove('hidden');
+        aiQuizSubmit.classList.add('hidden');
+        aiQuizReset.classList.remove('hidden');
+    });
+
+    aiQuizReset.addEventListener('click', function () {
+        aiQuizAnswers = {};
+        aiQuizContainer.querySelectorAll('.quiz-option').forEach(function (o) {
+            o.classList.remove('selected-yes', 'selected-no');
+        });
+        aiQuizResult.classList.add('hidden');
+        aiQuizReset.classList.add('hidden');
+        aiQuizSubmit.classList.add('hidden');
+    });
+
 })();
 </script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.4/dist/lenis.min.js" defer></script>
-<script src="site.js?v=20260616a" defer></script>
-<script src="experience.js?v=20260616a" defer></script>
+<script src="site.js?v=20260617a" defer></script>
+<script src="experience.js?v=20260617a" defer></script>
 </body>
 </html>

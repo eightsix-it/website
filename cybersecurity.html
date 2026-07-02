@@ -80,7 +80,7 @@
     }
     .ring-pulse { animation: ring-pulse 2.5s ease-in-out infinite; }
 </style>
-<link href="site.css?v=20260616a" rel="stylesheet"/>
+<link href="site.css?v=20260617a" rel="stylesheet"/>
 <script id="e86-bootstrap">(function(){try{var d=document.documentElement;if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)return;if(sessionStorage.getItem('e86t')){sessionStorage.removeItem('e86t');d.classList.add('e86-curtain');}else if(!sessionStorage.getItem('e86v')){sessionStorage.setItem('e86v','1');d.classList.add('e86-loading');}}catch(e){}})();</script>
 </head>
 <body class="bg-background-dark font-display text-slate-200 antialiased selection:bg-primary selection:text-white">
@@ -112,7 +112,7 @@
         <div class="flex items-center gap-4">
             <a href="https://console.eightsix.co" target="_blank" rel="noopener" class="hidden rounded bg-white/5 px-4 py-2 text-sm font-semibold text-white transition-all hover:bg-white/10 sm:block">Client Login</a>
             <a href="assessment.html" class="e86-btn-shine hidden lg:block rounded bg-primary px-5 py-2 text-sm font-bold text-white shadow-[0_0_20px_rgba(31,58,137,0.4)] transition-all hover:scale-105 hover:bg-primary/90">
-                Free AI Assessment
+                Free Assessment
             </a>
         <button id="mobile-menu-btn" class="lg:hidden flex items-center justify-center p-2 rounded text-slate-400 hover:text-white hover:bg-white/10 transition-colors" aria-label="Toggle menu">
             <span class="material-symbols-outlined" id="menu-icon">menu</span>
@@ -130,7 +130,7 @@
             <a class="text-sm font-medium py-3 border-b border-white/5 transition-colors hover:text-primary" href="tools.html">Free Tools</a>
             <div class="pt-4 flex flex-col gap-3">
                 <a href="https://console.eightsix.co" target="_blank" rel="noopener" class="w-full text-center rounded bg-white/5 px-4 py-2.5 text-sm font-semibold text-white transition-all hover:bg-white/10">Client Login</a>
-                <a href="assessment.html" class="block w-full text-center rounded bg-primary px-5 py-2.5 text-sm font-bold text-white shadow-[0_0_20px_rgba(31,58,137,0.4)] transition-all hover:bg-primary/90">Free AI Assessment</a>
+                <a href="assessment.html" class="block w-full text-center rounded bg-primary px-5 py-2.5 text-sm font-bold text-white shadow-[0_0_20px_rgba(31,58,137,0.4)] transition-all hover:bg-primary/90">Free Assessment</a>
             </div>
         </nav>
     </div>
@@ -450,6 +450,48 @@
         </div>
     </section>
 
+    <!-- AI Security & Governance -->
+    <section class="py-16 bg-background-dark">
+        <div class="mx-auto max-w-7xl px-6">
+            <div class="rounded-2xl border border-primary/25 bg-primary/5 p-10 grid gap-10 lg:grid-cols-[1.2fr_1fr] items-center relative overflow-hidden">
+                <div class="absolute -right-10 -top-10 opacity-[0.07] pointer-events-none">
+                    <span class="material-symbols-outlined text-primary" style="font-size:180px">smart_toy</span>
+                </div>
+                <div class="relative">
+                    <div class="mb-4 flex items-center gap-2 text-accent-yellow">
+                        <span class="h-px w-8 bg-accent-yellow"></span>
+                        <span class="text-xs font-bold uppercase tracking-widest">The New Attack Surface</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white md:text-3xl">AI Security &amp; Governance</h3>
+                    <p class="mt-4 text-slate-400 leading-relaxed">The fastest-growing leak in 2026 isn't malware — it's staff pasting sensitive data into consumer AI tools. We find the AI already in use across your organization, put policy and controls around it, and make sanctioned AI safe to rely on.</p>
+                    <div class="mt-6 flex flex-wrap gap-2">
+                        <span class="px-2.5 py-1 bg-primary/15 rounded text-[10px] font-semibold text-primary">Shadow-AI Discovery</span>
+                        <span class="px-2.5 py-1 bg-primary/15 rounded text-[10px] font-semibold text-primary">Acceptable-Use Policy</span>
+                        <span class="px-2.5 py-1 bg-primary/15 rounded text-[10px] font-semibold text-primary">Data Governance</span>
+                        <span class="px-2.5 py-1 bg-primary/15 rounded text-[10px] font-semibold text-primary">Audit Trails</span>
+                    </div>
+                    <a href="ai-solutions.html#govern" class="mt-7 inline-flex items-center gap-2 text-sm font-bold text-primary hover:text-white transition-colors">
+                        Explore AI governance <span class="material-symbols-outlined text-base">arrow_forward</span>
+                    </a>
+                </div>
+                <ul class="space-y-4 relative">
+                    <li class="flex items-start gap-3 rounded-xl border border-white/5 bg-card-dark p-4">
+                        <span class="material-symbols-outlined text-accent-yellow mt-0.5">visibility</span>
+                        <span class="text-sm text-slate-300">Discover every AI tool your staff already use — including personal accounts</span>
+                    </li>
+                    <li class="flex items-start gap-3 rounded-xl border border-white/5 bg-card-dark p-4">
+                        <span class="material-symbols-outlined text-accent-yellow mt-0.5">policy</span>
+                        <span class="text-sm text-slate-300">Controls that keep client, patient, and financial data out of public models</span>
+                    </li>
+                    <li class="flex items-start gap-3 rounded-xl border border-white/5 bg-card-dark p-4">
+                        <span class="material-symbols-outlined text-accent-yellow mt-0.5">fact_check</span>
+                        <span class="text-sm text-slate-300">Sanctioned AI configured, logged, and auditable from day one</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
     <!-- Defense Layers -->
     <section class="py-24 bg-[#080d16]">
         <div class="mx-auto max-w-7xl px-6">
@@ -601,7 +643,7 @@
                     <a href="index.html"><img alt="Eight Six IT logo" class="w-auto object-contain opacity-90 h-[50px]" src="logo.svg"/></a>
                 </div>
                 <p class="max-w-sm text-sm leading-relaxed">
-                    We build, integrate, and secure AI for businesses across Puerto Rico — on a foundation of managed IT and cybersecurity. Engineering reliability since 2010.
+                    One engineering partner for managed IT, cybersecurity, and practical AI — serving businesses across Puerto Rico since 2010.
                 </p>
 
             </div>
@@ -641,7 +683,7 @@
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.4/dist/lenis.min.js" defer></script>
-<script src="site.js?v=20260616a" defer></script>
-<script src="experience.js?v=20260616a" defer></script>
+<script src="site.js?v=20260617a" defer></script>
+<script src="experience.js?v=20260617a" defer></script>
 </body>
 </html>
