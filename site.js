@@ -18,8 +18,6 @@
     var motion = gsapMode || animOn;
 
     if (gsapMode) docEl.classList.add('e86-gsap');
-    // Never leave the preloader curtain up if the cinematic layer can't run.
-    if (!gsapMode) docEl.classList.remove('e86-loading', 'e86-curtain');
 
     /* ───────────────────────────── Mobile menu ── */
     var menuBtn = document.getElementById('mobile-menu-btn');

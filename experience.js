@@ -16,7 +16,6 @@
     gsap.registerPlugin(ScrollTrigger);
 
     var docEl = document.documentElement;
-    var loader = document.querySelector('.e86-loader');
 
     /* ───────────────────────────── Lenis smooth scrolling ── */
     var lenis = null;
@@ -114,77 +113,10 @@
         });
     }
 
-    /* ───────────────────────────── Preloader & curtain in ── */
-    if (loader) loader.style.animation = 'none'; // JS owns it now; CSS failsafe off
-    if (loader && docEl.classList.contains('e86-loading')) {
-        var fill = loader.querySelector('.e86-loader-fill');
-        var pct = loader.querySelector('.e86-loader-pct');
-        var inner = loader.querySelector('.e86-loader-inner');
-        var prog = { v: 0 };
-        gsap.timeline({
-            onComplete: function () {
-                loader.style.display = 'none';
-                docEl.classList.remove('e86-loading');
-            }
-        })
-            .to(prog, {
-                v: 100, duration: 0.95, ease: 'power2.inOut',
-                onUpdate: function () {
-                    var n = Math.round(prog.v);
-                    if (fill) fill.style.width = n + '%';
-                    if (pct) pct.textContent = n + '%';
-                }
-            })
-            .to(inner, { autoAlpha: 0, y: -24, duration: 0.3 }, '+=0.12')
-            .to(loader, { yPercent: -100, duration: 0.75, ease: 'power4.inOut' })
-            .add(pageEnter, '-=0.5');
-    } else if (loader && docEl.classList.contains('e86-curtain')) {
-        gsap.timeline({
-            onComplete: function () {
-                loader.style.display = 'none';
-                gsap.set(loader, { yPercent: 0 });
-                docEl.classList.remove('e86-curtain');
-            }
-        })
-            .to(loader, { yPercent: -100, duration: 0.65, ease: 'power4.inOut', delay: 0.06 })
-            .add(pageEnter, '-=0.45');
-    } else {
-        pageEnter();
-    }
-
-    /* ───────────────────────────── Page-transition wipe out ── */
-    function internalLink(a) {
-        if (a.target && a.target !== '_self') return false;
-        if (a.hasAttribute('download')) return false;
-        var href = a.getAttribute('href');
-        if (!href || href.charAt(0) === '#') return false;
-        if (/^(mailto:|tel:|javascript:)/i.test(href)) return false;
-        if (a.host && a.host !== location.host) return false;
-        return true;
-    }
-    document.addEventListener('click', function (e) {
-        if (e.defaultPrevented || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
-        var a = e.target.closest && e.target.closest('a[href]');
-        if (!a || !internalLink(a)) return;
-        var url = a.href;
-        if (!loader) return; // let the browser navigate normally
-        e.preventDefault();
-        try { sessionStorage.setItem('e86t', '1'); } catch (err) { /* private mode */ }
-        var inner = loader.querySelector('.e86-loader-inner');
-        if (inner) inner.style.display = 'none';
-        loader.style.display = 'flex';
-        gsap.fromTo(loader, { yPercent: 100 }, {
-            yPercent: 0, duration: 0.45, ease: 'power3.inOut',
-            onComplete: function () { location.href = url; }
-        });
-    });
-    window.addEventListener('pageshow', function (ev) {
-        if (ev.persisted && loader) { // back/forward cache restore
-            loader.style.display = 'none';
-            gsap.set(loader, { yPercent: 0 });
-            try { sessionStorage.removeItem('e86t'); } catch (err) { /* noop */ }
-        }
-    });
+    /* ───────────────────────────── Hero entrance ──
+       No preloader and no page-transition curtain: a marketing site should
+       paint as soon as it can, and internal links navigate natively. */
+    pageEnter();
 
     /* ───────────────────────────── Headline word reveals on scroll ── */
     document.querySelectorAll('main h2').forEach(function (h) {
@@ -399,8 +331,25 @@
         var fallback2D = function () {
             if (window.E86Particles2D) window.E86Particles2D(heroCanvas);
         };
-        if (!webglOK) {
-            fallback2D();
+        // The WebGL scene costs a 594 KB library plus a live render loop. It is
+        // decoration, and the 2D canvas fallback reads almost identically, so
+        // only devices that can absorb the cost get it.
+        var canAffordWebGL = (function () {
+            try {
+                if (window.matchMedia && !window.matchMedia('(min-width: 1024px)').matches) return false;
+                var conn = navigator.connection;
+                if (conn && (conn.saveData || /(^|-)2g$/.test(conn.effectiveType || ''))) return false;
+                if (typeof navigator.deviceMemory === 'number' && navigator.deviceMemory < 4) return false;
+                if (typeof navigator.hardwareConcurrency === 'number' && navigator.hardwareConcurrency < 4) return false;
+                return true;
+            } catch (e) { return false; }
+        })();
+        // Ambient particles are decoration. Phones keep the static hero — its
+        // armor texture and gradients carry the look — because a continuous
+        // canvas loop is main-thread time they cannot spare.
+        var wantsAmbient = !window.matchMedia || window.matchMedia('(min-width: 768px)').matches;
+        if (!webglOK || !canAffordWebGL) {
+            if (wantsAmbient) fallback2D();
         } else {
             var s = document.createElement('script');
             s.src = 'https://cdn.jsdelivr.net/npm/three@0.147.0/build/three.min.js';
