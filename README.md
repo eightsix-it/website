@@ -1,27 +1,35 @@
 # eightsixit.com
 
-Static marketing site for Eight Six IT Engineering, deployed on Cloudflare Pages
-from the `main` branch. There is no server and no framework: the pages are plain
-HTML, and everything they need is committed to the repository.
+Static marketing site for Eight Six IT Engineering, deployed as a Cloudflare
+Worker (Workers Builds, deploy command `npx wrangler versions upload`) from the
+`main` branch. There is no server and no framework: the pages are plain HTML,
+and everything they need is committed to the repository.
 
 ## Working on it
 
 ```
+cd build
 npm install       # once
-npm run watch     # rebuild tailwind.css as you edit
+npm run watch     # rebuild ../tailwind.css as you edit
 npm run serve     # http://localhost:8080
 ```
+
+The Node tooling lives in `build/` on purpose. Workers Builds treats a
+`package.json` in the deployed root as a project to install, and the site root
+is the asset directory — keeping the two separate means the deploy stays a
+plain asset upload. `.assetsignore` keeps `build/` out of what gets served.
 
 ### The one build step
 
 Tailwind classes are compiled ahead of time into `tailwind.css`, which **is
-committed** so that Cloudflare Pages can deploy the repository as-is, with no
-build command configured.
+committed** so that the Worker can deploy the repository as-is, with no build
+command configured.
 
 That means: **after adding or changing any Tailwind class in an HTML file or in
-a JavaScript string, run `npm run build` and commit the regenerated
-`tailwind.css`.** If you skip it, the new class silently has no effect in
-production. `tailwind.config.js` scans `./*.html` and `./*.js` for this reason —
+a JavaScript string, run `npm run build` from `build/` and commit the
+regenerated `tailwind.css`.** If you skip it, the new class silently has no
+effect in production. `build/tailwind.config.js` scans `../*.html` and
+`../*.js` for this reason —
 class names that only ever appear in JS string literals are still picked up.
 
 The site previously loaded the Tailwind Play CDN, which compiled CSS in the
@@ -35,9 +43,9 @@ visitor's browser on every page view. Do not put it back.
 | `site.css` | Shared motion and interaction styles. |
 | `site.js` | Shared behaviour: menu, counters, FAQ, scroll reveals, 2D particle fallback. |
 | `experience.js` | The optional cinematic layer (GSAP, Lenis, Three.js). The site works without it. |
-| `src/tailwind.css` | Build input. Edit this, never `tailwind.css`. |
+| `build/` | Tailwind tooling. Not served: see `.assetsignore`. Edit `build/src/tailwind.css`, never `tailwind.css`. |
 | `fonts/`, `fonts.css` | Self-hosted Space Grotesk and a subset of Material Symbols. |
-| `_headers` | Cloudflare Pages security and caching headers. |
+| `_headers` | Security and caching headers applied by Cloudflare. |
 | `sitemap.xml` | Update when adding or removing a page. |
 
 ## Conventions

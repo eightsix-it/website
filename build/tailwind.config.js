@@ -2,7 +2,9 @@
 module.exports = {
     // Class names appear in the pages themselves and in string literals inside
     // site.js / experience.js, so both are scanned.
-    content: ['./*.html', './*.js', '!./tailwind.config.js'],
+    // Paths are relative to this file, which lives in build/ so that the
+    // deployed site root stays free of Node tooling.
+    content: ['../*.html', '../*.js'],
     darkMode: 'class',
     theme: {
         extend: {
