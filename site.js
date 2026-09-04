@@ -18,8 +18,6 @@
     var motion = gsapMode || animOn;
 
     if (gsapMode) docEl.classList.add('e86-gsap');
-    // Never leave the preloader curtain up if the cinematic layer can't run.
-    if (!gsapMode) docEl.classList.remove('e86-loading', 'e86-curtain');
 
     /* ───────────────────────────── Mobile menu ── */
     var menuBtn = document.getElementById('mobile-menu-btn');
@@ -27,11 +25,23 @@
     var menuIcon = document.getElementById('menu-icon');
     if (menuBtn && menu && menuIcon && !menuBtn.dataset.bound) {
         menuBtn.dataset.bound = '1';
+        if (!menu.id) menu.id = 'mobile-menu';
+        menuBtn.setAttribute('aria-controls', menu.id);
+        menuBtn.setAttribute('aria-expanded', 'false');
         menuBtn.addEventListener('click', function () {
             var isOpen = !menu.classList.contains('hidden');
             menu.classList.toggle('hidden');
             menuIcon.textContent = isOpen ? 'menu' : 'close';
+            menuBtn.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
         });
+    }
+
+    /* ── Icon glyphs are decorative: keep them out of the accessibility tree ──
+       Without this a screen reader reads "arrow forward", "smart toy" and the
+       like in the middle of headings, links and button labels. */
+    var icons = document.querySelectorAll('.material-symbols-outlined');
+    for (var ic = 0; ic < icons.length; ic++) {
+        icons[ic].setAttribute('aria-hidden', 'true');
     }
 
     /* ───────────────────────────── Header scrolled state ── */
@@ -63,7 +73,7 @@
     var topBtn = document.createElement('button');
     topBtn.className = 'e86-top';
     topBtn.setAttribute('aria-label', 'Back to top');
-    topBtn.innerHTML = '<span class="material-symbols-outlined">arrow_upward</span>';
+    topBtn.innerHTML = '<span class="material-symbols-outlined" aria-hidden="true">arrow_upward</span>';
     document.body.appendChild(topBtn);
     topBtn.addEventListener('click', function () {
         if (window.E86_LENIS) { window.E86_LENIS.scrollTo(0); return; }
