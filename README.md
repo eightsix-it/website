@@ -14,10 +14,16 @@ npm run watch     # rebuild ../tailwind.css as you edit
 npm run serve     # http://localhost:8080
 ```
 
-The Node tooling lives in `build/` on purpose. Workers Builds treats a
-`package.json` in the deployed root as a project to install, and the site root
-is the asset directory — keeping the two separate means the deploy stays a
-plain asset upload. `.assetsignore` keeps `build/` out of what gets served.
+### How it deploys
+
+`wrangler.jsonc` declares an assets-only Worker whose asset directory is the
+repository root. Workers Builds runs the deploy command against that file;
+without it wrangler fails with "Missing entry-point to Worker script or to
+assets directory". `.assetsignore` lists what is in the repository but must not
+be served (`build/`, this README, the dotfiles, the config itself).
+
+The Node tooling lives in `build/`, not the root, so the served directory
+contains nothing but the site.
 
 ### The one build step
 
@@ -45,6 +51,7 @@ visitor's browser on every page view. Do not put it back.
 | `experience.js` | The optional cinematic layer (GSAP, Lenis, Three.js). The site works without it. |
 | `build/` | Tailwind tooling. Not served: see `.assetsignore`. Edit `build/src/tailwind.css`, never `tailwind.css`. |
 | `fonts/`, `fonts.css` | Self-hosted Space Grotesk and a subset of Material Symbols. |
+| `wrangler.jsonc` | Worker config. The `name` must match the Worker in the dashboard. |
 | `_headers` | Security and caching headers applied by Cloudflare. |
 | `sitemap.xml` | Update when adding or removing a page. |
 

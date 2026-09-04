@@ -1,0 +1,17 @@
+// Cloudflare Worker configuration.
+//
+// This is a static site: there is no Worker script, only a directory of assets
+// (the repository root). Workers Builds runs `npx wrangler versions upload`
+// with no build command, so everything the Worker serves must be committed.
+//
+// "name" must match the Worker in the Cloudflare dashboard. If a build fails
+// with "script not found", that is the field to correct.
+{
+  "name": "website",
+  "compatibility_date": "2026-09-01",
+  "assets": {
+    "directory": "./",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "none"
+  }
+}
