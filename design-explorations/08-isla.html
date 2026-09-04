@@ -1,0 +1,205 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Eight Six — Isla</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Alegreya+Sans:wght@400;500;700&display=swap">
+<style>
+  :root{--paper:#F1EEE6;--water:#CFE0E6;--land:#E9E2CF;--ink:#1E2A38;--ink2:#4B5563;--mute:#7C8390;--rule:#D6D0C2;--navy:#1F3A89;--red:#C0392B;--gold:#A67C00;
+    --ser:'EB Garamond',Garamond,Georgia,serif;--sans:'Alegreya Sans',system-ui,sans-serif}
+  html,body{margin:0;background:var(--paper);color:var(--ink)}
+  body{font-family:var(--sans);font-size:17px;line-height:1.5}
+  a{color:var(--navy)}
+  header.h{max-width:1280px;margin:0 auto;padding:30px 36px 18px;display:flex;justify-content:space-between;align-items:baseline;gap:20px;flex-wrap:wrap;border-bottom:1px solid var(--ink)}
+  .wm{font-family:var(--ser);font-variant:small-caps;letter-spacing:.08em;font-size:30px;font-weight:500;line-height:1}
+  .wm b{color:var(--red);font-weight:500}
+  .wm small{display:block;font-family:var(--sans);font-variant:normal;letter-spacing:.14em;text-transform:uppercase;font-size:11px;color:var(--mute);margin-top:6px}
+  nav.n{display:flex;flex-wrap:wrap;gap:8px 22px;font-variant:small-caps;letter-spacing:.1em;font-size:16px;font-weight:500}
+  nav.n a{color:var(--ink);text-decoration:none;border-bottom:1px solid transparent} nav.n a:hover{border-bottom-color:var(--red)}
+  .map{max-width:1280px;margin:0 auto;padding:22px 36px 0;display:grid;grid-template-columns:1fr 300px;gap:30px;align-items:start}
+  figure{margin:0;border:1px solid var(--ink);background:var(--water);position:relative}
+  svg{display:block;width:100%;height:auto}
+  svg text{font-family:var(--ser);fill:var(--ink)}
+  svg .sea{font-style:italic;font-size:15px;letter-spacing:.3em;fill:#5C7A86}
+  svg .town{font-size:13px;font-weight:500} svg .town.i{font-style:italic;font-weight:400;font-size:12px}
+  svg .grat{stroke:#9DB6BE;stroke-width:.6;fill:none} svg .gl{font-family:'Alegreya Sans',sans-serif;font-size:9px;fill:#5C7A86;letter-spacing:.08em}
+  svg .isl{fill:var(--land);stroke:var(--ink);stroke-width:1.2}
+  svg .isl2{fill:var(--land);stroke:var(--ink);stroke-width:1}
+  svg .cont{fill:none;stroke:#B9AE93;stroke-width:.7}
+  svg .dot{fill:var(--ink)} svg .home{fill:var(--red);stroke:var(--paper);stroke-width:1.5}
+  svg .scale{stroke:var(--ink);stroke-width:1} svg .sl{font-family:'Alegreya Sans',sans-serif;font-size:9px;letter-spacing:.06em}
+  figcaption{position:absolute;left:14px;bottom:12px;background:var(--paper);border:1px solid var(--ink);padding:8px 12px;font-size:13px;max-width:380px;line-height:1.35}
+  figcaption b{font-family:var(--ser);font-variant:small-caps;letter-spacing:.08em;font-weight:600;display:block;margin-bottom:2px}
+  .coord{border:1px solid var(--ink);padding:16px 18px;font-size:15px}
+  .coord h2{font-family:var(--ser);font-weight:500;font-size:30px;line-height:1.1;margin:0 0 12px;letter-spacing:-.01em;text-wrap:balance}
+  .coord h2 em{font-style:italic;color:var(--navy)}
+  .coord dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:14px}
+  .coord dt{font-variant:small-caps;letter-spacing:.1em;color:var(--mute);font-weight:500}
+  .coord dd{margin:0}
+  .coord .ph{display:block;font-family:var(--ser);font-size:26px;text-decoration:none;color:var(--ink);margin-top:14px;font-weight:500}
+  .coord .cta{display:inline-block;margin-top:12px;background:var(--ink);color:var(--paper);text-decoration:none;padding:9px 14px;font-variant:small-caps;letter-spacing:.1em;font-weight:700}
+  .coord .cta:hover{background:var(--red)}
+  .legend{margin-top:14px;font-size:14px;border-top:1px solid var(--rule);padding-top:12px}
+  .legend div{display:grid;grid-template-columns:22px 1fr;gap:8px;align-items:center;padding:3px 0}
+  .legend svg{width:18px;height:18px}
+  .wrap{max-width:1280px;margin:0 auto;padding:44px 36px 70px}
+  h2.t{font-family:var(--ser);font-weight:500;font-size:34px;line-height:1.1;margin:52px 0 8px;letter-spacing:-.01em}
+  h2.t:first-child{margin-top:0}
+  .sub{color:var(--ink2);margin:0 0 22px;max-width:70ch;font-size:17px}
+  .gaz{columns:2;column-gap:44px;border-top:1px solid var(--ink);padding-top:14px}
+  .gaz div{break-inside:avoid;padding:8px 0;border-bottom:1px solid var(--rule);font-size:15.5px}
+  .gaz b{font-family:var(--ser);font-weight:600;font-size:18px}
+  .gaz i{color:var(--mute);font-style:italic}
+  .guide{display:grid;grid-template-columns:repeat(5,1fr);gap:22px;border-top:1px solid var(--ink);padding-top:18px}
+  .guide article h3{font-family:var(--ser);font-weight:600;font-size:22px;margin:8px 0 6px;line-height:1.1}
+  .guide article p{margin:0 0 8px;font-size:14.5px;color:var(--ink2)}
+  .guide article .hz{font-size:13px;color:var(--ink);border-top:1px dotted var(--rule);padding-top:6px}
+  .guide article .hz b{font-variant:small-caps;letter-spacing:.08em;color:var(--red);font-weight:700}
+  .route{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--ink);padding-top:0;position:relative}
+  .route div{padding:26px 16px 0 0;position:relative}
+  .route div::before{content:"";position:absolute;left:0;top:-6px;width:11px;height:11px;border-radius:50%;background:var(--paper);border:1.5px solid var(--ink)}
+  .route div:first-child::before{background:var(--red);border-color:var(--red)}
+  .route b{display:block;font-variant:small-caps;letter-spacing:.12em;color:var(--mute);font-size:14px}
+  .route h4{font-family:var(--ser);font-size:22px;font-weight:600;margin:2px 0 6px}
+  .route p{margin:0;font-size:14.5px;color:var(--ink2)}
+  .notes{display:grid;grid-template-columns:1fr 1fr;gap:10px 44px;border-top:1px solid var(--ink);padding-top:14px}
+  .notes div{padding:8px 0;border-bottom:1px solid var(--rule)}
+  .notes b{font-family:var(--ser);font-weight:600;font-size:19px;display:block;margin-bottom:4px}
+  .notes p{margin:0;font-size:15px;color:var(--ink2)}
+  .send{display:grid;grid-template-columns:1fr 1fr;gap:40px;border-top:1px solid var(--ink);padding-top:18px}
+  form.s{display:grid;grid-template-columns:1fr 1fr;gap:14px 18px}
+  form.s label{display:block;font-variant:small-caps;letter-spacing:.1em;color:var(--mute);font-weight:500;font-size:14px;margin-bottom:2px}
+  form.s input,form.s select{width:100%;box-sizing:border-box;border:0;border-bottom:1px solid var(--ink);background:transparent;padding:6px 0;font:inherit;font-size:16px;border-radius:0}
+  form.s input:focus,form.s select:focus{outline:none;border-bottom:2px solid var(--red)}
+  form.s button{grid-column:1/-1;justify-self:start;background:var(--ink);color:var(--paper);border:0;padding:12px 20px;font:inherit;font-variant:small-caps;letter-spacing:.1em;font-weight:700;cursor:pointer;margin-top:6px}
+  form.s button:hover{background:var(--red)}
+  .send p.big{font-family:var(--ser);font-size:26px;line-height:1.3;margin:0 0 12px}
+  footer{max-width:1280px;margin:0 auto;padding:18px 36px 44px;border-top:1px solid var(--ink);display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-size:13px;color:var(--ink2);font-variant:small-caps;letter-spacing:.08em}
+  @media (max-width:1000px){.map{grid-template-columns:1fr}.guide{grid-template-columns:1fr 1fr}.route{grid-template-columns:1fr 1fr;gap:18px}.gaz{columns:1}.notes,.send,form.s{grid-template-columns:1fr}header.h,.map,.wrap,footer{padding-left:18px;padding-right:18px}figcaption{position:static;max-width:none;border:0;border-top:1px solid var(--ink)}}
+</style>
+
+<header class="h">
+  <div class="wm">Eight Six<b>.</b><small>IT Engineering · San Juan, Puerto Rico · est. 2024</small></div>
+  <nav class="n"><a href="#gaz">Services</a><a href="#guide">Who we serve</a><a href="#route">How we work</a><a href="#notes">Questions</a><a href="https://console.eightsix.co">Client login</a><a href="tel:+17877149556">(787) 714-9556</a></nav>
+</header>
+
+<div class="map">
+  <figure>
+    <svg viewBox="0 0 1000 440" role="img" aria-label="Map of Puerto Rico with San Juan marked as home base. Service area: the whole island on site, remote everywhere.">
+      <g class="grat"><path d="M0 60 H1000 M0 160 H1000 M0 260 H1000 M0 360 H1000 M100 0 V440 M250 0 V440 M400 0 V440 M550 0 V440 M700 0 V440 M850 0 V440"/></g>
+      <g class="gl"><text x="4" y="57">18°30′ N</text><text x="4" y="157">18°20′ N</text><text x="4" y="257">18°10′ N</text><text x="4" y="357">18°00′ N</text><text x="104" y="434">67°10′ W</text><text x="254" y="434">67°00′ W</text><text x="404" y="434">66°40′ W</text><text x="554" y="434">66°20′ W</text><text x="704" y="434">66°00′ W</text><text x="854" y="434">65°40′ W</text></g>
+      <text class="sea" x="500" y="42" text-anchor="middle">OCÉANO ATLÁNTICO</text>
+      <text class="sea" x="480" y="392" text-anchor="middle">MAR CARIBE</text>
+      <!-- contour offsets -->
+      <path class="cont" d="M118 150 C 160 105, 260 95, 400 100 S 700 100, 878 132 C 910 160, 900 220, 855 300 C 800 322, 650 312, 560 316 C 480 322, 330 312, 210 328 C 150 330, 105 280, 108 210 Z"/>
+      <!-- Puerto Rico -->
+      <path class="isl" d="M135 150 L170 125 L240 115 L330 112 L420 118 L510 120 L600 118 L700 122 L790 130 L860 145 L885 165 L880 190 L860 215 L845 250 L830 285 L790 300 L720 296 L650 290 L590 295 L575 302 L520 292 L450 296 L380 292 L300 290 L240 296 L200 305 L178 316 L152 300 L130 270 L120 230 L118 190 L125 165 Z"/>
+      <!-- Vieques, Culebra, Mona -->
+      <path class="isl2" d="M905 246 L930 236 L968 238 L982 246 L968 254 L925 258 Z"/>
+      <path class="isl2" d="M928 170 L940 165 L952 172 L946 182 L932 180 Z"/>
+      <path class="isl2" d="M74 232 L84 224 L92 232 L84 242 Z"/>
+      <!-- towns -->
+      <circle class="dot" cx="330" cy="120" r="3"/><text class="town i" x="322" y="140" text-anchor="middle">Arecibo</text>
+      <circle class="dot" cx="140" cy="215" r="3"/><text class="town i" x="152" y="212">Mayagüez</text>
+      <circle class="dot" cx="585" cy="284" r="3"/><text class="town i" x="585" y="278" text-anchor="middle">Ponce</text>
+      <circle class="dot" cx="630" cy="178" r="3"/><text class="town i" x="640" y="182">Caguas</text>
+      <circle class="dot" cx="878" cy="162" r="3"/><text class="town i" x="870" y="156" text-anchor="end">Fajardo</text>
+      <circle class="dot" cx="845" cy="236" r="3"/><text class="town i" x="836" y="240" text-anchor="end">Humacao</text>
+      <circle class="dot" cx="585" cy="130" r="3"/><text class="town i" x="575" y="146" text-anchor="end">Bayamón</text>
+      <circle class="dot" cx="935" cy="248" r="2"/><text class="town i" x="935" y="272" text-anchor="middle">Vieques</text>
+      <text class="town i" x="940" y="160" text-anchor="middle">Culebra</text>
+      <text class="town i" x="83" y="258" text-anchor="middle">Mona</text>
+      <!-- home base -->
+      <circle class="home" cx="612" cy="124" r="7"/><circle class="home" cx="612" cy="124" r="2" style="fill:#fff;stroke:none"/>
+      <text class="town" x="624" y="112">San Juan</text><text class="gl" x="624" y="124">18.4655° N · 66.1057° W</text>
+      <!-- compass -->
+      <g transform="translate(940 72)"><circle cx="0" cy="0" r="26" fill="none" stroke="#1E2A38" stroke-width=".8"/><path d="M0 -26 L6 0 L0 26 L-6 0 Z" fill="#1E2A38"/><path d="M0 -26 L6 0 L0 6 L-6 0 Z" fill="#C0392B"/><text x="0" y="-32" text-anchor="middle" style="font-size:11px;font-weight:600">N</text></g>
+      <!-- scale -->
+      <g transform="translate(720 400)"><path class="scale" d="M0 0 H150 M0 -5 V5 M75 -5 V5 M150 -5 V5"/><rect x="0" y="-2" width="75" height="4" fill="#1E2A38"/><text class="sl" x="0" y="-9">0</text><text class="sl" x="75" y="-9" text-anchor="middle">25</text><text class="sl" x="150" y="-9" text-anchor="end">50 km</text></g>
+    </svg>
+    <figcaption><b>Service area</b>The entire island, on site: scheduled and emergency field visits from San Juan to Mayagüez, Ponce and Fajardo. Remote support everywhere, at any hour. ● Home base.</figcaption>
+  </figure>
+  <aside class="coord">
+    <h2>An engineering firm you can place <em>on a map.</em></h2>
+    <dl>
+      <dt>Based</dt><dd>San Juan, Puerto Rico</dd>
+      <dt>Since</dt><dd>2024, on 15+ years of clinical and business IT</dd>
+      <dt>Practices</dt><dd>Managed IT · Cybersecurity · Practical AI</dd>
+      <dt>Who answers</dt><dd>Lino E. Gómez, founder and principal engineer</dd>
+    </dl>
+    <a class="ph" href="tel:+17877149556">(787) 714-9556</a>
+    <a class="cta" href="#send">Request a free assessment</a>
+    <div class="legend">
+      <div><svg viewBox="0 0 18 18"><path d="M9 2 L16 9 L9 16 L2 9 Z" fill="none" stroke="#1E2A38" stroke-width="1.4"/><path d="M9 6 V12 M6 9 H12" stroke="#1E2A38" stroke-width="1.4"/></svg>Clinics &amp; healthcare</div>
+      <div><svg viewBox="0 0 18 18"><rect x="3" y="3" width="12" height="12" fill="none" stroke="#1E2A38" stroke-width="1.4"/><path d="M6 7 H12 M6 10 H12" stroke="#1E2A38" stroke-width="1.2"/></svg>Law &amp; professional offices</div>
+      <div><svg viewBox="0 0 18 18"><circle cx="9" cy="9" r="6.5" fill="none" stroke="#1E2A38" stroke-width="1.4"/><circle cx="9" cy="9" r="2" fill="#1E2A38"/></svg>Veterinary hospitals</div>
+      <div><svg viewBox="0 0 18 18"><path d="M3 15 V7 L8 10 V7 L13 10 V4 H15 V15 Z" fill="none" stroke="#1E2A38" stroke-width="1.4"/></svg>Manufacturing plants</div>
+      <div><svg viewBox="0 0 18 18"><path d="M7 3 H11 M8 3 V9 L4 15 H14 L10 9 V3" fill="none" stroke="#1E2A38" stroke-width="1.4"/></svg>Calibration &amp; certification labs</div>
+    </div>
+  </aside>
+</div>
+
+<div class="wrap">
+  <h2 class="t" id="gaz">Gazetteer of services</h2>
+  <p class="sub">Everything we do, in the order you would look it up. One engineering team runs your infrastructure, defends it, and builds AI on top of it.</p>
+  <div class="gaz">
+    <div><b>Backup &amp; recovery.</b> Immutable, off-site, restore-tested every month with the result in your report. Recovery objectives per workload. We execute the recovery. <i>See also Ransomware.</i></div>
+    <div><b>Cloud.</b> Microsoft 365 and Azure administration, AWS where it fits, migrations planned for zero-downtime cutovers.</div>
+    <div><b>Cybersecurity.</b> Huntress-powered EDR/MDR with a 24/7 SOC; email filtering that stops phishing and BEC before delivery; MFA and zero-trust; continuous vulnerability management. <i>See also HIPAA.</i></div>
+    <div><b>EMR / EHR.</b> eClinicalWorks, Epic, Athenahealth; interface troubleshooting; Mirth-certified HL7 engineering.</div>
+    <div><b>Field engineering.</b> Scheduled and emergency on-site visits anywhere on the island.</div>
+    <div><b>Helpdesk.</b> Unlimited remote support handled directly by an engineer. No tiers.</div>
+    <div><b>HIPAA.</b> Risk assessments, technical safeguards, documentation ready for OCR review.</div>
+    <div><b>Imaging.</b> DICOM networking, PACS support, modality connectivity, storage planning; human and veterinary.</div>
+    <div><b>Monitoring.</b> Every endpoint, server and network device watched around the clock; alerts reach an engineer, not a queue.</div>
+    <div><b>Network.</b> Structured cabling, enterprise Wi-Fi, firewalls, SD-WAN, segmentation between office and plant floor.</div>
+    <div><b>Practical AI — build.</b> Custom tools around your costliest workflow. Shipped: AI medical scribe, MIPS impact forecasting, AI security-alert analysis.</div>
+    <div><b>Practical AI — integrate.</b> Copilot, ChatGPT or Claude chosen for your stack, configured securely, connected to your data, rolled out with training.</div>
+    <div><b>Practical AI — govern.</b> Private deployments; data never trains public models; audit logging; shadow-AI discovery; acceptable-use policy.</div>
+    <div><b>Patching &amp; lifecycle.</b> Scheduled patch windows; procurement to retirement; an inventory that makes an audit a lookup.</div>
+    <div><b>Ransomware.</b> Prevent, detect, contain, recover. Air-gapped immutable backups mean recovery in hours, not weeks. <i>See also Backup.</i></div>
+    <div><b>vCIO.</b> Roadmaps, budgets, vendor management, board-level reporting without a full-time CIO.</div>
+    <div><b>Voice.</b> Hosted VoIP, unified communications, secure fax integrated with clinical workflows.</div>
+    <div><b>Free tools.</b> Password checker and generator, breach lookup, phishing URL analyzer, HIPAA and AI readiness quizzes. In your browser.</div>
+  </div>
+
+  <h2 class="t" id="guide">Field guide to the places we work</h2>
+  <p class="sub">We go deep where data is sensitive, downtime is costly, and AI must be handled with care. Healthcare is where we cut our teeth.</p>
+  <div class="guide">
+    <article><h3>Clinics</h3><p>Oncology clinic, a multi-site community health center, private practices.</p><div class="hz"><b>Hazards</b> Slow EMR logins, HIPAA audit exposure, backups never tested, weak branch sites.</div></article>
+    <article><h3>Law offices</h3><p>A document-heavy bankruptcy practice among them; accounting and financial firms.</p><div class="hz"><b>Hazards</b> Business-email compromise, files on personal devices, downtime at filing deadlines.</div></article>
+    <article><h3>Veterinary hospitals</h3><p>Practice software, digital radiography, in-house analyzers, and no one on staff for IT.</p><div class="hz"><b>Hazards</b> Practice system down; years of X-rays on one aging server.</div></article>
+    <article><h3>Plants</h3><p>A concrete manufacturer and a corrugated packaging plant.</p><div class="hz"><b>Hazards</b> Dust, heat, distance between buildings; flat networks reaching production.</div></article>
+    <article><h3>Calibration labs</h3><p>A certification laboratory whose product is a defensible record.</p><div class="hz"><b>Hazards</b> Irreplaceable calibration history; instrument PCs nobody dares patch.</div></article>
+  </div>
+
+  <h2 class="t" id="route">The route from first call to fully managed</h2>
+  <p class="sub">Four weeks in most cases. Longer if your environment is complicated; we would rather be careful than quick.</p>
+  <div class="route">
+    <div><b>Day 1</b><h4>Discovery</h4><p>Free 30-minute call. Environment mapped, risks named, scope confirmed.</p></div>
+    <div><b>Week 1</b><h4>Agreement</h4><p>Plain language. Deliverables, response targets, flat monthly price. No lock-in.</p></div>
+    <div><b>Weeks 2–3</b><h4>Deployment</h4><p>Agents, monitoring, backups, EDR, email security and MFA switched on.</p></div>
+    <div><b>Week 4</b><h4>Managed</h4><p>Live around the clock. Your engineer introduced. First monthly report on the calendar.</p></div>
+  </div>
+
+  <h2 class="t" id="notes">Notes for travellers</h2>
+  <div class="notes">
+    <div><b>Is our data safe if we start using AI?</b><p>Yes. Private, governed deployments; your data is not used to train public models; access controlled and logged; HIPAA built in where it applies.</p></div>
+    <div><b>How fast do you respond?</b><p>You reach the engineer directly. Monitoring runs 24/7/365; a critical incident is drop-everything at any hour.</p></div>
+    <div><b>Long-term contracts?</b><p>No. Flat monthly pricing, no expensive exit clauses.</p></div>
+    <div><b>A realistic first AI project?</b><p>One painful, repetitive workflow. Piloted in weeks, saving measured, then expanded.</p></div>
+    <div><b>AI company or IT company?</b><p>Both, deliberately. One accountable team instead of three vendors.</p></div>
+    <div><b>Who will I talk to?</b><p>Lino E. Gómez. HIPAA Security, MCSE, Mirth Certified, AWS and Azure. No call center.</p></div>
+  </div>
+
+  <h2 class="t" id="send">Send word</h2>
+  <div class="send">
+    <div><p class="big">Tell us what is slowing you down. An engineer will call you back at the hour you choose.</p><p><a href="tel:+17877149556" style="font-family:var(--ser);font-size:24px;text-decoration:none;color:var(--ink)">(787) 714-9556</a><br><a href="mailto:info@eightsix.co">info@eightsix.co</a></p></div>
+    <form class="s" onsubmit="event.preventDefault();this.querySelector('button').textContent='Received'">
+      <div><label for="a">Name</label><input id="a" required></div><div><label for="b">Organization</label><input id="b" required></div>
+      <div><label for="c">Email</label><input id="c" type="email" required></div><div><label for="d">Phone</label><input id="d" type="tel"></div>
+      <div><label for="e">Focus</label><select id="e"><option>Both — AI and IT/security</option><option>AI opportunities</option><option>IT and security risk</option></select></div>
+      <div><label for="f">Best time</label><select id="f"><option>Morning</option><option>Afternoon</option><option>Evening</option><option>Anytime</option></select></div>
+      <button type="submit">Request the free assessment</button>
+    </form>
+  </div>
+</div>
+<footer><span>Eight Six IT Engineering · 18.4655° N, 66.1057° W</span><span>HIPAA-aware · MCSE · Secure by design · © 2026</span></footer>

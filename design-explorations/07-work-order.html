@@ -1,0 +1,224 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Eight Six — Work Order</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600&display=swap">
+<style>
+  :root{--yel:#F4C430;--k:#111111;--w:#FFFFFF;--gray:#ECE9E1;--gray2:#C9C5BA;--red:#D62828;--ink2:#3A3A3A;
+    --cond:'Barlow Condensed','Arial Narrow',Impact,sans-serif;--sans:'Barlow',system-ui,Arial,sans-serif}
+  html,body{margin:0;background:var(--w);color:var(--k)}
+  body{font-family:var(--sans);font-size:16px;line-height:1.45}
+  a{color:inherit}
+  .topbar{background:var(--k);color:var(--w);display:flex;align-items:center;justify-content:space-between;gap:20px;padding:12px 28px;flex-wrap:wrap}
+  .topbar img{height:42px;width:auto;display:block}
+  .topbar .oncall{font-family:var(--cond);font-weight:700;font-size:16px;letter-spacing:.12em;text-transform:uppercase;display:flex;align-items:center;gap:12px}
+  .topbar .oncall i{display:inline-block;width:12px;height:12px;background:var(--yel)}
+  .topbar .ph{font-family:var(--cond);font-weight:800;font-size:40px;letter-spacing:-.01em;text-decoration:none;color:var(--yel);line-height:1}
+  .topbar .ph small{display:block;font-family:var(--sans);font-size:11px;letter-spacing:.16em;color:#bbb;font-weight:500}
+  .hz{height:18px;background:repeating-linear-gradient(-45deg,var(--k) 0 16px,var(--yel) 16px 32px)}
+  .wo{background:var(--yel);padding:34px 28px 30px}
+  .wo .in{max-width:1240px;margin:0 auto}
+  .wo h1{font-family:var(--cond);font-weight:800;font-size:clamp(48px,7vw,104px);line-height:.9;letter-spacing:-.02em;margin:0 0 22px;text-transform:uppercase}
+  .wo h1 span{display:block;font-size:.42em;font-weight:700;letter-spacing:.04em;color:var(--ink2)}
+  .fields{display:grid;grid-template-columns:repeat(4,1fr);gap:14px 22px;border-top:3px solid var(--k);padding-top:16px}
+  .fld{font-family:var(--cond);font-size:13px;letter-spacing:.14em;text-transform:uppercase;font-weight:700}
+  .fld b{display:block;border-bottom:2px solid var(--k);padding:6px 0 4px;font-family:var(--sans);font-size:17px;letter-spacing:0;text-transform:none;font-weight:500;min-height:30px}
+  .fld b.mut{color:var(--ink2)}
+  .prio{display:flex;gap:16px;padding-top:6px}
+  .prio label{display:flex;align-items:center;gap:6px;font-weight:600;cursor:pointer;font-family:var(--sans);font-size:14px;letter-spacing:.02em;text-transform:none}
+  .prio input{width:18px;height:18px;accent-color:var(--k)}
+  .sec{max-width:1240px;margin:0 auto;padding:46px 28px}
+  .sec h2{font-family:var(--cond);font-weight:800;font-size:38px;letter-spacing:.02em;text-transform:uppercase;margin:0 0 18px;display:flex;align-items:center;gap:14px}
+  .sec h2::before{content:"";width:22px;height:22px;background:var(--yel);border:3px solid var(--k);flex:none}
+  .sec h2 small{font-family:var(--sans);font-weight:500;font-size:13px;letter-spacing:.14em;color:var(--ink2);margin-left:auto}
+  .problem{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .problem label{border:3px solid var(--k);padding:20px 18px 18px;cursor:pointer;display:grid;grid-template-columns:34px 1fr;gap:12px;align-items:start;background:var(--w)}
+  .problem label:has(input:checked){background:var(--yel)}
+  .problem input{width:26px;height:26px;margin:2px 0 0;accent-color:var(--k)}
+  .problem b{font-family:var(--cond);font-size:26px;font-weight:800;text-transform:uppercase;letter-spacing:.01em;line-height:1;display:block;margin-bottom:6px}
+  .problem span{color:var(--ink2);font-size:15px}
+  .summary{margin-top:16px;border:3px solid var(--k);background:var(--gray);padding:14px 18px;font-family:var(--cond);font-size:20px;font-weight:700;letter-spacing:.02em;text-transform:uppercase;display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+  .summary a{background:var(--k);color:var(--yel);text-decoration:none;padding:10px 16px;margin-left:auto;font-size:18px}
+  .scope{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .scope .col{border-top:6px solid var(--k);padding-top:12px}
+  .scope h3{font-family:var(--cond);font-size:28px;font-weight:800;text-transform:uppercase;margin:0 0 10px;letter-spacing:.01em}
+  .scope h3 small{display:block;font-family:var(--sans);font-size:12px;letter-spacing:.14em;color:var(--ink2);font-weight:600}
+  .scope ul{list-style:none;margin:0;padding:0}
+  .scope li{display:grid;grid-template-columns:22px 1fr;gap:10px;padding:8px 0;border-bottom:1px solid var(--gray2);font-size:15px}
+  .scope li::before{content:"";width:16px;height:16px;border:2px solid var(--k);margin-top:2px;background:linear-gradient(var(--k),var(--k)) center/8px 8px no-repeat}
+  .scope li b{font-weight:600}
+  .sites{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+  .site{border:3px solid var(--k);padding:14px}
+  .site b{display:block;font-family:var(--cond);font-size:22px;font-weight:800;text-transform:uppercase;line-height:1;margin-bottom:8px}
+  .site p{margin:0;font-size:14px;color:var(--ink2)}
+  .site .tag{display:inline-block;margin-top:10px;background:var(--k);color:var(--yel);font-family:var(--cond);font-size:12px;letter-spacing:.14em;padding:3px 8px;text-transform:uppercase;font-weight:700}
+  .parts{border:3px solid var(--k)}
+  .parts .row{display:grid;grid-template-columns:110px 1fr 1fr;border-bottom:1px solid var(--gray2)}
+  .parts .row:last-child{border-bottom:0}
+  .parts .row > div{padding:12px 14px}
+  .parts .row > div:first-child{font-family:var(--cond);font-weight:800;font-size:22px;background:var(--gray);text-transform:uppercase}
+  .parts .row b{font-weight:600}
+  .parts .row p{margin:0;color:var(--ink2);font-size:15px}
+  .parts .hd > div{font-family:var(--cond);font-size:13px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;background:var(--k);color:var(--w)}
+  .parts .hd > div:first-child{background:var(--k);color:var(--yel);font-size:13px}
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;counter-reset:st}
+  .steps div{position:relative;padding:54px 0 0;border-top:3px solid var(--k);counter-increment:st}
+  .steps div::before{content:counter(st);position:absolute;left:0;top:12px;font-family:var(--cond);font-weight:800;font-size:34px;line-height:1;background:var(--yel);padding:0 10px}
+  .steps b{display:block;font-family:var(--cond);font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink2)}
+  .steps h4{font-family:var(--cond);font-size:26px;font-weight:800;text-transform:uppercase;margin:2px 0 6px;line-height:1}
+  .steps p{margin:0;font-size:15px;color:var(--ink2)}
+  .terms{display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:0;border:3px solid var(--k);align-items:stretch}
+  .terms > div{padding:18px;border-right:1px solid var(--gray2)}
+  .terms > div:last-child{border-right:0;display:flex;align-items:center;justify-content:center;padding:18px 28px}
+  .terms b{display:block;font-family:var(--cond);font-size:30px;font-weight:800;text-transform:uppercase;line-height:1;margin-bottom:6px}
+  .terms p{margin:0;font-size:15px;color:var(--ink2)}
+  .stamp{border:4px solid var(--red);color:var(--red);font-family:var(--cond);font-weight:800;font-size:28px;letter-spacing:.12em;text-transform:uppercase;padding:8px 16px;transform:rotate(-8deg);white-space:nowrap}
+  .faq{display:grid;grid-template-columns:1fr 1fr;gap:6px 40px}
+  .faq div{padding:14px 0;border-bottom:1px solid var(--gray2)}
+  .faq b{display:block;font-family:var(--cond);font-size:22px;font-weight:800;text-transform:uppercase;line-height:1.05;margin-bottom:6px}
+  .faq p{margin:0;color:var(--ink2);font-size:15px}
+  .submit{background:var(--yel);padding:46px 28px 60px}
+  .submit .in{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:1fr 1.4fr;gap:40px}
+  .submit h2{font-family:var(--cond);font-weight:800;font-size:clamp(40px,5.4vw,76px);line-height:.92;text-transform:uppercase;margin:0 0 14px;letter-spacing:-.01em}
+  .submit p{font-size:17px;max-width:44ch}
+  .submit .ph{font-family:var(--cond);font-weight:800;font-size:44px;text-decoration:none;display:block;margin-top:14px;line-height:1}
+  form.wo{display:grid;grid-template-columns:1fr 1fr;gap:14px 18px;background:var(--w);border:3px solid var(--k);padding:22px}
+  form.wo label{display:block;font-family:var(--cond);font-size:13px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;margin-bottom:4px}
+  form.wo input,form.wo select{width:100%;box-sizing:border-box;border:0;border-bottom:2px solid var(--k);padding:8px 0;font:inherit;font-size:17px;background:transparent;border-radius:0}
+  form.wo input:focus,form.wo select:focus{outline:none;border-bottom-color:var(--red)}
+  form.wo .sig{grid-column:1/-1;display:grid;grid-template-columns:1fr auto;gap:22px;align-items:end;margin-top:8px}
+  form.wo .sig .line{border-bottom:2px solid var(--k);height:38px;font-family:var(--cond);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink2);display:flex;align-items:flex-end;padding-bottom:4px}
+  form.wo button{background:var(--k);color:var(--yel);border:0;font-family:var(--cond);font-weight:800;font-size:22px;letter-spacing:.08em;text-transform:uppercase;padding:14px 24px;cursor:pointer}
+  form.wo button:hover{background:var(--red);color:#fff}
+  footer{background:var(--k);color:#bbb;padding:22px 28px;font-size:13px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-family:var(--cond);letter-spacing:.1em;text-transform:uppercase}
+  footer a{color:var(--yel);text-decoration:none}
+  @media (max-width:980px){.fields{grid-template-columns:1fr 1fr}.fields .fld:last-child{grid-column:1/-1}.prio{flex-wrap:wrap}.sec h2{flex-wrap:wrap;font-size:30px}.sec h2 small{margin-left:0;flex-basis:100%}.problem,.scope,.steps{grid-template-columns:1fr}.sites{grid-template-columns:1fr 1fr}.parts .row{grid-template-columns:1fr}.parts .row>div:first-child{padding:8px 14px}.terms{grid-template-columns:1fr}.terms>div{border-right:0;border-bottom:1px solid var(--gray2)}.faq{grid-template-columns:1fr}.submit .in{grid-template-columns:1fr}form.wo{grid-template-columns:1fr}.topbar .ph{font-size:30px}}
+</style>
+
+<div class="topbar">
+  <img src="__LOGO__" alt="Eight Six IT Engineering">
+  <div class="oncall"><i></i>24/7 monitoring · engineer on call · no ticket queue</div>
+  <a class="ph" href="tel:+17877149556"><small>Call the engineer</small>(787) 714-9556</a>
+</div>
+<div class="hz" aria-hidden="true"></div>
+
+<section class="wo"><div class="in">
+  <h1>Work order<span>Managed IT · Cybersecurity · Practical AI — San Juan, Puerto Rico</span></h1>
+  <div class="fields">
+    <div class="fld">No.<b class="mut">Assigned on first call</b></div>
+    <div class="fld">Customer<b class="mut">Your practice, firm, plant or lab</b></div>
+    <div class="fld">Site<b>Anywhere in Puerto Rico · remote everywhere</b></div>
+    <div class="fld">Priority<div class="prio"><label><input type="radio" name="pr"> Routine</label><label><input type="radio" name="pr" checked> Urgent</label><label><input type="radio" name="pr"> Down now</label></div></div>
+  </div>
+</div></section>
+
+<section class="sec" id="problem">
+  <h2>Reported problem <small>check all that apply</small></h2>
+  <div class="problem">
+    <label><input type="checkbox" data-p="My IT is unreliable"><div><b>My IT is unreliable</b><span>Slow EMR mornings, printers nobody owns, a server that “just needs a restart,” and a backup no one has ever restored.</span></div></label>
+    <label><input type="checkbox" data-p="I'm worried about security"><div><b>I'm worried about security</b><span>Phishing in every inbox, no MFA on the accounts that matter, and the news says clinics and manufacturers are the targets.</span></div></label>
+    <label><input type="checkbox" data-p="I want AI that actually works"><div><b>I want AI that actually works</b><span>Staff are already pasting things into chatbots. You want the upside without the leak, and a tool built for your real workflow.</span></div></label>
+  </div>
+  <div class="summary"><span>Scope:</span><span id="sum">Nothing checked yet — pick a problem above.</span><a href="#submit">Dispatch an engineer</a></div>
+</section>
+
+<section class="sec">
+  <h2>Scope of work <small>everything on the truck</small></h2>
+  <div class="scope">
+    <div class="col"><h3>Managed IT<small>Keep it running</small></h3><ul>
+      <li><b>Helpdesk, no tiers.</b> Unlimited remote support handled directly by an engineer.</li>
+      <li><b>On-site field engineering.</b> Scheduled and emergency visits, island-wide.</li>
+      <li><b>Monitoring 24/7.</b> Every endpoint, server and switch watched; alerts reach an engineer.</li>
+      <li><b>Patching on your schedule.</b> Vulnerability windows closed without disrupting the workday.</li>
+      <li><b>Lifecycle and inventory.</b> Procurement to retirement; an audit becomes a lookup.</li>
+      <li><b>Network, cloud, voice.</b> Cabling, Wi-Fi, firewalls, SD-WAN, Microsoft 365, Azure, VoIP.</li></ul></div>
+    <div class="col"><h3>Cybersecurity<small>Keep it yours</small></h3><ul>
+      <li><b>Huntress EDR / MDR.</b> 24/7 threat hunting, automated isolation.</li>
+      <li><b>Email security.</b> Phishing, BEC and malicious attachments stopped before delivery.</li>
+      <li><b>MFA and zero-trust.</b> Nobody trusted by default, inside or out.</li>
+      <li><b>Vulnerability management.</b> Continuous scans, CVSS-scored, patch schedule kept.</li>
+      <li><b>HIPAA safeguards.</b> Risk assessment, controls, paperwork an auditor can read.</li>
+      <li><b>Immutable backup.</b> Ransomware can’t touch it. Restore tested monthly; you get the result.</li></ul></div>
+    <div class="col"><h3>Practical AI<small>Make it faster</small></h3><ul>
+      <li><b>Build.</b> A tool around the workflow costing you the most time.</li>
+      <li><b>Integrate.</b> Copilot, ChatGPT or Claude, configured securely, connected to your data.</li>
+      <li><b>Govern.</b> Private deployments, audit logs, shadow-AI discovery, acceptable-use policy.</li>
+      <li><b>Shipped: AI medical scribe.</b> Recorded visit to SOAP note by the end of the appointment.</li>
+      <li><b>Shipped: MIPS forecasting.</b> How each reporting decision moves score and dollars.</li>
+      <li><b>Shipped: security-alert analysis.</b> Threats explained in plain language.</li></ul></div>
+  </div>
+</section>
+
+<section class="sec">
+  <h2>Job sites we know <small>environments under management today</small></h2>
+  <div class="sites">
+    <div class="site"><b>Clinics</b><p>Oncology clinic, multi-site community health center, private practices. EMR, HIPAA, imaging.</p><span class="tag">HIPAA</span></div>
+    <div class="site"><b>Law offices</b><p>A bankruptcy firm among them. BEC, remote work, filing-deadline downtime.</p><span class="tag">BEC defense</span></div>
+    <div class="site"><b>Vet hospitals</b><p>Practice software, digital X-ray, analyzers, no in-house IT.</p><span class="tag">Imaging</span></div>
+    <div class="site"><b>Plants</b><p>Concrete manufacturer, corrugated packaging. Dust, heat, distance, segmentation.</p><span class="tag">Industrial</span></div>
+    <div class="site"><b>Labs</b><p>Calibration and certification. Records that can never be lost.</p><span class="tag">Data integrity</span></div>
+  </div>
+</section>
+
+<section class="sec">
+  <h2>Parts &amp; materials <small>what we bring, what we use</small></h2>
+  <div class="parts">
+    <div class="row hd"><div>Qty</div><div>Item</div><div>Purpose</div></div>
+    <div class="row"><div>1</div><div><b>Engineer, principal</b><p>Lino E. Gómez. 15+ years clinical and business IT. HIPAA Security, MCSE, Mirth Certified, AWS &amp; Azure.</p></div><div><p>Designs your systems and answers the phone. There is no one else between you and him.</p></div></div>
+    <div class="row"><div>1</div><div><b>Huntress EDR + 24/7 SOC</b></div><div><p>Endpoint detection, threat hunting, automatic isolation, round the clock.</p></div></div>
+    <div class="row"><div>1</div><div><b>Microsoft 365 / Azure</b></div><div><p>Identity, MFA, SSO, data governance; the ground AI stands on.</p></div></div>
+    <div class="row"><div>1</div><div><b>Immutable backup repository</b></div><div><p>Write-once, off-site, replicated. Tested every month.</p></div></div>
+    <div class="row"><div>As req.</div><div><b>UniFi networking · Lenovo endpoints</b></div><div><p>Hardware chosen to survive the site: dust, heat, vibration, distance.</p></div></div>
+    <div class="row"><div>As req.</div><div><b>Copilot · Claude · n8n · purpose-built</b></div><div><p>AI selected for your stack and compliance needs, deployed privately, logged.</p></div></div>
+  </div>
+</section>
+
+<section class="sec">
+  <h2>How a job runs <small>first call to fully managed</small></h2>
+  <div class="steps">
+    <div><b>Day 1</b><h4>Discovery</h4><p>Free 30-minute call. We map the environment, name the risks, confirm scope.</p></div>
+    <div><b>Week 1</b><h4>Estimate signed</h4><p>Plain-language agreement: deliverables, response targets, flat monthly price.</p></div>
+    <div><b>Weeks 2–3</b><h4>Install</h4><p>Agents, monitoring, backups, EDR, email security and MFA switched on.</p></div>
+    <div><b>Week 4</b><h4>Job live</h4><p>24/7 monitoring live. Your engineer introduced. First monthly report scheduled.</p></div>
+  </div>
+</section>
+
+<section class="sec">
+  <h2>Terms <small>plain dealing</small></h2>
+  <div class="terms">
+    <div><b>Flat monthly</b><p>Predictable. No surprise invoices for normal support activity.</p></div>
+    <div><b>One engineer</b><p>Dedicated to your account. Knows your environment by heart.</p></div>
+    <div><b>Monthly report</b><p>Plain language: health, incidents, patches, backup test result, security posture.</p></div>
+    <div><span class="stamp">No lock-in</span></div>
+  </div>
+</section>
+
+<section class="sec">
+  <h2>Asked on site <small>every week</small></h2>
+  <div class="faq">
+    <div><b>Is our data safe if we start using AI?</b><p>Yes. Private, governed deployments. Your data never trains public models. Access is controlled and logged. HIPAA where it applies.</p></div>
+    <div><b>How fast do you respond?</b><p>You reach the engineer directly. Monitoring runs 24/7/365; a critical incident is drop-everything, weekends and holidays included.</p></div>
+    <div><b>Long-term contracts?</b><p>No. Flat monthly, no expensive exit clauses. Stay because the work is good.</p></div>
+    <div><b>A realistic first AI project?</b><p>One painful, repetitive workflow. Pilot in weeks, measure the saving, expand.</p></div>
+    <div><b>AI company or IT company?</b><p>Both. One accountable crew instead of three vendors pointing fingers.</p></div>
+    <div><b>Do you have free tools?</b><p>Six, in your browser: password checker and generator, breach lookup, phishing URL analyzer, HIPAA and AI readiness quizzes.</p></div>
+  </div>
+</section>
+
+<div class="hz" aria-hidden="true"></div>
+<section class="submit" id="submit"><div class="in">
+  <div><h2>Dispatch an engineer</h2><p>Free, 30 minutes, no obligation. You describe the problem; you get a prioritized, plain-language plan. Nobody sells you anything.</p><a class="ph" href="tel:+17877149556">(787) 714-9556</a></div>
+  <form class="wo" onsubmit="event.preventDefault();this.querySelector('button').textContent='Work order received'">
+    <div><label for="n">Name</label><input id="n" required></div><div><label for="o">Customer / organization</label><input id="o" required></div>
+    <div><label for="e">Email</label><input id="e" type="email" required></div><div><label for="p">Phone</label><input id="p" type="tel"></div>
+    <div><label for="f">Focus</label><select id="f"><option>Both — AI and IT/security</option><option>AI opportunities &amp; automation</option><option>IT &amp; security risk</option></select></div>
+    <div><label for="t">Best time to call</label><select id="t"><option>Morning (8–12)</option><option>Afternoon (12–5)</option><option>Evening (5–7)</option><option>Anytime</option></select></div>
+    <div class="sig"><div class="line">Customer signature</div><button type="submit">Submit work order</button></div>
+  </form>
+</div></section>
+<footer><span>Eight Six IT Engineering · San Juan, PR · <a href="mailto:info@eightsix.co">info@eightsix.co</a></span><span><a href="https://console.eightsix.co">Client console</a> · Founded 2024 · HIPAA-aware · MCSE</span></footer>
+
+<script>
+(function(){var boxes=document.querySelectorAll('.problem input'),out=document.getElementById('sum');
+function upd(){var on=[].filter.call(boxes,function(b){return b.checked}).map(function(b){return b.getAttribute('data-p')});out.textContent=on.length?on.join(' · '):'Nothing checked yet — pick a problem above.'}
+boxes.forEach(function(b){b.addEventListener('change',upd)});})();
+</script>

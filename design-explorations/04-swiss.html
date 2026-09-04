@@ -1,0 +1,143 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Eight Six — Swiss</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100,400;100,500;100,700&family=Archivo:ital,wdth,wght@1,100,400&display=swap">
+<style>
+  :root{--w:#FFFFFF;--k:#111111;--k2:#444444;--g:#9A9A9A;--hair:#D6D6D6;--red:#D62828;--unit:24px;
+    --sans:'Archivo',Helvetica,Arial,sans-serif}
+  html,body{margin:0;background:var(--w);color:var(--k)}
+  body{font-family:var(--sans);font-size:16px;line-height:1.45;font-weight:400;letter-spacing:-.005em}
+  a{color:inherit;text-decoration:none}
+  .frame{position:relative;max-width:1440px;margin:0 auto;padding:0 48px}
+  .grid{display:grid;grid-template-columns:repeat(12,1fr);column-gap:var(--unit)}
+  .coords{position:absolute;top:0;left:48px;right:48px;height:18px;display:grid;grid-template-columns:repeat(12,1fr);column-gap:var(--unit);font-size:9px;letter-spacing:.14em;color:var(--g);pointer-events:none}
+  .coords span{border-left:1px solid var(--hair);padding-left:4px;height:100%}
+  header.top{padding:46px 0 22px;border-bottom:1px solid var(--k);align-items:end}
+  .wm{grid-column:1/4;font-weight:700;font-size:22px;letter-spacing:-.02em;display:flex;align-items:center;gap:8px}
+  .wm i{display:inline-block;width:10px;height:10px;background:var(--red)}
+  .wm small{font-weight:400;font-size:12px;color:var(--k2);letter-spacing:.04em;margin-left:6px}
+  nav.n{grid-column:5/13;display:flex;gap:28px;justify-content:flex-end;font-size:14px;font-weight:500}
+  nav.n a:hover{color:var(--red)}
+  nav.n a.cta{border-bottom:2px solid var(--red)}
+  section.sp{padding:64px 0 72px;border-bottom:1px solid var(--k);position:relative}
+  .rn{position:absolute;left:-40px;top:66px;font-size:9px;letter-spacing:.14em;color:var(--g);writing-mode:vertical-rl;transform:rotate(180deg)}
+  .no{font-size:12px;font-weight:500;letter-spacing:.12em;color:var(--red);margin-bottom:22px}
+  h1{grid-column:1/8;font-size:clamp(44px,6.2vw,92px);line-height:.98;letter-spacing:-.035em;font-weight:500;margin:0;text-wrap:balance}
+  h1 span{color:var(--red)}
+  .intro{grid-column:9/13;align-self:end;font-size:18px;line-height:1.4;color:var(--k2)}
+  .intro p{margin:0 0 14px}
+  .intro .ph{font-weight:700;color:var(--k);font-size:22px;letter-spacing:-.01em}
+  h2.full{grid-column:1/13;margin-bottom:34px}
+  h2{grid-column:1/5;font-size:30px;line-height:1.1;letter-spacing:-.025em;font-weight:500;margin:0 0 28px;text-wrap:balance}
+  .cols{grid-column:5/13;display:grid;grid-template-columns:repeat(8,1fr);column-gap:var(--unit);row-gap:36px}
+  .cols > div{grid-column:span 4}
+  .cols h3{font-size:16px;font-weight:700;margin:0 0 6px;display:flex;gap:10px;align-items:baseline}
+  .cols h3 b{color:var(--red);font-weight:500;font-size:12px;letter-spacing:.1em}
+  .cols p{margin:0;color:var(--k2)}
+  .cols.three > div{grid-column:span 8}
+  @media (min-width:900px){.cols.three > div{grid-column:span 4}.cols.three > div:nth-child(n+3){grid-column:span 4}}
+  table.t{grid-column:1/13;width:100%;border-collapse:collapse;font-size:15px}
+  table.t th{text-align:left;font-weight:500;font-size:11px;letter-spacing:.12em;color:var(--g);padding:0 var(--unit) 10px 0;border-bottom:1px solid var(--k)}
+  table.t td{padding:18px var(--unit) 18px 0;border-bottom:1px solid var(--hair);vertical-align:top}
+  table.t td:first-child{color:var(--red);font-weight:500;font-size:12px;letter-spacing:.1em;white-space:nowrap}
+  table.t td:nth-child(2){font-weight:700;width:18%}
+  table.t td:nth-child(3){width:26%;color:var(--k2)}
+  .steps{grid-column:1/13;display:grid;grid-template-columns:repeat(4,1fr);column-gap:var(--unit)}
+  .steps div{border-top:1px solid var(--k);padding-top:14px}
+  .steps b{display:block;font-size:12px;letter-spacing:.12em;color:var(--red);font-weight:500;margin-bottom:8px}
+  .steps h3{font-size:18px;margin:0 0 6px;font-weight:700;letter-spacing:-.01em}
+  .steps p{margin:0;color:var(--k2);font-size:15px}
+  .faq{grid-column:5/13;display:grid;grid-template-columns:1fr 1fr;column-gap:var(--unit);row-gap:26px}
+  .faq h3{font-size:16px;font-weight:700;margin:0 0 6px;letter-spacing:-.01em}
+  .faq p{margin:0;color:var(--k2);font-size:15px}
+  .big{grid-column:1/8;font-size:clamp(34px,4.6vw,66px);letter-spacing:-.035em;line-height:1;font-weight:500;margin:0}
+  .big a{border-bottom:3px solid var(--red)}
+  form.sw{grid-column:9/13;display:grid;gap:18px}
+  form.sw label{display:block;font-size:11px;letter-spacing:.12em;color:var(--g);font-weight:500;margin-bottom:4px}
+  form.sw input,form.sw select{width:100%;box-sizing:border-box;border:0;border-bottom:1px solid var(--k);padding:8px 0;font:inherit;background:transparent;border-radius:0}
+  form.sw input:focus,form.sw select:focus{outline:none;border-bottom:2px solid var(--red)}
+  form.sw button{justify-self:start;background:var(--k);color:#fff;border:0;padding:14px 22px;font:inherit;font-weight:700;cursor:pointer}
+  form.sw button:hover{background:var(--red)}
+  footer.ft{padding:26px 0 48px;font-size:12px;color:var(--k2);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;letter-spacing:.02em}
+  footer.ft .g{color:var(--g);letter-spacing:.12em;font-size:10px}
+  body.gridon .frame::before{content:"";position:absolute;inset:0 48px;background:repeating-linear-gradient(90deg,rgba(214,40,40,.08) 0 calc((100% - 11*24px)/12),transparent calc((100% - 11*24px)/12) calc((100% - 11*24px)/12 + 24px));background-size:calc(100% + 24px) 100%;pointer-events:none;z-index:1}
+  .hint{position:fixed;right:16px;bottom:14px;font-size:10px;letter-spacing:.12em;color:var(--g)}
+  .hint kbd{font:inherit;border:1px solid var(--hair);padding:1px 5px}
+  @media (max-width:900px){.frame{padding:0 20px}.coords,.rn,.hint{display:none}.grid{grid-template-columns:1fr}h1,.intro,h2,h2.full,.cols,table.t,.steps,.faq,.big,form.sw,.wm,nav.n{grid-column:1/-1}table.t{display:block;overflow-x:auto}.cols{grid-template-columns:1fr}.cols>div,.cols.three>div{grid-column:1/-1}.steps{grid-template-columns:1fr 1fr;row-gap:28px}.faq{grid-template-columns:1fr}nav.n{justify-content:flex-start;flex-wrap:wrap;gap:14px 22px;margin-top:18px}table.t td:nth-child(3),table.t th:nth-child(3){display:none}}
+</style>
+
+<div class="frame">
+  <div class="coords" aria-hidden="true"><span>A</span><span>B</span><span>C</span><span>D</span><span>E</span><span>F</span><span>G</span><span>H</span><span>I</span><span>J</span><span>K</span><span>L</span></div>
+  <header class="top grid">
+    <div class="wm"><i></i>Eight Six<small>IT Engineering</small></div>
+    <nav class="n"><a href="#ai">AI</a><a href="#it">Managed IT</a><a href="#who">Who we serve</a><a href="#how">How</a><a href="#faq">Questions</a><a href="https://console.eightsix.co">Client login</a><a class="cta" href="#contact">Free assessment</a></nav>
+  </header>
+
+  <section class="sp grid" id="top"><span class="rn">01</span>
+    <h1>One engineering partner for the systems your business cannot afford to lose<span>.</span></h1>
+    <div class="intro">
+      <p>Managed IT, cybersecurity and practical AI for clinics, law offices, veterinary hospitals, laboratories and manufacturing plants across Puerto Rico. Founder-led since 2024, on fifteen years of clinical and business IT.</p>
+      <p class="ph"><a href="tel:+17877149556">(787) 714-9556</a></p>
+      <p>An engineer answers. Not a queue.</p>
+    </div>
+  </section>
+
+  <section class="sp grid" id="it"><span class="rn">02</span>
+    <h2>Three practices. One accountable team.</h2>
+    <div class="cols">
+      <div><h3><b>01</b>Managed IT</h3><p>Unlimited remote support with no tiers. On-site field engineering island-wide. Every endpoint, server and network device monitored around the clock, patched in windows that respect your hours, and inventoried so an audit is a lookup.</p></div>
+      <div><h3><b>02</b>Cybersecurity</h3><p>Huntress-powered EDR with a 24/7 SOC behind it. Email filtering that stops phishing and business-email compromise before delivery. MFA and zero-trust access everywhere. Continuous vulnerability scanning. HIPAA safeguards with documentation an auditor can read.</p></div>
+      <div id="ai"><h3><b>03</b>Practical AI</h3><p>Build: custom tools around the workflow that costs you the most time. Integrate: Copilot, ChatGPT or Claude configured securely and connected to your data. Govern: private deployments, audit logging, shadow-AI discovery. Shipped so far: an AI medical scribe, MIPS impact forecasting, AI security-alert analysis.</p></div>
+      <div><h3><b>+</b>Backup that is proven, not assumed</h3><p>Immutable, off-site, and restore-tested every month, with the result in your report. Recovery objectives defined per workload. When the worst happens, we execute the recovery rather than advise from a distance.</p></div>
+    </div>
+  </section>
+
+  <section class="sp grid" id="who"><span class="rn">03</span>
+    <h2 class="full">Where downtime is measured in patients, deadlines and idle trucks.</h2>
+    <table class="t">
+      <tr><th>No.</th><th>Sector</th><th>Under management today</th><th>What breaks, and what we do about it</th></tr>
+      <tr><td>01</td><td>Healthcare &amp; clinics</td><td>Oncology clinic · multi-site community health center · private practices</td><td>Slow EMR logins (eClinicalWorks, Epic, Athenahealth), HIPAA audit exposure, backups that exist on paper, branch sites that became the weak link. We deliver HIPAA technical safeguards, EMR and HL7 interface engineering, imaging and PACS networking, SD-WAN with one policy across every location, and immutable backup with monthly proof.</td></tr>
+      <tr><td>02</td><td>Legal &amp; professional</td><td>Bankruptcy law firm · accounting and financial offices</td><td>Business-email compromise, confidential files on personal devices, no roadmap, a dead workstation at a filing deadline. We deliver enterprise security sized for a 10–50 person firm, Microsoft 365 administration, zero-trust remote work, vCIO planning, and Copilot rollout with access controls intact.</td></tr>
+      <tr><td>03</td><td>Veterinary</td><td>Veterinary hospital</td><td>Practice software down means the whole hospital queues at the front desk. Years of X-rays on one aging server. We deliver practice-software support, imaging and analyzer connectivity, immutable backup of records, and a helpdesk fast enough that staff stay with the animals.</td></tr>
+      <tr><td>04</td><td>Manufacturing</td><td>Concrete manufacturer · corrugated packaging plant</td><td>Outages that idle crews and trucks; dust, heat and distance between buildings; flat networks that let an office PC reach production. We deliver industrial-grade networking, office/plant segmentation, ERP and dispatch system support, and recovery plans built around one question: how fast is production running again?</td></tr>
+      <tr><td>05</td><td>Labs &amp; calibration</td><td>Calibration and certification laboratory</td><td>Records that cannot be lost, instrument PCs nobody dares patch, certificates scattered across inboxes when the auditor arrives. We deliver versioned immutable backup, access-controlled document workflows, careful instrument-workstation management, and governed document AI.</td></tr>
+    </table>
+  </section>
+
+  <section class="sp grid" id="how"><span class="rn">04</span>
+    <h2 class="full">Four weeks to fully managed. No contract that locks you in.</h2>
+    <div class="steps">
+      <div><b>DAY 1</b><h3>Discovery</h3><p>A free 30-minute call. We map the environment, name the risks we can see, and confirm scope.</p></div>
+      <div><b>WEEK 1</b><h3>Agreement</h3><p>Plain language: deliverables, response targets, flat monthly price. No surprise invoices for ordinary support.</p></div>
+      <div><b>WEEKS 2–3</b><h3>Deployment</h3><p>Agents, monitoring, backups, EDR, email security and MFA switched on. Inventory built.</p></div>
+      <div><b>WEEK 4</b><h3>Managed</h3><p>Monitoring live 24/7. Your engineer, whom you already know, is introduced. First monthly report scheduled.</p></div>
+    </div>
+  </section>
+
+  <section class="sp grid" id="faq"><span class="rn">05</span>
+    <h2>Questions we hear every week.</h2>
+    <div class="faq">
+      <div><h3>Is our data safe if we start using AI?</h3><p>Yes; that is the point of doing it with us. Private, governed deployments. Your data is not used to train public models. Access is controlled and logged. HIPAA built in where it applies.</p></div>
+      <div><h3>How fast do you respond?</h3><p>You reach the engineer directly. Monitoring runs 24/7/365, and a critical security incident is a drop-everything event, weekends and holidays included.</p></div>
+      <div><h3>Long-term contracts?</h3><p>No. Flat monthly pricing and no expensive exit clauses. Stay because the service is exceptional.</p></div>
+      <div><h3>A realistic first AI project?</h3><p>One painful, repetitive workflow. We pilot it in weeks, measure the saving, and expand from there.</p></div>
+      <div><h3>AI company or IT company?</h3><p>Both, on purpose. One team runs your infrastructure, defends it, and builds AI on top of it.</p></div>
+      <div><h3>Who will I actually talk to?</h3><p>Lino E. Gómez, founder and principal engineer. HIPAA Security, MCSE, Mirth Certified, AWS and Azure. No call center, no account rep.</p></div>
+    </div>
+  </section>
+
+  <section class="sp grid" id="contact" style="border-bottom:0"><span class="rn">06</span>
+    <p class="big">Tell us what is slowing you down.<br><a href="tel:+17877149556">(787) 714-9556</a></p>
+    <form class="sw" onsubmit="event.preventDefault();this.querySelector('button').textContent='Received.'">
+      <div><label for="s1">Name</label><input id="s1" required></div>
+      <div><label for="s2">Organization</label><input id="s2" required></div>
+      <div><label for="s3">Email</label><input id="s3" type="email" required></div>
+      <div><label for="s4">Focus</label><select id="s4"><option>Both: AI and IT/security</option><option>AI opportunities</option><option>IT and security risk</option></select></div>
+      <button type="submit">Request the free assessment</button>
+    </form>
+  </section>
+
+  <footer class="ft"><span>Eight Six IT Engineering · San Juan, Puerto Rico · <a href="mailto:info@eightsix.co">info@eightsix.co</a></span><span class="g">GRID 12 · GUTTER 24 · ARCHIVO · © 2026</span></footer>
+</div>
+<div class="hint">PRESS <kbd>G</kbd> FOR GRID</div>
+<script>document.addEventListener('keydown',function(e){if((e.key==='g'||e.key==='G')&&!/input|select|textarea/i.test(e.target.tagName))document.body.classList.toggle('gridon')});</script>

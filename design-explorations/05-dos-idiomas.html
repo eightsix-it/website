@@ -1,0 +1,158 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Eight Six — Dos idiomas</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bitter:wght@500;600;700&family=Karla:ital,wght@0,400;0,500;0,700;1,400&display=swap">
+<style>
+  :root{--cream:#FBF6EC;--cream2:#F2EADA;--ink:#14213D;--ink2:#3B4664;--mute:#7A7468;--rule:#D8CFBC;--red:#C1121F;--navy:#1F3A89;
+    --slab:'Bitter',Georgia,serif;--sans:'Karla',system-ui,Arial,sans-serif}
+  html,body{margin:0;background:var(--cream);color:var(--ink)}
+  body{font-family:var(--sans);font-size:16px;line-height:1.5}
+  a{color:var(--navy)}
+  .top{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:22px 40px;border-bottom:3px double var(--ink);flex-wrap:wrap}
+  .wm{font-family:var(--slab);font-weight:700;font-size:24px;letter-spacing:-.01em}
+  .wm b{color:var(--red)}
+  .wm small{display:block;font-family:var(--sans);font-weight:500;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+  .lang{display:inline-flex;border:1px solid var(--ink);font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:700}
+  .lang button{background:transparent;border:0;border-right:1px solid var(--ink);padding:8px 14px;font:inherit;cursor:pointer;color:var(--ink)}
+  .lang button:last-child{border-right:0}
+  .lang button[aria-pressed="true"]{background:var(--ink);color:var(--cream)}
+  .contact{font-size:14px;color:var(--ink2)}
+  .contact a{color:var(--ink);font-weight:700;text-decoration:none}
+  main{max-width:1240px;margin:0 auto;padding:0 40px 80px}
+  section.bi{padding:56px 0 8px;border-bottom:1px solid var(--rule)}
+  .hd{display:grid;grid-template-columns:1fr 1fr;gap:0 48px;align-items:end;margin-bottom:28px;position:relative}
+  .hd::after{content:"";position:absolute;left:50%;top:0;bottom:0;width:1px;background:var(--rule)}
+  .hd h2{font-family:var(--slab);font-weight:600;font-size:34px;line-height:1.12;margin:0;letter-spacing:-.01em;text-wrap:balance}
+  .hd .k{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--red);font-weight:700;margin-bottom:10px;display:block}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:0 48px;padding:14px 0;border-top:1px solid var(--rule);position:relative}
+  .row::after{content:"";position:absolute;left:50%;top:0;bottom:0;width:1px;background:var(--rule)}
+  .row:hover{background:var(--cream2)}
+  .row > *{margin:0;transition:opacity .2s,font-size .2s}
+  .row h3{font-family:var(--slab);font-weight:600;font-size:18px;margin:0 0 4px}
+  .row p{color:var(--ink2)}
+  .row .cell b{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--red);margin-bottom:4px;font-weight:700}
+  .hero .hd h2{font-size:clamp(34px,4.4vw,58px);font-weight:700}
+  .hero .row p{font-size:19px;color:var(--ink)}
+  .hero .cta{display:flex;gap:22px;flex-wrap:wrap;margin-top:8px;align-items:center}
+  .hero .cta a.b{background:var(--ink);color:var(--cream);text-decoration:none;padding:12px 20px;font-weight:700;letter-spacing:.04em;font-size:14px;text-transform:uppercase}
+  .hero .cta a.b:hover{background:var(--red)}
+  .hero .cta a.t{color:var(--ink);font-weight:700;text-decoration:none;font-size:18px}
+  body[data-lang="es"] [lang="en"]{opacity:.5;font-size:.92em}
+  body[data-lang="en"] [lang="es"]{opacity:.5;font-size:.92em}
+  body[data-lang="es"] .row:hover [lang="en"],body[data-lang="en"] .row:hover [lang="es"]{opacity:1}
+  ol.steps{margin:0;padding:0;list-style:none;counter-reset:s}
+  ol.steps .row{counter-increment:s}
+  ol.steps .row .cell:first-child h3::before{content:counter(s,decimal-leading-zero) " · ";color:var(--red)}
+  ol.steps .row .cell:last-child h3::before{content:counter(s,decimal-leading-zero) " · ";color:var(--red)}
+  form.bi{display:grid;grid-template-columns:1fr 1fr;gap:18px 48px;margin:20px 0 0}
+  form.bi label{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);font-weight:700;margin-bottom:6px}
+  form.bi label span{color:var(--ink2);font-weight:400;letter-spacing:.06em;text-transform:none;margin-left:6px}
+  form.bi input,form.bi select{width:100%;box-sizing:border-box;border:1px solid var(--ink);background:#fff;padding:10px 12px;font:inherit;border-radius:0}
+  form.bi input:focus,form.bi select:focus{outline:2px solid var(--red);outline-offset:-1px}
+  form.bi button{grid-column:1/-1;justify-self:start;background:var(--red);color:#fff;border:0;padding:14px 24px;font:inherit;font-weight:700;letter-spacing:.06em;text-transform:uppercase;cursor:pointer}
+  form.bi button:hover{background:var(--ink)}
+  footer{padding:26px 40px 44px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--ink2);border-top:3px double var(--ink)}
+  @media (max-width:820px){.top,footer{padding-left:20px;padding-right:20px}main{padding:0 20px 60px}.hd,.row,form.bi{grid-template-columns:1fr;gap:10px}.hd::after,.row::after{display:none}
+    body[data-lang="es"] [lang="en"],body[data-lang="en"] [lang="es"]{display:none}
+    body[data-lang="both"] [lang="en"]{padding-top:6px;border-top:1px dashed var(--rule)}
+    .hero .hd h2{font-size:34px}}
+</style>
+
+<header class="top">
+  <div class="wm">eight six<b>.</b><small>IT Engineering · Ingeniería de TI · San Juan, PR</small></div>
+  <div class="lang" role="group" aria-label="Idioma / Language">
+    <button type="button" data-l="es" aria-pressed="true">Español</button>
+    <button type="button" data-l="both" aria-pressed="false">Ambos · Both</button>
+    <button type="button" data-l="en" aria-pressed="false">English</button>
+  </div>
+  <div class="contact"><a href="tel:+17877149556">(787) 714-9556</a> · <a href="https://console.eightsix.co" style="font-weight:400">Portal de clientes / Client login</a></div>
+</header>
+
+<main>
+  <section class="bi hero">
+    <div class="hd">
+      <div><span class="k">Un solo socio de ingeniería</span><h2 lang="es">TI moderna. IA práctica. Un solo socio responsable de todo.</h2></div>
+      <div><span class="k">One engineering partner</span><h2 lang="en">Modern IT. Practical AI. One partner accountable for all of it.</h2></div>
+    </div>
+    <div class="row">
+      <p lang="es">Operamos y protegemos los sistemas de los que depende su negocio, y construimos la inteligencia artificial que los hace más rápidos. Un solo equipo de ingeniería, dirigido por su fundador, que responde por la infraestructura, la seguridad y la automatización.</p>
+      <p lang="en">We run and secure the systems your business depends on, and we build the AI that makes them faster. One founder-led engineering team accountable for infrastructure, security and automation.</p>
+    </div>
+    <div class="row">
+      <div class="cell" lang="es"><div class="cta"><a class="b" href="#contacto">Evaluación gratuita</a><a class="t" href="tel:+17877149556">(787) 714-9556</a></div><p style="margin-top:10px;font-size:15px;color:var(--mute)">Contesta un ingeniero, no una cola de tickets.</p></div>
+      <div class="cell" lang="en"><div class="cta"><a class="b" href="#contacto">Free assessment</a><a class="t" href="tel:+17877149556">(787) 714-9556</a></div><p style="margin-top:10px;font-size:15px;color:var(--mute)">An engineer answers, not a ticket queue.</p></div>
+    </div>
+  </section>
+
+  <section class="bi">
+    <div class="hd"><div><span class="k">Qué hacemos</span><h2 lang="es">Tres prácticas. Un equipo.</h2></div><div><span class="k">What we do</span><h2 lang="en">Three practices. One team.</h2></div></div>
+    <div class="row">
+      <div class="cell" lang="es"><b>01</b><h3>TI administrada</h3><p>Soporte remoto ilimitado atendido directamente por un ingeniero. Visitas a sitio programadas y de emergencia en toda la isla. Cada equipo, servidor y dispositivo de red monitoreado las 24 horas, con parches aplicados en ventanas que respetan su horario, y un inventario listo para cualquier auditoría.</p></div>
+      <div class="cell" lang="en"><b>01</b><h3>Managed IT</h3><p>Unlimited remote support handled directly by an engineer. Scheduled and emergency on-site visits across the island. Every endpoint, server and network device monitored around the clock, patched in windows that respect your hours, and inventoried so any audit is a lookup.</p></div>
+    </div>
+    <div class="row">
+      <div class="cell" lang="es"><b>02</b><h3>Ciberseguridad</h3><p>Defensa por capas: detección y respuesta en endpoints con Huntress y un SOC 24/7 detrás; filtrado de correo que detiene el phishing y el fraude por correo antes de la entrega; autenticación multifactor y acceso de confianza cero; escaneo continuo de vulnerabilidades; salvaguardas técnicas de HIPAA con documentación que un auditor puede leer.</p></div>
+      <div class="cell" lang="en"><b>02</b><h3>Cybersecurity</h3><p>Layered defense: Huntress-powered endpoint detection with a 24/7 SOC behind it; email filtering that stops phishing and business-email compromise before delivery; multi-factor authentication and zero-trust access; continuous vulnerability scanning; HIPAA technical safeguards with documentation an auditor can read.</p></div>
+    </div>
+    <div class="row">
+      <div class="cell" lang="es"><b>03</b><h3>IA práctica</h3><p>Construimos herramientas alrededor del proceso que más tiempo le cuesta. Integramos Copilot, ChatGPT o Claude de forma segura y conectados a sus datos. Y gobernamos todo: despliegues privados, registro de accesos, descubrimiento de la IA que su personal ya usa por su cuenta. Ya entregado: un escriba médico con IA, pronóstico de impacto MIPS y análisis de alertas de seguridad.</p></div>
+      <div class="cell" lang="en"><b>03</b><h3>Practical AI</h3><p>We build tools around the workflow that costs you the most time. We integrate Copilot, ChatGPT or Claude securely and connected to your data. And we govern all of it: private deployments, access logging, discovery of the AI your staff already use on their own. Shipped so far: an AI medical scribe, MIPS impact forecasting, and security-alert analysis.</p></div>
+    </div>
+    <div class="row">
+      <div class="cell" lang="es"><b>+</b><h3>Respaldo comprobado, no supuesto</h3><p>Copias inmutables, fuera de sitio y con pruebas de restauración cada mes. El resultado va en su informe. Cuando ocurre lo peor, ejecutamos la recuperación; no la aconsejamos desde lejos.</p></div>
+      <div class="cell" lang="en"><b>+</b><h3>Backup that is proven, not assumed</h3><p>Immutable, off-site copies with a restore test every month. The result goes in your report. When the worst happens, we execute the recovery rather than advise from a distance.</p></div>
+    </div>
+  </section>
+
+  <section class="bi">
+    <div class="hd"><div><span class="k">A quién servimos</span><h2 lang="es">Donde una caída se mide en pacientes, plazos y camiones detenidos.</h2></div><div><span class="k">Who we serve</span><h2 lang="en">Where downtime is measured in patients, deadlines and idle trucks.</h2></div></div>
+    <div class="row"><div class="cell" lang="es"><h3>Clínicas y salud</h3><p>Una clínica de oncología, un centro de salud comunitario con varias sedes y consultorios privados. EMR lento, exposición a auditorías HIPAA, respaldos nunca probados, sucursales que se convirtieron en el punto débil.</p></div><div class="cell" lang="en"><h3>Healthcare &amp; clinics</h3><p>An oncology clinic, a multi-site community health center, private practices. Slow EMR, HIPAA audit exposure, backups never tested, branch sites that became the weak link.</p></div></div>
+    <div class="row"><div class="cell" lang="es"><h3>Oficinas legales y profesionales</h3><p>Un bufete de quiebras, entre otros. Fraude por correo electrónico, trabajo remoto sin control, y una estación de trabajo muerta una hora antes de radicar en el tribunal.</p></div><div class="cell" lang="en"><h3>Legal &amp; professional offices</h3><p>A bankruptcy law firm among them. Business-email compromise, unmanaged remote work, and a dead workstation an hour before a court filing.</p></div></div>
+    <div class="row"><div class="cell" lang="es"><h3>Hospitales veterinarios</h3><p>Software de práctica, radiografía digital y analizadores de laboratorio, sin nadie de TI en la casa. Años de placas en un solo servidor viejo.</p></div><div class="cell" lang="en"><h3>Veterinary hospitals</h3><p>Practice software, digital radiography and lab analyzers, with no in-house IT. Years of X-rays on one aging server.</p></div></div>
+    <div class="row"><div class="cell" lang="es"><h3>Manufactura e industria</h3><p>Una planta de concreto y una de empaque corrugado. Polvo, calor, distancia entre edificios y redes planas que dejan que una PC de oficina alcance la producción.</p></div><div class="cell" lang="en"><h3>Manufacturing &amp; industrial</h3><p>A concrete manufacturer and a corrugated packaging plant. Dust, heat, distance between buildings, and flat networks that let an office PC reach production.</p></div></div>
+    <div class="row"><div class="cell" lang="es"><h3>Laboratorios de calibración</h3><p>Un laboratorio de calibración y certificación cuyo negocio entero es la defendibilidad de sus registros.</p></div><div class="cell" lang="en"><h3>Calibration labs</h3><p>A calibration and certification laboratory whose entire business is the defensibility of its records.</p></div></div>
+  </section>
+
+  <section class="bi">
+    <div class="hd"><div><span class="k">Cómo trabajamos</span><h2 lang="es">Cuatro semanas. Sin contratos que lo aten.</h2></div><div><span class="k">How we work</span><h2 lang="en">Four weeks. No contract that locks you in.</h2></div></div>
+    <ol class="steps">
+      <li class="row"><div class="cell" lang="es"><h3>Día 1 — Llamada de descubrimiento</h3><p>Treinta minutos, gratis, sin compromiso. Mapeamos su entorno, nombramos los riesgos y confirmamos el alcance.</p></div><div class="cell" lang="en"><h3>Day 1 — Discovery call</h3><p>Thirty minutes, free, no obligation. We map your environment, name the risks and confirm scope.</p></div></li>
+      <li class="row"><div class="cell" lang="es"><h3>Semana 1 — Acuerdo en lenguaje claro</h3><p>Entregables, tiempos de respuesta y un precio mensual fijo. Sin facturas sorpresa por el soporte normal.</p></div><div class="cell" lang="en"><h3>Week 1 — Plain-language agreement</h3><p>Deliverables, response targets and a flat monthly price. No surprise invoices for ordinary support.</p></div></li>
+      <li class="row"><div class="cell" lang="es"><h3>Semanas 2–3 — Despliegue</h3><p>Agentes, monitoreo, respaldos, EDR, seguridad de correo y MFA activados.</p></div><div class="cell" lang="en"><h3>Weeks 2–3 — Deployment</h3><p>Agents, monitoring, backups, EDR, email security and MFA switched on.</p></div></li>
+      <li class="row"><div class="cell" lang="es"><h3>Semana 4 — Totalmente administrado</h3><p>Monitoreo en vivo 24/7. Su ingeniero, a quien ya conoce, queda asignado. El primer informe mensual, en el calendario.</p></div><div class="cell" lang="en"><h3>Week 4 — Fully managed</h3><p>Monitoring live 24/7. Your engineer, whom you already know, is assigned. First monthly report on the calendar.</p></div></li>
+    </ol>
+  </section>
+
+  <section class="bi">
+    <div class="hd"><div><span class="k">Preguntas frecuentes</span><h2 lang="es">Lo que nos preguntan cada semana.</h2></div><div><span class="k">Questions</span><h2 lang="en">What we get asked every week.</h2></div></div>
+    <div class="row"><div class="cell" lang="es"><h3>¿Están seguros nuestros datos si empezamos a usar IA?</h3><p>Sí; ese es el punto de hacerlo con nosotros. Despliegues privados y gobernados; sus datos no entrenan modelos públicos; el acceso se controla y se registra; HIPAA integrado donde aplica.</p></div><div class="cell" lang="en"><h3>Is our data safe if we start using AI?</h3><p>Yes; that is the point of doing it with us. Private, governed deployments; your data does not train public models; access is controlled and logged; HIPAA built in where it applies.</p></div></div>
+    <div class="row"><div class="cell" lang="es"><h3>¿Qué tan rápido responden?</h3><p>Usted llega directo al ingeniero. El monitoreo corre 24/7/365 y un incidente crítico de seguridad se atiende de inmediato, fines de semana y feriados incluidos.</p></div><div class="cell" lang="en"><h3>How fast do you respond?</h3><p>You reach the engineer directly. Monitoring runs 24/7/365 and a critical security incident is handled immediately, weekends and holidays included.</p></div></div>
+    <div class="row"><div class="cell" lang="es"><h3>¿Contratos a largo plazo?</h3><p>No. Precio mensual fijo y sin cláusulas de salida costosas.</p></div><div class="cell" lang="en"><h3>Long-term contracts?</h3><p>No. Flat monthly pricing and no expensive exit clauses.</p></div></div>
+    <div class="row"><div class="cell" lang="es"><h3>¿Empresa de IA o de TI?</h3><p>Ambas, a propósito. Un solo equipo opera su infraestructura, la defiende y construye IA encima.</p></div><div class="cell" lang="en"><h3>AI company or IT company?</h3><p>Both, deliberately. One team runs your infrastructure, defends it and builds AI on top of it.</p></div></div>
+  </section>
+
+  <section class="bi" id="contacto" style="border-bottom:0">
+    <div class="hd"><div><span class="k">Contacto</span><h2 lang="es">Cuéntenos qué lo está frenando.</h2></div><div><span class="k">Contact</span><h2 lang="en">Tell us what is slowing you down.</h2></div></div>
+    <form class="bi" onsubmit="event.preventDefault();this.querySelector('button').textContent='Recibido · Received'">
+      <div><label for="n">Nombre <span>/ Name</span></label><input id="n" required></div>
+      <div><label for="o">Organización <span>/ Organization</span></label><input id="o" required></div>
+      <div><label for="e">Correo <span>/ Email</span></label><input id="e" type="email" required></div>
+      <div><label for="p">Teléfono <span>/ Phone</span></label><input id="p" type="tel"></div>
+      <div><label for="f">Enfoque <span>/ Focus</span></label><select id="f"><option>Ambos: IA y TI/seguridad · Both</option><option>Oportunidades de IA · AI opportunities</option><option>Riesgo de TI y seguridad · IT &amp; security risk</option></select></div>
+      <div><label for="t">Mejor hora <span>/ Best time</span></label><select id="t"><option>Mañana · Morning (8–12)</option><option>Tarde · Afternoon (12–5)</option><option>Noche · Evening (5–7)</option><option>Cualquiera · Anytime</option></select></div>
+      <button type="submit">Solicitar evaluación gratuita · Request free assessment</button>
+    </form>
+  </section>
+</main>
+
+<footer><span>Eight Six IT Engineering · San Juan, Puerto Rico · <a href="tel:+17877149556">(787) 714-9556</a> · <a href="mailto:info@eightsix.co">info@eightsix.co</a></span><span>Fundada en 2024 · Founded 2024 · Lino E. Gómez, ingeniero principal · HIPAA · MCSE · Mirth</span></footer>
+
+<script>
+(function(){
+  var b=document.body;b.setAttribute('data-lang','es');
+  document.querySelectorAll('.lang button').forEach(function(x){x.addEventListener('click',function(){
+    b.setAttribute('data-lang',x.getAttribute('data-l'));
+    document.querySelectorAll('.lang button').forEach(function(y){y.setAttribute('aria-pressed',y===x?'true':'false')});
+  })});
+})();
+</script>

@@ -1,0 +1,232 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Eight Six — Blueprint ES-100</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira:wght@400;500;600&family=Saira+Condensed:wght@600;700&family=Roboto+Mono:wght@400;500&display=swap">
+<style>
+  :root{--bp:#12357A;--bp2:#0F2D68;--line:#E8EEF8;--dim:#A9BBDD;--dim2:#6F86B8;--yel:#F4C430;--warn:#FF6B61;
+    --sans:'Saira',system-ui,sans-serif;--cond:'Saira Condensed','Arial Narrow',sans-serif;--mono:'Roboto Mono',ui-monospace,monospace}
+  html,body{margin:0;background:var(--bp);color:var(--line)}
+  body{font-family:var(--sans);font-size:15px;line-height:1.5;
+    background-image:linear-gradient(rgba(255,255,255,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.055) 1px,transparent 1px),linear-gradient(rgba(255,255,255,.11) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.11) 1px,transparent 1px);
+    background-size:24px 24px,24px 24px,120px 120px,120px 120px}
+  a{color:var(--yel)}
+  .sheet{max-width:1320px;margin:28px auto;padding:22px;border:2px solid var(--line);outline:1px solid var(--line);outline-offset:-8px;position:relative;background:rgba(18,53,122,.55)}
+  .sheet::before,.sheet::after{content:"";position:absolute;width:14px;height:14px;border:1px solid var(--dim)}
+  .sheet::before{left:-1px;top:-1px;border-right:0;border-bottom:0}.sheet::after{right:-1px;bottom:-1px;border-left:0;border-top:0}
+  .stamp{font-family:var(--cond);font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:22px;line-height:1}
+  .stamp small{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.2em;color:var(--dim);margin-top:6px;font-weight:400}
+  .hdr{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:flex-start;padding-bottom:14px;border-bottom:1px solid var(--dim2);margin-bottom:18px}
+  nav.idx{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;display:flex;gap:16px;flex-wrap:wrap}
+  nav.idx a{color:var(--line);text-decoration:none;border-bottom:1px solid var(--dim2)} nav.idx a:hover{color:var(--yel);border-color:var(--yel)}
+  .fig{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:22px}
+  figure{margin:0}
+  svg{width:100%;height:auto;display:block}
+  svg text{font-family:var(--mono);font-size:11px;fill:var(--line);letter-spacing:.06em}
+  svg .t{font-size:10px;fill:var(--dim)} svg .h{font-family:var(--cond);font-size:14px;letter-spacing:.14em;font-weight:700}
+  svg .p{fill:none;stroke:var(--line);stroke-width:1.5}
+  svg .p.hi,svg text.hi{stroke:var(--yel)} svg .call.hi circle{stroke:var(--yel);fill:var(--yel)} svg .call.hi text{fill:#111}
+  svg .d{stroke:var(--dim);stroke-width:1;fill:none} svg .dd{stroke:var(--dim);stroke-width:1;fill:none;stroke-dasharray:4 4} svg .dt{stroke:var(--dim);stroke-width:1;fill:none;stroke-dasharray:1.5 4}
+  svg .call{cursor:pointer} svg .call circle{fill:var(--bp);stroke:var(--line);stroke-width:1.5} svg .call text{text-anchor:middle;font-size:11px;font-weight:500}
+  svg .warn{stroke:var(--warn)} svg text.warn{fill:var(--warn);stroke:none}
+  figcaption{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--dim);margin-top:8px;text-transform:uppercase}
+  .notes{border:1px solid var(--dim2);padding:14px 16px;font-size:13.5px}
+  .notes h3{margin:0 0 10px;font-family:var(--cond);font-size:16px;letter-spacing:.14em;text-transform:uppercase;font-weight:700}
+  .notes ol{margin:0;padding:0;list-style:none}
+  .notes li{display:grid;grid-template-columns:26px 1fr;gap:8px;padding:6px 4px;border-top:1px solid rgba(255,255,255,.12);cursor:pointer}
+  .notes li b{font-family:var(--mono);font-weight:500;color:var(--yel)}
+  .notes li:hover,.notes li.hi{background:rgba(244,196,48,.12)}
+  .tb{margin-top:20px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:18px;align-items:end}
+  .tbw{min-width:0;max-width:100%;overflow-x:auto}
+  table.title{border-collapse:collapse;font-family:var(--mono);font-size:11px;letter-spacing:.06em;min-width:520px}
+  table.title td{border:1px solid var(--line);padding:6px 10px;vertical-align:top}
+  table.title td b{display:block;font-size:9px;color:var(--dim);letter-spacing:.16em;margin-bottom:3px}
+  table.title td.big{font-family:var(--cond);font-size:20px;letter-spacing:.12em;font-weight:700}
+  .gn{font-family:var(--mono);font-size:11px;color:var(--dim);letter-spacing:.06em;max-width:60ch;line-height:1.6}
+  h2.sh{margin:0 0 14px;font-family:var(--cond);font-size:26px;letter-spacing:.14em;text-transform:uppercase;font-weight:700}
+  h2.sh span{color:var(--dim);font-size:14px;margin-left:12px;font-family:var(--mono);letter-spacing:.14em;font-weight:400}
+  table.sch{width:100%;border-collapse:collapse;font-size:13.5px}
+  table.sch th{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);font-weight:500}
+  table.sch td{padding:9px 10px;border-bottom:1px solid rgba(255,255,255,.14);vertical-align:top}
+  table.sch td:first-child{font-family:var(--mono);color:var(--yel);white-space:nowrap}
+  .seq{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative;margin:18px 0 6px}
+  .seq::before{content:"";position:absolute;left:0;right:0;top:11px;height:1px;background:var(--line)}
+  .seq div{padding:30px 14px 0 0;position:relative}
+  .seq div::before{content:"";position:absolute;left:0;top:5px;width:12px;height:12px;border:1.5px solid var(--line);background:var(--bp);transform:rotate(45deg)}
+  .seq b{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:var(--yel);margin-bottom:4px}
+  .seq h4{margin:0 0 4px;font-family:var(--cond);font-size:17px;letter-spacing:.06em;text-transform:uppercase}
+  .seq p{margin:0;color:var(--dim);font-size:13px}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:18px 40px}
+  .two h4{margin:12px 0 4px;font-family:var(--cond);font-size:16px;letter-spacing:.06em;text-transform:uppercase}
+  .two p{margin:0;color:var(--dim);font-size:14px}
+  .appr{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  .appr .box{border:1px solid var(--line);padding:16px}
+  .appr .box h4{margin:0 0 8px;font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
+  .appr .big{font-family:var(--cond);font-size:34px;letter-spacing:.06em;font-weight:700;line-height:1}
+  .appr .big a{text-decoration:none;color:var(--line)}
+  form.bp{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  form.bp label{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-bottom:4px}
+  form.bp input,form.bp select{width:100%;box-sizing:border-box;background:transparent;border:1px solid var(--dim2);color:var(--line);padding:8px 10px;font:inherit;font-size:14px;border-radius:0}
+  form.bp select option{background:var(--bp2)}
+  form.bp input:focus,form.bp select:focus{outline:none;border-color:var(--yel)}
+  form.bp button{grid-column:1/-1;justify-self:start;background:var(--yel);color:#111;border:0;font-family:var(--cond);font-size:16px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;padding:12px 20px;cursor:pointer}
+  form.bp button:hover{background:#fff}
+  .stampbox{display:inline-block;border:2px solid var(--yel);color:var(--yel);font-family:var(--cond);letter-spacing:.2em;padding:6px 12px;font-size:13px;transform:rotate(-3deg);text-transform:uppercase;font-weight:700}
+  @media (max-width:980px){.fig{grid-template-columns:minmax(0,1fr)}.tb{grid-template-columns:minmax(0,1fr)}table.sch{display:block;overflow-x:auto;max-width:100%}table.title{min-width:480px}.seq{grid-template-columns:1fr 1fr}.two,.appr,form.bp{grid-template-columns:1fr}.sheet{margin:12px;padding:14px}}
+</style>
+
+<div class="sheet" id="s1">
+  <div class="hdr">
+    <div class="stamp">Eight Six IT Engineering<small>Managed environment · typical arrangement · Drawing ES-100</small></div>
+    <nav class="idx"><a href="#s1">ES-100 Schematic</a><a href="#s2">ES-200 Schedule</a><a href="#s3">ES-300 Site conditions</a><a href="#s4">ES-400 Sequence</a><a href="#s5">ES-500 Notes to owner</a><a href="https://console.eightsix.co">Client console</a><a href="tel:+17877149556">(787) 714-9556</a></nav>
+  </div>
+  <div class="fig">
+    <figure>
+      <svg viewBox="0 0 1200 560" role="img" aria-label="Schematic of a typical Eight Six managed environment: internet through firewall and core switch to workstations, servers, imaging and Wi-Fi; Microsoft 365 identity above; immutable off-site backup, Huntress EDR with 24/7 SOC, and governed AI on the right.">
+        <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#E8EEF8"/></marker><marker id="tk" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M5,0 L5,10" stroke="#A9BBDD" stroke-width="1.5"/></marker></defs>
+        <!-- internet -->
+        <g data-part="0"><path class="p" d="M60 280 l25-42 h50 l25 42 -25 42 h-50 z"/><text x="110" y="284" text-anchor="middle">INTERNET</text></g>
+        <line class="d" x1="160" y1="280" x2="230" y2="280" marker-end="url(#ar)"/>
+        <!-- firewall -->
+        <g data-part="1"><rect class="p" x="232" y="252" width="110" height="56"/><path class="p" d="M232 266 h110 M232 280 h110 M232 294 h110 M270 252 v14 M304 266 v14 M270 280 v14 M304 294 v14"/><text x="287" y="330" text-anchor="middle">FIREWALL · SD-WAN</text></g>
+        <line class="d" x1="342" y1="280" x2="410" y2="280" marker-end="url(#ar)"/>
+        <!-- core switch -->
+        <g data-part="2"><rect class="p" x="412" y="256" width="130" height="48"/><path class="p" d="M426 280 h12 M446 280 h12 M466 280 h12 M486 280 h12 M506 280 h12 M526 280 h8"/><text x="477" y="330" text-anchor="middle">CORE SWITCH · VLANs</text></g>
+        <!-- m365 above -->
+        <g data-part="7"><rect class="p" x="392" y="62" width="170" height="60" rx="30"/><text x="477" y="88" text-anchor="middle">MICROSOFT 365 · AZURE</text><text class="t" x="477" y="104" text-anchor="middle">IDENTITY · MFA · ZERO-TRUST</text></g>
+        <line class="dd" x1="477" y1="122" x2="477" y2="256" marker-end="url(#ar)"/>
+        <!-- bus -->
+        <line class="d" x1="542" y1="280" x2="600" y2="280"/><line class="d" x1="600" y1="100" x2="600" y2="440"/>
+        <line class="d" x1="600" y1="100" x2="660" y2="100" marker-end="url(#ar)"/><line class="d" x1="600" y1="220" x2="660" y2="220" marker-end="url(#ar)"/><line class="d" x1="600" y1="330" x2="660" y2="330" marker-end="url(#ar)"/><line class="d" x1="600" y1="440" x2="660" y2="440" marker-end="url(#ar)"/>
+        <!-- workstations -->
+        <g data-part="3"><rect class="p" x="662" y="70" width="70" height="44"/><rect class="p" x="676" y="82" width="70" height="44"/><rect class="p" x="690" y="94" width="70" height="44"/><text x="780" y="104">WORKSTATIONS (n)</text><text class="t" x="780" y="120">LENOVO · MANAGED · PATCHED</text></g>
+        <!-- servers -->
+        <g data-part="4"><rect class="p" x="662" y="192" width="150" height="56"/><path class="p" d="M662 210 h150 M662 228 h150"/><circle cx="676" cy="201" r="2.5" fill="#E8EEF8"/><circle cx="676" cy="219" r="2.5" fill="#E8EEF8"/><circle cx="676" cy="237" r="2.5" fill="#E8EEF8"/><text x="737" y="264" text-anchor="middle">SERVERS · EMR / ERP / PMS</text><text class="t" x="737" y="278" text-anchor="middle">eCW · EPIC · ATHENA · MIRTH HL7</text></g>
+        <!-- imaging -->
+        <g data-part="5"><rect class="p" x="662" y="302" width="150" height="56"/><rect class="p" x="676" y="314" width="34" height="32"/><path class="p" d="M718 318 h80 M718 330 h60 M718 342 h70"/><text x="737" y="374" text-anchor="middle">IMAGING · PACS / DICOM</text><text class="t" x="737" y="388" text-anchor="middle">MODALITIES · 10GbE STORAGE</text></g>
+        <!-- wifi / plant -->
+        <g data-part="6"><rect class="p" x="662" y="412" width="150" height="56"/><path class="p" d="M690 452 a22 22 0 0 1 44 0 M698 452 a14 14 0 0 1 28 0 M706 452 a6 6 0 0 1 12 0"/><path class="p" d="M760 424 h36 v32 h-36 z M760 440 h36"/><text x="737" y="484" text-anchor="middle">WI-FI · PLANT / BRANCH</text><text class="t" x="737" y="498" text-anchor="middle">UNIFI · SEGMENTED · P2P LINKS</text></g>
+        <!-- backup -->
+        <g data-part="8"><rect class="p" x="990" y="192" width="190" height="60"/><path class="p" d="M1004 206 h18 v32 h-18 z M1030 206 h18 v32 h-18 z"/><text x="1056" y="216">IMMUTABLE BACKUP</text><text class="t" x="1056" y="232">OFF-SITE · TESTED</text></g>
+        <line class="d" x1="812" y1="220" x2="988" y2="220" marker-end="url(#ar)"/><text class="t" x="900" y="212" text-anchor="middle">NIGHTLY · IMMUTABLE</text>
+        <line class="dd" x1="812" y1="330" x2="920" y2="330"/><line class="dd" x1="920" y1="330" x2="920" y2="240"/><line class="dd" x1="920" y1="240" x2="988" y2="240" marker-end="url(#ar)"/>
+        <!-- dimension: rpo/rto -->
+        <line class="d" x1="990" y1="270" x2="1180" y2="270" marker-start="url(#tk)" marker-end="url(#tk)"/><text class="t" x="1085" y="284" text-anchor="middle">RPO ≤ 1 h · RTO ≤ 4 h · TARGETS</text>
+        <!-- soc -->
+        <g data-part="9"><rect class="p" x="990" y="302" width="190" height="60"/><circle class="p" cx="1018" cy="332" r="13"/><circle cx="1018" cy="332" r="4" fill="#E8EEF8"/><text x="1042" y="326">HUNTRESS EDR · SOC</text><text class="t" x="1042" y="342">24/7 · HUNT · ISOLATE</text></g>
+        <path class="dt" d="M760 116 C 880 116, 920 320, 990 332"/><path class="dt" d="M812 236 C 900 250, 930 320, 990 336"/>
+        <!-- ai -->
+        <g data-part="10"><rect class="p" x="990" y="412" width="190" height="60"/><path class="p" d="M1006 442 l10-12 l10 12 l-10 12 z M1030 442 h12"/><text x="1052" y="436">GOVERNED AI</text><text class="t" x="1052" y="452">COPILOT · CLAUDE</text></g>
+        <path class="dd" d="M477 62 V44 H1085 V410" marker-end="url(#ar)"/>
+        <!-- warning -->
+        <text class="warn" x="60" y="530">! SHADOW AI — STAFF PASTING RECORDS INTO CONSUMER CHATBOTS — IS TREATED AS AN ATTACK SURFACE. SEE NOTE 10.</text>
+        <!-- callouts -->
+        <g class="call" data-ref="1"><circle cx="287" cy="236" r="11"/><text x="287" y="240">1</text></g>
+        <g class="call" data-ref="2"><circle cx="477" cy="238" r="11"/><text x="477" y="242">2</text></g>
+        <g class="call" data-ref="3"><circle cx="646" cy="70" r="11"/><text x="646" y="74">3</text></g>
+        <g class="call" data-ref="4"><circle cx="646" cy="192" r="11"/><text x="646" y="196">4</text></g>
+        <g class="call" data-ref="5"><circle cx="646" cy="302" r="11"/><text x="646" y="306">5</text></g>
+        <g class="call" data-ref="6"><circle cx="646" cy="412" r="11"/><text x="646" y="416">6</text></g>
+        <g class="call" data-ref="7"><circle cx="376" cy="62" r="11"/><text x="376" y="66">7</text></g>
+        <g class="call" data-ref="8"><circle cx="974" cy="192" r="11"/><text x="974" y="196">8</text></g>
+        <g class="call" data-ref="9"><circle cx="974" cy="302" r="11"/><text x="974" y="306">9</text></g>
+        <g class="call" data-ref="10"><circle cx="974" cy="412" r="11"/><text x="974" y="416">10</text></g>
+      </svg>
+      <figcaption>Fig. 1 — Typical managed environment. Hover a callout or a note to trace the part. Not to scale.</figcaption>
+    </figure>
+    <aside class="notes">
+      <h3>General notes</h3>
+      <ol>
+        <li data-ref="1"><b>1</b>Firewall and SD-WAN managed by Eight Six. Branch sites fail over automatically; one security policy across every location.</li>
+        <li data-ref="2"><b>2</b>Core switching with VLAN segmentation. An infected office PC cannot reach imaging modalities or the plant floor.</li>
+        <li data-ref="3"><b>3</b>Every workstation carries the Huntress EDR agent and the RMM agent. Patched in windows that respect working hours.</li>
+        <li data-ref="4"><b>4</b>Line-of-business servers: EMR (eClinicalWorks, Epic, Athenahealth), ERP, practice-management. HL7 interfaces engineered by a Mirth-certified engineer.</li>
+        <li data-ref="5"><b>5</b>Imaging network sized for DICOM throughput; PACS storage planned for growth.</li>
+        <li data-ref="6"><b>6</b>Enterprise Wi-Fi and point-to-point links for plants and branches; hardware selected for dust, heat and vibration.</li>
+        <li data-ref="7"><b>7</b>Identity in Microsoft 365 / Azure: SSO, MFA enforced on all accounts, least privilege, zero-trust access.</li>
+        <li data-ref="8"><b>8</b>Backups are immutable and off-site. A restore is tested every month and the result is written into the owner's report.</li>
+        <li data-ref="9"><b>9</b>Huntress EDR/MDR with a 24/7 SOC; RMM monitoring routes to an engineer, not a queue. Critical incidents are drop-everything at any hour.</li>
+        <li data-ref="10"><b>10</b>Sanctioned AI (Copilot, Claude or purpose-built) deployed privately; data never trains public models; access logged; shadow AI discovered and brought under policy.</li>
+      </ol>
+    </aside>
+  </div>
+  <div class="tb">
+    <p class="gn">MODERN IT. PRACTICAL AI. ONE ENGINEERING PARTNER. — FOUNDER-LED, SAN JUAN, PUERTO RICO, EST. 2024 ON 15+ YEARS OF CLINICAL AND BUSINESS IT. THE ENGINEER WHO DRAWS THIS SHEET IS THE ONE WHO ANSWERS THE PHONE.</p>
+    <div class="tbw"><table class="title"><tr><td rowspan="2" class="big">EIGHT SIX<br><span style="font-size:11px;letter-spacing:.2em;font-weight:400">IT ENGINEERING</span></td><td><b>Project</b>Typical managed environment</td><td><b>Drawn</b>L.E.G.</td><td><b>Checked</b>L.E.G.</td><td><b>Date</b>2026-09-03</td></tr><tr><td><b>Client</b>______________________</td><td><b>Scale</b>NTS</td><td><b>Rev</b>C</td><td><b>Sheet</b>ES-100 · 1 of 5</td></tr></table></div>
+  </div>
+</div>
+
+<div class="sheet" id="s2">
+  <h2 class="sh">Schedule of services <span>ES-200</span></h2>
+  <table class="sch">
+    <tr><th>Mark</th><th>Item</th><th>Description</th><th>Coverage</th></tr>
+    <tr><td>MIT-1</td><td>Helpdesk &amp; remote support</td><td>Unlimited, handled directly by an engineer. No tiers, no ticket runaround.</td><td>Business hours + on-call</td></tr>
+    <tr><td>MIT-2</td><td>On-site field engineering</td><td>Scheduled and emergency visits across Puerto Rico. Hardware, installs, hands-on work.</td><td>Island-wide</td></tr>
+    <tr><td>MIT-3</td><td>Monitoring, patching, inventory</td><td>RMM on every device; patch windows agreed; audit-ready asset inventory.</td><td>24/7/365</td></tr>
+    <tr><td>SEC-1</td><td>EDR / MDR</td><td>Huntress endpoint detection with 24/7 threat hunting and automated isolation.</td><td>24/7 SOC</td></tr>
+    <tr><td>SEC-2</td><td>Email security</td><td>Phishing, BEC and malicious attachments filtered before delivery.</td><td>Continuous</td></tr>
+    <tr><td>SEC-3</td><td>Identity &amp; zero-trust</td><td>MFA on all accounts; privileged access management; ZTNA.</td><td>All users</td></tr>
+    <tr><td>SEC-4</td><td>Vulnerability management</td><td>Continuous scanning, CVSS prioritization, patch schedule enforced.</td><td>Continuous</td></tr>
+    <tr><td>SEC-5</td><td>HIPAA technical safeguards</td><td>Risk assessment, safeguards, OCR-ready documentation.</td><td>Annual + ongoing</td></tr>
+    <tr><td>BDR-1</td><td>Immutable backup &amp; DR</td><td>Write-once repositories, off-site replication, RTO/RPO per workload, DR runbook, emergency recovery executed by the engineer.</td><td>Nightly · tested monthly</td></tr>
+    <tr><td>AI-1</td><td>Build</td><td>Workflow automation, internal copilots, document/RAG assistants, agentic workflows with a human in the loop. Shipped: AI medical scribe, MIPS forecasting, AI security analysis.</td><td>Per project</td></tr>
+    <tr><td>AI-2</td><td>Integrate</td><td>Copilot / ChatGPT Enterprise / Claude selected, configured securely, connected to Microsoft 365 data, rolled out with training.</td><td>Per rollout</td></tr>
+    <tr><td>AI-3</td><td>Govern</td><td>Private deployments, encryption, role-based access with audit logs, shadow-AI discovery, acceptable-use policy.</td><td>Continuous</td></tr>
+    <tr><td>ADV-1</td><td>vCIO</td><td>Roadmap, budgeting, vendor management, board-level reporting.</td><td>Quarterly</td></tr>
+  </table>
+  <p class="gn" style="margin-top:14px">COMMERCIAL: FLAT MONTHLY FEE · NO LOCK-IN · ONE DEDICATED ENGINEER · MONTHLY PLAIN-LANGUAGE REPORT · SCALES WITHOUT RENEGOTIATION.</p>
+</div>
+
+<div class="sheet" id="s3">
+  <h2 class="sh">Site conditions <span>ES-300 · environments under management</span></h2>
+  <table class="sch">
+    <tr><th>Site type</th><th>Representative sites</th><th>Conditions encountered</th><th>Provisions</th></tr>
+    <tr><td>HC</td><td>Oncology clinic · multi-site community health center · private practices</td><td>Slow EMR, HIPAA audit exposure, untested backups, weak branch sites</td><td>HIPAA safeguards; EMR/HL7 engineering; imaging networks; SD-WAN; immutable backup with monthly proof; clinical AI (scribe, MIPS)</td></tr>
+    <tr><td>LG</td><td>Bankruptcy law firm · accounting and financial offices</td><td>BEC, unmanaged remote work, no roadmap, deadline downtime</td><td>Enterprise security sized for 10–50 seats; M365 admin; zero-trust remote work; vCIO; document AI and Copilot rollout</td></tr>
+    <tr><td>VT</td><td>Veterinary hospital</td><td>Practice software down, no in-house IT, records on one aging server</td><td>Practice-software support; imaging and analyzer connectivity; immutable backup; fast helpdesk</td></tr>
+    <tr><td>MF</td><td>Concrete manufacturer · corrugated packaging plant</td><td>Production-stopping outages, dust/heat/distance, flat networks</td><td>Industrial UniFi, P2P links, office/plant segmentation, ERP and dispatch support, rapid recovery</td></tr>
+    <tr><td>LB</td><td>Calibration and certification lab</td><td>Irreplaceable records, unpatched instrument PCs, audit scramble</td><td>Versioned immutable backup; access-controlled document workflows; careful instrument-workstation management; governed document AI</td></tr>
+  </table>
+</div>
+
+<div class="sheet" id="s4">
+  <h2 class="sh">Sequence of work <span>ES-400 · onboarding</span></h2>
+  <div class="seq">
+    <div><b>DAY 1</b><h4>Discovery</h4><p>Free 30-minute call. Environment mapped, risks named, scope confirmed.</p></div>
+    <div><b>WEEK 1</b><h4>Agreement</h4><p>Plain-language deliverables, response targets, flat monthly price.</p></div>
+    <div><b>WEEKS 2–3</b><h4>Deployment</h4><p>Agents, monitoring, backups, EDR, email security, MFA switched on.</p></div>
+    <div><b>WEEK 4</b><h4>Fully managed</h4><p>24/7 live. Dedicated engineer introduced. First monthly report scheduled.</p></div>
+  </div>
+</div>
+
+<div class="sheet" id="s5">
+  <h2 class="sh">Notes to owner <span>ES-500 · questions we hear</span></h2>
+  <div class="two">
+    <div><h4>Is our data safe if we start using AI?</h4><p>Yes. Private, governed deployments; your data is not used to train public models; access is controlled and logged; HIPAA built in where it applies.</p></div>
+    <div><h4>How fast do you respond?</h4><p>You reach the engineer directly. Monitoring runs 24/7/365; a critical incident is a drop-everything event at any hour.</p></div>
+    <div><h4>Long-term contracts?</h4><p>No. Flat monthly pricing, no expensive exit clauses.</p></div>
+    <div><h4>A realistic first AI project?</h4><p>One painful, repetitive workflow. Piloted in weeks, saving measured, then expanded.</p></div>
+    <div><h4>AI company or IT company?</h4><p>Both, on purpose. One accountable team instead of three vendors.</p></div>
+    <div><h4>Who signs these drawings?</h4><p>Lino E. Gómez, Founder &amp; Principal Engineer. HIPAA Security · MCSE · Mirth Certified · AWS &amp; Azure.</p></div>
+  </div>
+  <h2 class="sh" style="margin-top:34px">Approval <span>free assessment · no obligation</span></h2>
+  <div class="appr">
+    <div class="box"><h4>Owner's request</h4>
+      <form class="bp" onsubmit="event.preventDefault();this.querySelector('button').textContent='Logged — an engineer will call'">
+        <div><label for="a">Name</label><input id="a" required></div><div><label for="b">Organization</label><input id="b" required></div>
+        <div><label for="c">Email</label><input id="c" type="email" required></div><div><label for="d">Phone</label><input id="d" type="tel"></div>
+        <div style="grid-column:1/-1"><label for="e">Focus</label><select id="e"><option>Both — AI and IT/security</option><option>AI opportunities &amp; automation</option><option>IT &amp; security risk</option></select></div>
+        <button type="submit">Issue for assessment</button>
+      </form></div>
+    <div class="box"><h4>Or reach the engineer directly</h4><p class="big"><a href="tel:+17877149556">(787) 714-9556</a></p><p class="gn" style="margin:10px 0 18px"><a href="mailto:info@eightsix.co">info@eightsix.co</a> · San Juan, Puerto Rico · On-site island-wide, remote everywhere</p><span class="stampbox">Reviewed · not a sales call</span></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  function set(ref,on){document.querySelectorAll('[data-part="'+ref+'"] .p, .call[data-ref="'+ref+'"], .notes li[data-ref="'+ref+'"]').forEach(function(el){el.classList.toggle('hi',on)})}
+  document.querySelectorAll('.call, .notes li').forEach(function(el){var r=el.getAttribute('data-ref');
+    el.addEventListener('mouseenter',function(){set(r,true)});el.addEventListener('mouseleave',function(){set(r,false)});
+    el.addEventListener('click',function(){var n=document.querySelector('.notes li[data-ref="'+r+'"]');if(n)n.scrollIntoView({block:'nearest'})});
+  });
+})();
+</script>

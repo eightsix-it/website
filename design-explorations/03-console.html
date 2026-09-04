@@ -1,0 +1,211 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>eightsix — session</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap">
+<style>
+  :root{--bg:#0B0D0F;--bg2:#12151A;--fg:#D6D9CF;--dim:#6B7370;--dim2:#3A4040;--amber:#F4C430;--red:#E5524A;--green:#8FBF7F;--line:#22272B;
+    --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace}
+  html,body{margin:0;background:var(--bg);color:var(--fg)}
+  body{font-family:var(--mono);font-size:15px;line-height:1.6;padding-bottom:56px}
+  a{color:var(--amber);text-decoration:none;border-bottom:1px solid rgba(244,196,48,.35)}
+  a:hover{border-bottom-color:var(--amber)}
+  .bar{position:sticky;top:0;z-index:5;background:var(--bg2);border-bottom:1px solid var(--line);padding:6px 20px;font-size:12px;display:flex;justify-content:space-between;gap:16px;color:var(--dim);flex-wrap:wrap}
+  .bar b{color:var(--fg);font-weight:500}
+  .bar .ok{color:var(--green)}
+  main{max-width:1040px;margin:0 auto;padding:28px 20px 40px}
+  .blk{margin:0 0 34px;scroll-margin-top:60px}
+  .cmd{color:var(--fg);white-space:pre-wrap;word-break:break-word}
+  .cmd::before{content:"guest@eightsix:~$ ";color:var(--dim)}
+  .cmd b{color:var(--amber);font-weight:500}
+  .out{margin:8px 0 0 0;color:var(--fg);overflow-x:auto;max-width:100%}
+  .out p{margin:0 0 10px;max-width:80ch}
+  .c{color:var(--dim)} .a{color:var(--amber)} .r{color:var(--red)} .g{color:var(--green)}
+  pre{margin:0;font:inherit;white-space:pre-wrap;word-break:break-word}
+  .wordmark{font-size:46px;font-weight:700;letter-spacing:-.03em;line-height:1;margin:8px 0 16px;color:var(--fg)}
+  .wordmark b{color:var(--red)}
+  table{border-collapse:collapse;width:100%;font-size:14px;margin:4px 0 8px}
+  th{text-align:left;color:var(--dim);font-weight:500;border-bottom:1px solid var(--line);padding:4px 12px 6px 0;font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+  td{padding:6px 12px 6px 0;border-bottom:1px solid var(--dim2);vertical-align:top}
+  td:first-child{color:var(--amber);white-space:nowrap}
+  tr:last-child td{border-bottom:0}
+  .kv{display:grid;grid-template-columns:max-content 1fr;gap:2px 22px;max-width:86ch}
+  .kv span:nth-child(odd){color:var(--dim)}
+  .man h4{color:var(--fg);font-weight:700;margin:14px 0 2px;font-size:14px;letter-spacing:.06em}
+  .man p{margin:0 0 6px 4ch}
+  .tree{white-space:pre;color:var(--fg)}
+  .tree i{font-style:normal;color:var(--dim)}
+  .tick{color:var(--green)} .x{color:var(--red)}
+  form.prompt label{display:block;margin:6px 0 0}
+  form.prompt label::before{content:"? ";color:var(--amber)}
+  form.prompt input,form.prompt select{background:transparent;border:0;border-bottom:1px solid var(--dim2);color:var(--fg);font:inherit;padding:2px 0;width:min(100%,46ch);border-radius:0}
+  form.prompt input:focus,form.prompt select:focus{outline:none;border-bottom-color:var(--amber)}
+  form.prompt select option{background:var(--bg2)}
+  form.prompt button{margin-top:14px;background:var(--amber);color:#111;border:0;font:inherit;font-weight:700;padding:8px 16px;cursor:pointer}
+  form.prompt button:hover{background:#fff}
+  .cursor{display:inline-block;width:9px;height:17px;background:var(--fg);vertical-align:-3px;margin-left:2px}
+  @media (prefers-reduced-motion:no-preference){.cursor{animation:bl 1s steps(1) infinite}}
+  @keyframes bl{50%{opacity:0}}
+  .keys{position:fixed;left:0;right:0;bottom:0;background:var(--bg2);border-top:1px solid var(--line);padding:8px 20px;font-size:12px;color:var(--dim);display:flex;gap:18px;flex-wrap:wrap;z-index:5}
+  .keys kbd{background:var(--fg);color:#000;padding:0 5px;border-radius:2px;font:inherit;font-weight:700;margin-right:6px}
+  .keys a{border:0;color:var(--dim)} .keys a:hover{color:var(--fg)}
+  #pal{position:fixed;inset:0;background:rgba(11,13,15,.92);display:none;align-items:flex-start;justify-content:center;padding-top:14vh;z-index:9}
+  #pal.on{display:flex}
+  #pal .box{width:min(640px,92vw);border:1px solid var(--amber);background:var(--bg)}
+  #pal input{width:100%;box-sizing:border-box;background:var(--bg2);border:0;border-bottom:1px solid var(--line);color:var(--fg);font:inherit;font-size:16px;padding:12px 14px;outline:none}
+  #pal ul{list-style:none;margin:0;padding:6px 0}
+  #pal li{padding:8px 14px;cursor:pointer;display:flex;justify-content:space-between}
+  #pal li.sel,#pal li:hover{background:var(--bg2);color:var(--amber)}
+  #pal li span{color:var(--dim)}
+  @media (max-width:640px){body{font-size:13px}.kv{grid-template-columns:1fr}.kv span:nth-child(odd){margin-top:6px}.wordmark{font-size:34px}.keys{display:none}}
+</style>
+
+<div class="bar"><span><b>eightsix.co</b> · guest@eightsix · tty1</span><span>AST <b id="clk">--:--</b> · monitoring <span class="ok">● live</span> · <a href="https://console.eightsix.co">console.eightsix.co</a></span></div>
+
+<main>
+<div class="blk" id="b0">
+<div class="cmd">cat /etc/motd</div>
+<div class="out">
+<div class="wordmark" aria-label="eight six">eight six<b>.</b></div>
+<p>Eight Six IT Engineering — San Juan, Puerto Rico. Founded 2024 on 15+ years of clinical and business IT.</p>
+<p>Modern IT. Practical AI. One engineering partner.</p>
+<p class="c"># One engineering team runs your infrastructure, defends it, and builds AI on top of it.<br># Type <a href="#" data-pal>/</a> to search this page, or press a number key to jump.</p>
+</div></div>
+
+<div class="blk" id="b1">
+<div class="cmd">eightsix <b>services</b> --list</div>
+<div class="out">
+<table>
+<tr><th>id</th><th>service</th><th>what it means for you</th><th>coverage</th></tr>
+<tr><td>helpdesk</td><td>Remote support, no tiers</td><td>An engineer picks up. There is no ticket runaround and no "level 1".</td><td>bus. hours + on-call</td></tr>
+<tr><td>onsite</td><td>Field engineering</td><td>Scheduled and emergency visits anywhere on the island.</td><td>island-wide</td></tr>
+<tr><td>rmm</td><td>Monitoring &amp; patching</td><td>Every endpoint, server and switch watched; patched in windows that respect your hours.</td><td>24x7x365</td></tr>
+<tr><td>edr</td><td>Huntress EDR / MDR</td><td>Endpoint detection with a 24/7 SOC hunting behind it; automated isolation.</td><td>24x7 SOC</td></tr>
+<tr><td>mail</td><td>Email security</td><td>Phishing, BEC and malicious attachments stopped before delivery.</td><td>continuous</td></tr>
+<tr><td>identity</td><td>MFA + zero-trust</td><td>No user or device trusted by default, including inside the office.</td><td>all accounts</td></tr>
+<tr><td>backup</td><td>Immutable backup &amp; DR</td><td>Ransomware cannot encrypt or delete it. Restore-tested monthly; results sent to you.</td><td>nightly / tested monthly</td></tr>
+<tr><td>hipaa</td><td>HIPAA technical safeguards</td><td>Risk assessment, safeguards, documentation an auditor can read.</td><td>annual + ongoing</td></tr>
+<tr><td>network</td><td>Network, cloud, voice</td><td>Cabling, Wi-Fi, firewalls, SD-WAN, segmentation; Microsoft 365 / Azure / AWS; VoIP and secure fax.</td><td>as scoped</td></tr>
+<tr><td>vcio</td><td>Advisory</td><td>Roadmap, budget, vendors, board reporting. A CIO's judgment without the salary.</td><td>quarterly</td></tr>
+</table>
+<p class="c"># pricing: flat monthly · no lock-in · monthly plain-language report · one dedicated engineer</p>
+</div></div>
+
+<div class="blk" id="b2">
+<div class="cmd">eightsix <b>ai</b> --pillars</div>
+<div class="out">
+<div class="kv">
+<span>build</span><span>Custom tools around the workflow costing you the most time: automation, internal copilots grounded in your SOPs, document/RAG assistants with sourced answers, agents with a human in the loop.</span>
+<span>integrate</span><span>Copilot, ChatGPT Enterprise or Claude — chosen for your stack and compliance needs, configured securely, connected to your Microsoft 365 data, rolled out so people actually use it.</span>
+<span>govern</span><span>Private deployments (your data never trains public models), role-based access with audit logs, shadow-AI discovery, acceptable-use policy, HIPAA-aware handling.</span>
+</div>
+<p style="margin-top:12px"><span class="c"># shipped, in production:</span></p>
+<pre class="tree">├── <span class="a">ai-medical-scribe</span>        <i>speech → structured SOAP note by end of visit</i>
+├── <span class="a">mips-impact-forecast</span>     <i>how each reporting decision moves score and dollars</i>
+└── <span class="a">ai-security-analysis</span>     <i>alerts triaged and explained in plain language</i></pre>
+</div></div>
+
+<div class="blk" id="b3">
+<div class="cmd">eightsix <b>clients</b> --sectors</div>
+<div class="out">
+<table>
+<tr><th>sector</th><th>environments we run today</th><th>what usually breaks</th></tr>
+<tr><td>healthcare</td><td>oncology clinic · community health center (multi-site) · private practices</td><td>slow EMR (eCW, Epic, Athena) · HIPAA exposure · backups never tested · weak branch sites</td></tr>
+<tr><td>legal</td><td>bankruptcy law firm · accounting &amp; financial offices</td><td>business-email compromise · unmanaged remote work · dead workstation at filing deadline</td></tr>
+<tr><td>veterinary</td><td>veterinary hospital</td><td>practice software down · no in-house IT · years of X-rays on one aging server</td></tr>
+<tr><td>manufacturing</td><td>concrete manufacturer · corrugated packaging plant</td><td>outages that idle trucks · dust, heat, distance · flat network to the plant floor</td></tr>
+<tr><td>labs</td><td>calibration &amp; certification lab</td><td>records that cannot be lost · unpatched instrument PCs · the audit scramble</td></tr>
+</table>
+<p class="c"># not on the list? if you hold sensitive data, carry compliance, or cannot afford to stop: run `eightsix assess`.</p>
+</div></div>
+
+<div class="blk" id="b4">
+<div class="cmd">cat <b>principles.txt</b></div>
+<div class="out">
+<pre>1. Security first.        Every infrastructure decision starts with: how does this change the attack surface?
+2. Engineering precision. We do not patch around problems; we engineer them out.
+3. Radical transparency.  You always know what we are doing, why, and what it costs.
+4. Always ready.          Alerting runs 24/7/365 and reaches an engineer, not a queue.
+5. Local commitment.      We live and work in Puerto Rico. A local engineer answers.
+6. Pragmatic innovation.  AI where it removes work. Proven infrastructure where it counts. No hype.</pre>
+</div></div>
+
+<div class="blk" id="b5">
+<div class="cmd">eightsix <b>onboard</b> --timeline</div>
+<div class="out">
+<pre>[day 1   ] <span class="tick">✓</span> discovery call — free, 30 min. map environment, name risks, confirm scope
+[week 1  ] <span class="tick">✓</span> plain-language agreement — deliverables, response targets, flat monthly price
+[week 2-3] <span class="tick">✓</span> deploy — agents, monitoring, backups, EDR, email security, MFA
+[week 4  ] <span class="tick">✓</span> fully managed — 24/7 live, your engineer introduced, first report scheduled</pre>
+</div></div>
+
+<div class="blk" id="b6">
+<div class="cmd">eightsix <b>tools</b> --free</div>
+<div class="out">
+<pre class="tree">├── password-strength     <i>runs in your browser, nothing sent anywhere</i>
+├── password-generator    <i>crypto.getRandomValues, not Math.random</i>
+├── breach-check &lt;email&gt;  <i>lookup via XposedOrNot — your address is sent to their API</i>
+├── phish-url &lt;url&gt;       <i>heuristics: punycode, brand typosquats, suspicious TLDs, @ tricks</i>
+├── hipaa-readiness       <i>ten questions, honest score</i>
+└── ai-readiness          <i>where your data, identity and policy actually stand</i></pre>
+</div></div>
+
+<div class="blk man" id="b7">
+<div class="cmd">man <b>eightsix</b></div>
+<div class="out">
+<h4>FAQ</h4>
+<h4>Is our data safe if we start using AI?</h4><p>Yes — that is the point of doing it with us. Private, governed deployments; your data is not used to train public models; access is controlled and logged; HIPAA built in where it applies.</p>
+<h4>How fast do you respond when something breaks?</h4><p>You reach the engineer directly. Monitoring runs 24/7/365; a critical security incident is a drop-everything event, weekends and holidays included.</p>
+<h4>Do you lock clients into long-term contracts?</h4><p>No. Flat monthly. No expensive exit clauses. Stay because the service is exceptional.</p>
+<h4>What is a realistic first AI project?</h4><p>One painful, repetitive workflow. Pilot in weeks, measure the saving, expand.</p>
+<h4>AI company or IT company?</h4><p>Both. One accountable team instead of three vendors pointing fingers.</p>
+<h4>AUTHOR</h4><p>Lino E. Gómez, Founder &amp; Principal Engineer. HIPAA Security · MCSE · Mirth Certified (HL7) · AWS &amp; Azure.</p>
+</div></div>
+
+<div class="blk" id="b8">
+<div class="cmd">eightsix <b>assess</b> --request</div>
+<div class="out">
+<p class="c"># Free, no obligation. 30 minutes with the engineer. You get a prioritized, plain-language plan.</p>
+<form class="prompt" onsubmit="event.preventDefault();this.innerHTML='<p class=g>✓ request queued. an engineer will call at the time you chose.</p><p class=c># or call now: <a href=tel:+17877149556>(787) 714-9556</a></p>'">
+<label>full_name: <input required></label>
+<label>organization: <input required></label>
+<label>email: <input type="email" required></label>
+<label>phone: <input type="tel"></label>
+<label>focus: <select><option>both — ai and it/security</option><option>ai opportunities &amp; automation</option><option>it &amp; security risk</option></select></label>
+<label>best_time: <select><option>morning (8–12)</option><option>afternoon (12–5)</option><option>evening (5–7)</option><option>anytime</option></select></label>
+<button type="submit">submit ⏎</button>
+</form>
+<p class="c" style="margin-top:14px"># prefer a human right now: <a href="tel:+17877149556">(787) 714-9556</a> · <a href="mailto:info@eightsix.co">info@eightsix.co</a></p>
+</div></div>
+
+<div class="blk"><div class="cmd"><span class="cursor" aria-hidden="true"></span></div></div>
+</main>
+
+<div class="keys"><span><kbd>/</kbd>search</span><span><kbd>1</kbd><a href="#b1">services</a></span><span><kbd>2</kbd><a href="#b2">ai</a></span><span><kbd>3</kbd><a href="#b3">clients</a></span><span><kbd>4</kbd><a href="#b4">principles</a></span><span><kbd>5</kbd><a href="#b5">onboarding</a></span><span><kbd>6</kbd><a href="#b6">tools</a></span><span><kbd>7</kbd><a href="#b7">faq</a></span><span><kbd>a</kbd><a href="#b8">assess</a></span><span style="margin-left:auto">© 2026 eight six it engineering · san juan, pr</span></div>
+
+<div id="pal" role="dialog" aria-label="Search"><div class="box"><input id="palq" placeholder="jump to… (services, ai, clients, backup, hipaa, assess)" autocomplete="off"><ul id="pall"></ul></div></div>
+
+<script>
+(function(){
+  var idx=[['services — managed it, security, backup','#b1'],['ai — build, integrate, govern','#b2'],['clients — who we serve','#b3'],['principles','#b4'],['onboarding timeline','#b5'],['free tools','#b6'],['faq / man page','#b7'],['assess — request a free assessment','#b8'],['backup & disaster recovery','#b1'],['hipaa','#b1'],['huntress edr','#b1'],['contact / phone','#b8']];
+  var pal=document.getElementById('pal'),q=document.getElementById('palq'),ul=document.getElementById('pall'),sel=0,res=idx;
+  function render(){ul.innerHTML='';res.forEach(function(r,i){var li=document.createElement('li');li.innerHTML=r[0]+'<span>'+r[1]+'</span>';if(i===sel)li.className='sel';li.onclick=function(){go(r[1])};ul.appendChild(li)})}
+  function go(h){pal.classList.remove('on');var el=document.querySelector(h);if(el)el.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'})}
+  function open(){pal.classList.add('on');q.value='';res=idx;sel=0;render();q.focus()}
+  document.querySelectorAll('[data-pal]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();open()})});
+  q.addEventListener('input',function(){var v=q.value.toLowerCase();res=idx.filter(function(r){return r[0].indexOf(v)>-1});sel=0;render()});
+  document.addEventListener('keydown',function(e){
+    var tag=(e.target.tagName||'').toLowerCase();
+    if(pal.classList.contains('on')){
+      if(e.key==='Escape'){pal.classList.remove('on')}else if(e.key==='ArrowDown'){sel=Math.min(res.length-1,sel+1);render();e.preventDefault()}else if(e.key==='ArrowUp'){sel=Math.max(0,sel-1);render();e.preventDefault()}else if(e.key==='Enter'&&res[sel]){go(res[sel][1])}
+      return;
+    }
+    if(tag==='input'||tag==='select'||tag==='textarea')return;
+    if(e.key==='/'){e.preventDefault();open();return}
+    var map={'1':'#b1','2':'#b2','3':'#b3','4':'#b4','5':'#b5','6':'#b6','7':'#b7','a':'#b8','0':'#b0'};
+    if(map[e.key])go(map[e.key]);
+  });
+  pal.addEventListener('click',function(e){if(e.target===pal)pal.classList.remove('on')});
+  function clock(){try{document.getElementById('clk').textContent=new Intl.DateTimeFormat('en-US',{hour:'2-digit',minute:'2-digit',hour12:false,timeZone:'America/Puerto_Rico'}).format(new Date())}catch(e){}}
+  clock();setInterval(clock,30000);
+})();
+</script>

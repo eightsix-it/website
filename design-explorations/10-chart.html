@@ -1,0 +1,228 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Eight Six — Chart</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap">
+<style>
+  :root{--bg:#F6F8F9;--band:#E9EEF2;--card:#FFFFFF;--ink:#17202A;--ink2:#465060;--mute:#7A8594;--line:#CBD3DB;--line2:#E3E8ED;--navy:#1F3A89;--red:#C62828;--green:#2E7D32;--amber:#B26A00;
+    --sans:'Public Sans',system-ui,Segoe UI,Arial,sans-serif;--mono:'Roboto Mono',ui-monospace,Menlo,monospace}
+  html,body{margin:0;background:var(--bg);color:var(--ink)}
+  body{font-family:var(--sans);font-size:15px;line-height:1.5;font-variant-numeric:tabular-nums}
+  a{color:var(--navy)}
+  .shell{max-width:1240px;margin:0 auto;padding:18px 20px 60px}
+  .banner{background:var(--band);border:1px solid var(--line);display:grid;grid-template-columns:auto 1fr auto;gap:22px;align-items:center;padding:12px 16px}
+  .banner .plate{background:#0B1220;padding:8px 14px}.banner img{height:36px;width:auto;display:block}
+  .banner dl{margin:0;display:grid;grid-template-columns:repeat(4,auto);gap:4px 28px;font-size:13px}
+  .banner dt{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}
+  .banner dd{margin:0;font-weight:600}
+  .banner .right{text-align:right;font-size:13px}
+  .banner .right a{text-decoration:none;color:var(--ink);font-weight:700;font-size:20px;display:block}
+  .banner .right span{color:var(--mute)}
+  .tabs{display:flex;gap:2px;margin-top:14px;border-bottom:2px solid var(--ink)}
+  .tabs button{font:inherit;font-weight:600;font-size:14px;background:var(--band);border:1px solid var(--line);border-bottom:0;padding:10px 16px;cursor:pointer;color:var(--ink2);display:flex;gap:8px;align-items:baseline}
+  .tabs button b{font-family:var(--mono);font-weight:500;font-size:16px;color:var(--navy)}
+  .tabs button[aria-selected="true"]{background:var(--card);color:var(--ink);position:relative;top:2px}
+  .tabs button:focus-visible{outline:2px solid var(--navy);outline-offset:-2px}
+  .panel{display:none;background:var(--card);border:1px solid var(--line);border-top:0;padding:26px 28px}
+  .panel.on{display:block}
+  .panel h2{font-size:22px;margin:0 0 4px;font-weight:700;letter-spacing:-.01em}
+  .panel h2 small{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);margin-left:10px;font-weight:400}
+  .panel .lead{color:var(--ink2);margin:0 0 20px;max-width:78ch}
+  .sec{margin:22px 0 0;padding-top:16px;border-top:1px solid var(--line2)}
+  .sec h3{margin:0 0 10px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);font-weight:500}
+  .cc{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .cc blockquote{margin:0;border-left:3px solid var(--navy);padding:8px 14px;background:var(--bg)}
+  .cc blockquote p{margin:0 0 6px;font-style:italic}
+  .cc blockquote cite{font-style:normal;font-size:12px;color:var(--mute);font-family:var(--mono);letter-spacing:.04em}
+  table.v{width:100%;border-collapse:collapse;font-size:14px}
+  table.v th{text-align:left;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);padding:6px 10px;border-bottom:1px solid var(--line);font-weight:500}
+  table.v td{padding:9px 10px;border-bottom:1px solid var(--line2);vertical-align:top}
+  table.v td.k{font-weight:600}
+  table.v td.n{font-family:var(--mono);white-space:nowrap}
+  .flag{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;padding:2px 8px;border:1px solid}
+  .flag.ok{color:var(--green);border-color:var(--green)} .flag.crit{color:var(--red);border-color:var(--red)} .flag.warn{color:var(--amber);border-color:var(--amber)} .flag.info{color:var(--navy);border-color:var(--navy)}
+  .flag::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+  ol.prob{margin:0;padding:0;list-style:none;counter-reset:p}
+  ol.prob li{display:grid;grid-template-columns:36px 1fr 1fr;gap:14px;padding:12px 0;border-bottom:1px solid var(--line2);counter-increment:p}
+  ol.prob li::before{content:counter(p);font-family:var(--mono);color:var(--navy);font-size:14px;padding-top:2px}
+  ol.prob li b{display:block;font-weight:600}
+  ol.prob li span{color:var(--ink2);font-size:14px}
+  ol.prob li .plan{font-size:14px}
+  ol.prob li .plan b{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);font-weight:500;margin-bottom:2px}
+  .orders{display:grid;grid-template-columns:1fr 1fr;gap:18px 40px}
+  .orders label{display:grid;grid-template-columns:20px 1fr;gap:10px;align-items:start;padding:8px 0;border-bottom:1px solid var(--line2);font-size:14px}
+  .orders input{margin:3px 0 0;accent-color:var(--navy)}
+  .orders label b{display:block;font-weight:600}
+  .orders label span{color:var(--ink2)}
+  .orders h4{grid-column:1/-1;margin:14px 0 0;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);font-weight:500}
+  .order-cta{margin-top:22px;border:2px solid var(--navy);padding:18px 20px;display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center;background:var(--bg)}
+  .order-cta h3{margin:0 0 4px;font-size:18px;font-weight:700;font-family:var(--sans);letter-spacing:0;text-transform:none;color:var(--ink)}
+  .order-cta p{margin:0;color:var(--ink2);font-size:14px}
+  .order-cta a{background:var(--navy);color:#fff;text-decoration:none;font-weight:700;padding:12px 18px;white-space:nowrap}
+  form.enc{display:grid;grid-template-columns:1fr 1fr;gap:12px 18px;margin-top:14px}
+  form.enc label{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);margin-bottom:4px}
+  form.enc input,form.enc select{width:100%;box-sizing:border-box;border:1px solid var(--line);padding:8px 10px;font:inherit;background:#fff;border-radius:0}
+  form.enc input:focus,form.enc select:focus{outline:2px solid var(--navy);outline-offset:-1px}
+  form.enc button{grid-column:1/-1;justify-self:start;background:var(--navy);color:#fff;border:0;padding:11px 18px;font:inherit;font-weight:700;cursor:pointer}
+  .hist dl{margin:0;display:grid;grid-template-columns:140px 1fr;gap:8px 18px;font-size:14px}
+  .hist dt{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);padding-top:3px}
+  .hist dd{margin:0;padding-bottom:8px;border-bottom:1px solid var(--line2)}
+  .cons div{padding:10px 0;border-bottom:1px solid var(--line2)}
+  .cons b{display:block;font-weight:600;margin-bottom:2px}
+  .cons p{margin:0;color:var(--ink2);font-size:14px}
+  footer{margin-top:14px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--mute);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+  @media (max-width:900px){.banner{grid-template-columns:1fr}.banner dl{grid-template-columns:1fr 1fr}.banner .right{text-align:left}.tabs{flex-wrap:wrap}.cc,.orders,form.enc{grid-template-columns:1fr}ol.prob li{grid-template-columns:30px 1fr}.order-cta{grid-template-columns:1fr}.panel{padding:18px}}
+</style>
+
+<div class="shell">
+  <header class="banner">
+    <div class="plate"><img src="__LOGO__" alt="Eight Six IT Engineering"></div>
+    <dl>
+      <dt>Patient</dt><dd>Your practice, firm, plant or lab</dd>
+      <dt>Encounter</dt><dd>Free assessment · 30 min</dd>
+      <dt>Attending</dt><dd>L. E. Gómez, Principal Engineer</dd>
+      <dt>Status</dt><dd><span class="flag info">New</span></dd>
+    </dl>
+    <div class="right"><span>Direct line to the engineer</span><a href="tel:+17877149556">(787) 714-9556</a><span><a href="https://console.eightsix.co" style="font-size:13px;font-weight:500">Client console</a></span></div>
+  </header>
+
+  <div class="tabs" role="tablist" aria-label="Chart sections">
+    <button role="tab" aria-selected="true" aria-controls="tS" id="bS"><b>S</b>Subjective</button>
+    <button role="tab" aria-selected="false" aria-controls="tO" id="bO"><b>O</b>Objective</button>
+    <button role="tab" aria-selected="false" aria-controls="tA" id="bA"><b>A</b>Assessment</button>
+    <button role="tab" aria-selected="false" aria-controls="tP" id="bP"><b>P</b>Plan</button>
+    <button role="tab" aria-selected="false" aria-controls="tOr" id="bOr">Orders</button>
+    <button role="tab" aria-selected="false" aria-controls="tH" id="bH">History</button>
+    <button role="tab" aria-selected="false" aria-controls="tC" id="bC">Consults</button>
+  </div>
+
+  <section class="panel on" id="tS" role="tabpanel" aria-labelledby="bS">
+    <h2>Subjective <small>what practices tell us on the first call</small></h2>
+    <p class="lead">Eight Six is a founder-led IT engineering firm in San Juan. We run and secure the systems a business depends on, and we build practical AI on top of them. Most first calls sound like one of these. None of them are quotes from a client; all of them are things we hear every week.</p>
+    <div class="sec"><h3>Chief complaint, typical</h3>
+      <div class="cc">
+        <blockquote><p>“The EMR is slow every morning and nobody can tell me why.”</p><cite>CLINIC · PRACTICE MANAGER</cite></blockquote>
+        <blockquote><p>“We got an email that looked exactly like our partner asking for a wire.”</p><cite>LAW OFFICE · ADMINISTRATOR</cite></blockquote>
+        <blockquote><p>“Our X-rays live on one server and I honestly don’t know if the backup works.”</p><cite>VETERINARY HOSPITAL · OWNER</cite></blockquote>
+        <blockquote><p>“When the network drops, the trucks sit. Every hour is money.”</p><cite>CONCRETE PLANT · OPERATIONS</cite></blockquote>
+        <blockquote><p>“The auditor asked for a certificate from 2021 and it took us two days to find it.”</p><cite>CALIBRATION LAB · QUALITY</cite></blockquote>
+        <blockquote><p>“Staff are already pasting things into ChatGPT. I want the upside without the leak.”</p><cite>ANY OF THE ABOVE</cite></blockquote>
+      </div></div>
+    <div class="sec"><h3>History of present illness</h3><p style="margin:0;max-width:78ch">Usually years of reactive IT: hardware replaced when it dies, a backup configured once and never restored, MFA on some accounts, a consumer router somewhere it should not be, and no one person accountable for the whole picture. Nothing in this history is unusual. It is the normal state of a small organization that has been too busy doing its real work.</p></div>
+  </section>
+
+  <section class="panel" id="tO" role="tabpanel" aria-labelledby="bO">
+    <h2>Objective <small>what we measure, and the targets we hold ourselves to</small></h2>
+    <p class="lead">These are targets and methods, not live readings from your environment. The assessment is where we take the first set of real values.</p>
+    <table class="v">
+      <tr><th>Vital</th><th>Target</th><th>How it is measured</th><th>State on most first calls</th></tr>
+      <tr><td class="k">Endpoints under monitoring</td><td class="n">100 %</td><td>RMM agent on every workstation, server and network device</td><td><span class="flag crit">Partial or none</span></td></tr>
+      <tr><td class="k">EDR coverage</td><td class="n">100 % of endpoints</td><td>Huntress agent reporting; 24/7 SOC behind it</td><td><span class="flag crit">Antivirus only</span></td></tr>
+      <tr><td class="k">MFA enforcement</td><td class="n">All accounts</td><td>Conditional access in Microsoft 365 / Azure; no exceptions for executives</td><td><span class="flag warn">Some accounts</span></td></tr>
+      <tr><td class="k">Critical patch window</td><td class="n">≤ 14 days</td><td>Vulnerability scan to installed patch, per CVSS priority</td><td><span class="flag warn">Unknown</span></td></tr>
+      <tr><td class="k">Backup restore test</td><td class="n">Monthly, verified</td><td>Automated restore of representative workloads from immutable repository; result in report</td><td><span class="flag crit">Never tested</span></td></tr>
+      <tr><td class="k">Recovery point objective</td><td class="n">≤ 1 h (per workload)</td><td>Backup frequency against workload criticality</td><td><span class="flag warn">Nightly at best</span></td></tr>
+      <tr><td class="k">Recovery time objective</td><td class="n">≤ 4 h (per workload)</td><td>Achieved time in the monthly restore test</td><td><span class="flag crit">Undefined</span></td></tr>
+      <tr><td class="k">Email filtering</td><td class="n">Pre-delivery</td><td>Phishing, BEC and attachment filtering ahead of the mailbox</td><td><span class="flag warn">Default tenant settings</span></td></tr>
+      <tr><td class="k">Network segmentation</td><td class="n">Office ≠ clinical/plant</td><td>VLANs and firewall rules between business systems and imaging / production</td><td><span class="flag crit">Flat</span></td></tr>
+      <tr><td class="k">Sanctioned AI</td><td class="n">Private, logged</td><td>Shadow-AI discovery; approved tools deployed with audit logging and no training on your data</td><td><span class="flag crit">Unsanctioned in use</span></td></tr>
+      <tr><td class="k">Asset inventory</td><td class="n">Complete</td><td>Every device, license and configuration recorded and current</td><td><span class="flag warn">Spreadsheet, stale</span></td></tr>
+    </table>
+  </section>
+
+  <section class="panel" id="tA" role="tabpanel" aria-labelledby="bA">
+    <h2>Assessment <small>our read, and the plan for each problem</small></h2>
+    <p class="lead">One engineering team runs your infrastructure, defends it and builds AI on top of it. Three practices, each mapped to the problems above.</p>
+    <ol class="prob">
+      <li><div><b>Unmanaged, unmonitored endpoints</b><span>Nobody sees the disk filling or the failing drive until the morning it stops.</span></div><div class="plan"><b>Managed IT</b>RMM on every device; patch windows agreed; unlimited helpdesk direct to an engineer; on-site island-wide; lifecycle and inventory.</div></li>
+      <li><div><b>Backups that exist on paper</b><span>Configured once, never restored, and the first target of any ransomware crew.</span></div><div class="plan"><b>Backup &amp; DR</b>Immutable off-site repository; RTO/RPO per workload; monthly restore test with the result in your report; we execute recovery.</div></li>
+      <li><div><b>Email-borne compromise</b><span>Phishing and spoofed-partner wires are how most small organizations actually get hurt.</span></div><div class="plan"><b>Cybersecurity</b>Pre-delivery filtering; MFA on all accounts; Huntress EDR with 24/7 SOC; security awareness training with simulated phishing.</div></li>
+      <li><div><b>Flat network</b><span>An infected office PC can reach the imaging modality or the plant controller.</span></div><div class="plan"><b>Network</b>VLAN segmentation, firewall rules, SD-WAN between sites with one policy everywhere.</div></li>
+      <li><div><b>Shadow AI</b><span>Staff pasting records into consumer chatbots. Well-meaning, and a breach.</span></div><div class="plan"><b>Practical AI · Govern</b>Discover what is in use; deploy sanctioned Copilot / Claude privately with logging; acceptable-use policy; then build the tool they actually needed.</div></li>
+      <li><div><b>No one accountable for the whole picture</b><span>Three vendors pointing at each other.</span></div><div class="plan"><b>vCIO</b>One engineer who knows your environment; quarterly roadmap and budget; plain-language monthly report.</div></li>
+    </ol>
+  </section>
+
+  <section class="panel" id="tP" role="tabpanel" aria-labelledby="bP">
+    <h2>Plan <small>the first thirty days</small></h2>
+    <p class="lead">Four weeks to fully managed in most cases. Flat monthly pricing, one dedicated engineer, no long-term lock-in.</p>
+    <table class="v">
+      <tr><th>When</th><th>Order</th><th>Detail</th></tr>
+      <tr><td class="n">Day 1</td><td class="k">Discovery call</td><td>Free, 30 minutes, no obligation. Environment mapped, risks named, scope confirmed. First real values for the Objective tab.</td></tr>
+      <tr><td class="n">Week 1</td><td class="k">Agreement</td><td>Plain-language deliverables, response targets, flat monthly price. No surprise invoices for ordinary support.</td></tr>
+      <tr><td class="n">Weeks 2–3</td><td class="k">Deployment</td><td>RMM and EDR agents; backups initiated; email security and MFA enforced; inventory built; segmentation where needed.</td></tr>
+      <tr><td class="n">Week 4</td><td class="k">Fully managed</td><td>24/7 monitoring live; dedicated engineer introduced; first monthly report scheduled; first restore test on the calendar.</td></tr>
+      <tr><td class="n">Ongoing</td><td class="k">Follow-up</td><td>Monthly report; quarterly roadmap; one AI pilot when the foundation is in place: one painful workflow, weeks not months, saving measured.</td></tr>
+    </table>
+    <div class="order-cta" id="order"><div><h3>Order: free assessment</h3><p>Thirty minutes with the engineer who will actually do the work. You leave with a prioritized, plain-language plan. Nobody sells you anything.</p></div><a href="tel:+17877149556">Call (787) 714-9556</a></div>
+    <form class="enc" onsubmit="event.preventDefault();this.querySelector('button').textContent='Order placed — an engineer will call.'">
+      <div><label for="a">Name</label><input id="a" required></div><div><label for="b">Organization</label><input id="b" required></div>
+      <div><label for="c">Email</label><input id="c" type="email" required></div><div><label for="d">Phone</label><input id="d" type="tel"></div>
+      <div><label for="e">Focus</label><select id="e"><option>Both — AI and IT/security</option><option>AI opportunities &amp; automation</option><option>IT &amp; security risk</option></select></div>
+      <div><label for="f">Best time to call</label><select id="f"><option>Morning (8–12)</option><option>Afternoon (12–5)</option><option>Evening (5–7)</option><option>Anytime</option></select></div>
+      <button type="submit">Place order</button>
+    </form>
+  </section>
+
+  <section class="panel" id="tOr" role="tabpanel" aria-labelledby="bOr">
+    <h2>Orders <small>the full formulary</small></h2>
+    <p class="lead">Everything we provide. Tick what you think you need; the assessment confirms it.</p>
+    <div class="orders">
+      <h4>Managed IT</h4>
+      <label><input type="checkbox"><div><b>Helpdesk &amp; remote support</b><span>Unlimited, engineer-direct, no tiers.</span></div></label>
+      <label><input type="checkbox"><div><b>On-site field engineering</b><span>Scheduled and emergency, island-wide.</span></div></label>
+      <label><input type="checkbox"><div><b>Monitoring &amp; patching</b><span>24/7 RMM; patch windows around your hours.</span></div></label>
+      <label><input type="checkbox"><div><b>Device lifecycle &amp; inventory</b><span>Procurement to retirement; audit-ready.</span></div></label>
+      <h4>Cybersecurity</h4>
+      <label><input type="checkbox"><div><b>Huntress EDR / MDR</b><span>24/7 threat hunting, automated isolation.</span></div></label>
+      <label><input type="checkbox"><div><b>Email security</b><span>Phishing, BEC, attachments stopped pre-delivery.</span></div></label>
+      <label><input type="checkbox"><div><b>Identity &amp; zero-trust</b><span>MFA everywhere, PAM, ZTNA.</span></div></label>
+      <label><input type="checkbox"><div><b>HIPAA technical safeguards</b><span>Risk assessment, controls, OCR-ready documentation.</span></div></label>
+      <h4>Backup &amp; recovery</h4>
+      <label><input type="checkbox"><div><b>Immutable backup &amp; DR</b><span>Off-site, tested monthly, RTO/RPO per workload.</span></div></label>
+      <label><input type="checkbox"><div><b>Incident response retainer</b><span>Priority response, forensics, breach-notification support.</span></div></label>
+      <h4>Practical AI</h4>
+      <label><input type="checkbox"><div><b>Build</b><span>A tool for your costliest workflow. Shipped: AI medical scribe, MIPS forecasting, security-alert analysis.</span></div></label>
+      <label><input type="checkbox"><div><b>Integrate</b><span>Copilot / ChatGPT / Claude configured securely and connected to your data.</span></div></label>
+      <label><input type="checkbox"><div><b>Govern</b><span>Private deployments, audit logs, shadow-AI discovery, policy.</span></div></label>
+      <h4>Infrastructure &amp; advisory</h4>
+      <label><input type="checkbox"><div><b>Network, cloud &amp; voice</b><span>Cabling, Wi-Fi, firewalls, SD-WAN; Microsoft 365 / Azure / AWS; VoIP and secure fax.</span></div></label>
+      <label><input type="checkbox"><div><b>EMR / EHR &amp; imaging</b><span>eClinicalWorks, Epic, Athenahealth; HL7 via Mirth; DICOM / PACS.</span></div></label>
+      <label><input type="checkbox"><div><b>vCIO</b><span>Roadmap, budget, vendors, board reporting.</span></div></label>
+    </div>
+  </section>
+
+  <section class="panel hist" id="tH" role="tabpanel" aria-labelledby="bH">
+    <h2>History <small>about the firm and the engineer</small></h2>
+    <dl>
+      <dt>Founded</dt><dd>2024, San Juan, Puerto Rico, on 15+ years of hands-on clinical and business IT engineering.</dd>
+      <dt>Attending</dt><dd><b>Lino E. Gómez</b>, Founder &amp; Principal Engineer. Years inside healthcare facilities across the island: server rooms, radiology suites, emergency clinics. HIPAA-regulated infrastructure and ransomware resilience.</dd>
+      <dt>Credentials</dt><dd>HIPAA Security · MCSE · Mirth Certified (HL7 &amp; clinical integration) · AWS &amp; Azure architecture.</dd>
+      <dt>Sectors</dt><dd>Healthcare and clinics; legal and professional offices; veterinary hospitals; manufacturing and industrial; calibration and certification labs.</dd>
+      <dt>Under management</dt><dd>Oncology clinic · community health clinic · bankruptcy law firm · veterinary hospital · concrete manufacturer · corrugated packaging plant · calibration &amp; certification lab.</dd>
+      <dt>Principles</dt><dd>Security first. Engineering precision. Radical transparency. Always ready. Local commitment. Pragmatic innovation.</dd>
+      <dt>Why small</dt><dd>Deliberately. Every client knows their engineer by name, and the person who designed the network is the one who answers when it misbehaves.</dd>
+    </dl>
+  </section>
+
+  <section class="panel cons" id="tC" role="tabpanel" aria-labelledby="bC">
+    <h2>Consults <small>questions we hear every week</small></h2>
+    <div><b>Is our data safe if we start using AI?</b><p>Yes; that is the point. Private, governed deployments; your data is not used to train public models; access controlled and logged; HIPAA built in where it applies.</p></div>
+    <div><b>How fast do you respond when something breaks?</b><p>You reach the engineer directly. Monitoring runs 24/7/365; a critical security incident is drop-everything, weekends and holidays included.</p></div>
+    <div><b>Do you lock clients into long-term contracts?</b><p>No. Flat monthly pricing, no expensive exit clauses.</p></div>
+    <div><b>What is a realistic first AI project?</b><p>One painful, repetitive workflow. Pilot in weeks, measure the saving, expand.</p></div>
+    <div><b>Are you an AI company or an IT company?</b><p>Both, deliberately. One team runs your infrastructure, defends it, and builds AI on top of it.</p></div>
+    <div><b>Can you support HIPAA-regulated AI use?</b><p>Yes. We have built clinical AI to HIPAA's security expectations. Compliance is an organizational process you own; we engineer the technical side in.</p></div>
+    <div><b>Free tools?</b><p>Six, in your browser: password checker and generator, breach lookup, phishing URL analyzer, HIPAA and AI readiness quizzes.</p></div>
+  </section>
+
+  <footer><span>EIGHT SIX IT ENGINEERING · SAN JUAN, PR · <a href="mailto:info@eightsix.co">INFO@EIGHTSIX.CO</a></span><span>© 2026 · HIPAA-AWARE · MCSE · SECURE BY DESIGN</span></footer>
+</div>
+
+<script>
+(function(){
+  var tabs=[].slice.call(document.querySelectorAll('[role=tab]'));
+  function show(t){tabs.forEach(function(x){var on=x===t;x.setAttribute('aria-selected',on?'true':'false');document.getElementById(x.getAttribute('aria-controls')).classList.toggle('on',on)});t.focus()}
+  tabs.forEach(function(t,i){t.addEventListener('click',function(){show(t)});t.addEventListener('keydown',function(e){if(e.key==='ArrowRight')show(tabs[(i+1)%tabs.length]);if(e.key==='ArrowLeft')show(tabs[(i-1+tabs.length)%tabs.length])})});
+  document.querySelectorAll('a[href="#order"]').forEach(function(a){a.addEventListener('click',function(){show(document.getElementById('bP'))})});
+})();
+</script>
