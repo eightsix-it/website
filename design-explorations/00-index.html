@@ -1,77 +1,62 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Eight Six Design Explorations</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<title>Eight Six Ten</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700;900&display=swap">
 <style>
-  :root{--bg:#F5F6FA;--ink:#121A2E;--mute:#5C6578;--line:#DCE0EA;--acc:#1F3A89;--sans:'IBM Plex Sans',system-ui,sans-serif;--cond:'IBM Plex Sans Condensed',sans-serif;--mono:'IBM Plex Mono',monospace}
+  :root{--bg:#0B0D12;--ink:#F2F3F7;--mute:#8C93A6;--yel:#F4C430;--font:'Outfit',system-ui,sans-serif}
+  *{box-sizing:border-box}
   html,body{margin:0;background:var(--bg);color:var(--ink)}
-  body{font-family:var(--sans);font-size:16px;line-height:1.55}
-  .page{max-width:1080px;margin:0 auto;padding:44px 24px 90px}
-  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}
-  h1{font-family:var(--cond);font-size:40px;font-weight:700;margin:6px 0 10px;line-height:1.1}
-  .lede{font-size:18px;max-width:66ch;color:var(--ink);margin:0 0 8px}
-  .note{font-size:14px;color:var(--mute);max-width:70ch;margin:0 0 34px}
-  ol.list{list-style:none;margin:0;padding:0;border-top:2px solid var(--ink)}
-  ol.list li{display:grid;grid-template-columns:56px 1fr 300px;gap:22px;padding:22px 0;border-bottom:1px solid var(--line);align-items:start}
-  .n{font-family:var(--mono);font-size:20px;color:var(--acc);padding-top:2px}
-  h2{font-family:var(--cond);font-size:24px;font-weight:700;margin:0 0 4px;line-height:1.15}
-  h2 a{color:inherit;text-decoration:none;border-bottom:2px solid var(--acc)}
-  h2 a:hover{color:var(--acc)}
-  .tags{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--mute);margin-bottom:8px}
-  p{margin:0;font-size:15px;color:#2b3345}
-  .meta{font-size:13px;color:var(--mute);display:grid;gap:8px}
-  .sw{display:flex;gap:4px}
-  .sw i{width:26px;height:26px;border:1px solid rgba(0,0,0,.12);display:block}
-  .meta b{color:var(--ink);font-weight:500}
-  .open{display:inline-block;margin-top:4px;font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:var(--acc);padding:7px 12px;text-decoration:none}
-  .open:hover{background:var(--ink)}
-  h3.sec{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);margin:44px 0 12px}
+  body{font-family:var(--font);font-size:16px;line-height:1.5}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1240px;margin:0 auto;padding:60px 28px 90px}
+  .eye{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--yel);font-weight:700}
+  h1{font-weight:900;font-size:clamp(44px,7vw,96px);letter-spacing:-.05em;line-height:.92;margin:10px 0 18px}
+  .lede{font-size:19px;color:var(--mute);max-width:60ch;margin:0 0 50px}
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+  .c{position:relative;display:grid;grid-template-columns:70px 1fr;gap:18px;padding:26px 26px 24px;border:1px solid rgba(255,255,255,.1);border-radius:18px;background:#10131B;transition:transform .25s,border-color .25s,background .25s;overflow:hidden}
+  .c:hover{transform:translateY(-4px);border-color:var(--yel)}
+  .c .n{font-weight:900;font-size:40px;letter-spacing:-.05em;color:var(--yel);line-height:1}
+  .c h2{margin:0 0 4px;font-size:26px;font-weight:900;letter-spacing:-.03em}
+  .c .sig{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--mute);margin-bottom:10px;font-weight:700}
+  .c p{margin:0 0 14px;color:#C8CCD8;font-size:15px}
+  .c .sw{display:flex;gap:5px;margin-bottom:12px}.c .sw i{width:22px;height:22px;border-radius:6px;display:block;border:1px solid rgba(255,255,255,.15)}
+  .c .open{display:inline-block;font-weight:700;font-size:13px;letter-spacing:.1em;text-transform:uppercase;padding:9px 14px;border-radius:999px;background:var(--yel);color:#111}
+  .c .lib{position:absolute;right:20px;top:22px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+  h3{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--mute);margin:56px 0 12px}
+  table{border-collapse:collapse;width:100%;font-size:14px}
+  th,td{text-align:left;padding:9px 10px;border-bottom:1px solid rgba(255,255,255,.1);vertical-align:top}
+  th{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
   .tw{overflow-x:auto}
-  table{border-collapse:collapse;width:100%;min-width:640px;font-size:14px}
-  th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
-  th{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);font-weight:500}
-  @media (max-width:820px){ol.list li{grid-template-columns:40px 1fr}.meta{grid-column:2}}
+  @media (max-width:820px){.grid{grid-template-columns:1fr}.c{grid-template-columns:1fr}.c .lib{position:static;margin-bottom:6px}}
 </style>
-<div class="page">
-  <div class="eyebrow">Eight Six IT Engineering · Design exploration · September 2026</div>
-  <h1>Ten answers to one question</h1>
-  <p class="lede">What could eightsixit.com look like if it stopped being designed like every other AI-generated SaaS site? Ten competing directions, each a working page with the real copy, so the identity can be judged rather than imagined.</p>
-  <p class="note">None of these touch production. Each is a self-contained page: its own typography, layout logic, palette and interaction model. Six of them reinterpret the wordmark typographically; four keep the current logo. The point is not consensus — pick the one or two worth evolving, and say what you like and dislike about the rest.</p>
-
-  <ol class="list">
-    <li><span class="n">01</span><div><h2><a href="./01-field-notes.html">Field Notes</a></h2><div class="tags">EDITORIAL · WARM PAPER · SINGLE COLUMN · MARGINALIA</div><p>The site as a letter from the engineer, in chapters. A founder-led firm has one asset no franchise MSP can copy: a person with a point of view. So the page reads like one, with sidenotes and footnotes carrying the specifications so the prose stays human. Newsreader for text, Plex Mono for apparatus. The quietest direction here and probably the most trustworthy.</p></div><div class="meta"><span class="sw"><i style="background:#F4EFE6"></i><i style="background:#1C1A17"></i><i style="background:#1F3A89"></i><i style="background:#B3261E"></i></span><span><b>Nav</b> chapter list, sticky, tracks reading</span><span><b>Risk</b> long; rewards readers, loses skimmers</span><a class="open" href="./01-field-notes.html">Open 01</a></div></li>
-
-    <li><span class="n">02</span><div><h2><a href="./02-runbook.html">Runbook</a></h2><div class="tags">OPERATIONS MANUAL · NUMBERED SECTIONS · TABLES · CALLOUTS</div><p>Published in the format the firm actually delivers work in: a controlled document with a revision block, numbered clauses, a service matrix, procedures, NOTE/CAUTION/WARNING callouts and a signature page. It says “we are engineers who write things down” without a single adjective. Dense by design. Source Sans and Source Code Pro.</p></div><div class="meta"><span class="sw"><i style="background:#F7F7F4"></i><i style="background:#14161A"></i><i style="background:#1F3A89"></i><i style="background:#C8102E"></i><i style="background:#B98A00"></i></span><span><b>Nav</b> sticky contents index, escalation box</span><span><b>Risk</b> intimidating to a non-technical buyer</span><a class="open" href="./02-runbook.html">Open 02</a></div></li>
-
-    <li><span class="n">03</span><div><h2><a href="./03-console.html">Console</a></h2><div class="tags">TERMINAL SESSION · MONOSPACE · KEYBOARD-DRIVEN · DARK</div><p>The whole page is a shell session: commands and their output, a man page for the FAQ, an assessment request answered at a prompt. Keys 1–7 jump, slash opens a search palette. No fake dashboard floating in space; the page itself is the instrument. One accent (the brand yellow), no glow, no gradients. JetBrains Mono throughout.</p></div><div class="meta"><span class="sw"><i style="background:#0B0D0F"></i><i style="background:#D6D9CF"></i><i style="background:#F4C430"></i><i style="background:#E5524A"></i></span><span><b>Nav</b> numbered keys + command palette</span><span><b>Risk</b> reads “for developers” to a clinic manager</span><a class="open" href="./03-console.html">Open 03</a></div></li>
-
-    <li><span class="n">04</span><div><h2><a href="./04-swiss.html">Swiss</a></h2><div class="tags">INTERNATIONAL TYPOGRAPHIC STYLE · 12-COLUMN GRID · BLACK / WHITE / RED</div><p>Rigor as identity. A visible modular grid (press G), flush-left grotesk, hairline rules, one red accent per spread, zero radius, zero shadow. The sectors become a real table; the process becomes four columns. Confidence through restraint rather than through motion. Archivo, set tight.</p></div><div class="meta"><span class="sw"><i style="background:#FFFFFF"></i><i style="background:#111111"></i><i style="background:#D62828"></i><i style="background:#9A9A9A"></i></span><span><b>Nav</b> single line, right-aligned, red CTA underline</span><span><b>Risk</b> can read as cold; drops the navy entirely</span><a class="open" href="./04-swiss.html">Open 04</a></div></li>
-
-    <li><span class="n">05</span><div><h2><a href="./05-dos-idiomas.html">Dos Idiomas</a></h2><div class="tags">BILINGUAL PARALLEL TEXT · CIVIC DOCUMENT · CREAM / NAVY / RED</div><p>The market is Puerto Rico, and every clinic administrator and law-office manager reads Spanish first. So the page is bilingual by construction: Spanish and English side by side, paragraph for paragraph, like an official notice or a contract. A toggle sets which language leads. The grid is the idea. Bitter slab for headings, Karla for text.</p></div><div class="meta"><span class="sw"><i style="background:#FBF6EC"></i><i style="background:#14213D"></i><i style="background:#C1121F"></i><i style="background:#D8CFBC"></i></span><span><b>Nav</b> language switch is the primary control</span><span><b>Risk</b> doubles every word you ever write</span><a class="open" href="./05-dos-idiomas.html">Open 05</a></div></li>
-
-    <li><span class="n">06</span><div><h2><a href="./06-blueprint.html">Blueprint</a></h2><div class="tags">ENGINEERING DRAWING · SCHEMATIC · TITLE BLOCK · CALLOUTS</div><p>The homepage is drawing ES-100: a line schematic of a typical managed environment, numbered callouts tied to general notes, dimension lines for RTO and RPO, and a title block signed by the engineer. Sheets 200–500 carry the schedule, site conditions, sequence and notes to owner. Hover a callout and the part lights up. Flat blueprint blue, no glow. Saira and Roboto Mono.</p></div><div class="meta"><span class="sw"><i style="background:#12357A"></i><i style="background:#E8EEF8"></i><i style="background:#F4C430"></i><i style="background:#A9BBDD"></i></span><span><b>Nav</b> sheet index in the header</span><span><b>Risk</b> the metaphor is strong; it has to be kept up on every page</span><a class="open" href="./06-blueprint.html">Open 06</a></div></li>
-
-    <li><span class="n">07</span><div><h2><a href="./07-work-order.html">Work Order</a></h2><div class="tags">FIELD SERVICE · HI-VIS · CONDENSED TYPE · FORMS</div><p>A contractor, not a SaaS. Safety yellow and black, hazard stripes, a giant phone number, and the page laid out as the work order you would sign: reported problem (tick the boxes), scope of work, parts on the truck, how the job runs, terms with a NO LOCK-IN stamp. Physical, honest, unmistakably local. Barlow Condensed.</p></div><div class="meta"><span class="sw"><i style="background:#F4C430"></i><i style="background:#111111"></i><i style="background:#FFFFFF"></i><i style="background:#D62828"></i></span><span><b>Nav</b> none needed; the form is the page</span><span><b>Risk</b> louder than the AI practice may want to be</span><a class="open" href="./07-work-order.html">Open 07</a></div></li>
-
-    <li><span class="n">08</span><div><h2><a href="./08-isla.html">Isla</a></h2><div class="tags">CARTOGRAPHIC · SERVICE-AREA MAP · GARAMOND · GAZETTEER</div><p>Rooted in place. A drawn map of Puerto Rico with San Juan as home base, a graticule, compass and scale bar; then a gazetteer of services, a field guide to the sectors, a route from first call to fully managed. No fake client pins, just an honest service area: the whole island on site, remote everywhere. EB Garamond and Alegreya Sans.</p></div><div class="meta"><span class="sw"><i style="background:#F1EEE6"></i><i style="background:#CFE0E6"></i><i style="background:#1E2A38"></i><i style="background:#C0392B"></i></span><span><b>Nav</b> small caps, classic</span><span><b>Risk</b> “local” can read as “small” to a plant GM</span><a class="open" href="./08-isla.html">Open 08</a></div></li>
-
-    <li><span class="n">09</span><div><h2><a href="./09-plain-text.html">Plain Text</a></h2><div class="tags">DELIBERATELY UNSTYLED · SYSTEM SERIF · TABLES · ONE REQUEST</div><p>The anti-design control. Black text, blue links, bordered tables, native disclosure widgets, no webfonts, no scripts, no images. It loads in one request and says so. This is what confidence looks like when a firm would rather spend the budget on engineering; it is also a fair baseline to measure the other nine against.</p></div><div class="meta"><span class="sw"><i style="background:#FFFFFF"></i><i style="background:#000000"></i><i style="background:#0000EE"></i><i style="background:#F0F0F0"></i></span><span><b>Nav</b> a numbered contents list</span><span><b>Risk</b> polarizing; some buyers read plain as cheap</span><a class="open" href="./09-plain-text.html">Open 09</a></div></li>
-
-    <li><span class="n">10</span><div><h2><a href="./10-chart.html">Chart</a></h2><div class="tags">CLINICAL RECORD · S / O / A / P · TABS · TABULAR DATA</div><p>Healthcare is where the firm cut its teeth, and it built a SOAP-note scribe. So the homepage is a chart: Subjective (what practices tell us), Objective (the vitals we measure, with targets), Assessment (problem list with a plan per problem), Plan (the first thirty days, ending in “Order: free assessment”). Tabs, tabular numerals, one red for critical flags. Public Sans.</p></div><div class="meta"><span class="sw"><i style="background:#F6F8F9"></i><i style="background:#E9EEF2"></i><i style="background:#1F3A89"></i><i style="background:#C62828"></i><i style="background:#2E7D32"></i></span><span><b>Nav</b> chart tabs, arrow-key navigable</span><span><b>Risk</b> healthcare-coded; law and plant buyers may feel like visitors</span><a class="open" href="./10-chart.html">Open 10</a></div></li>
-  </ol>
-
-  <h3 class="sec">How they differ, at a glance</h3>
+<div class="wrap">
+  <div class="eye">Eight Six IT Engineering · Design exploration, round two</div>
+  <h1>Ten ways to make an MSP site people actually play with.</h1>
+  <p class="lede">Every page below is a working site with the real copy, built around one signature interactive moment. Drag, click, scroll, throw. Pick the one or two worth evolving into production.</p>
+  <div class="grid">
+    <a class="c" href="./01-pulse.html"><span class="n">01</span><div><span class="lib">canvas · gsap</span><h2>Pulse</h2><div class="sig">Living network · threat containment sim</div><p>A hundred endpoints breathe behind the headline. Every few seconds one turns red and infection spreads along the edges; a containment ring sweeps out from the SOC and heals it. Inject your own. The stack, dramatized honestly.</p><div class="sw"><i style="background:#070B14"></i><i style="background:#5B79C9"></i><i style="background:#F4C430"></i><i style="background:#FF4D4D"></i></div><span class="open">Open 01</span></div></a>
+    <a class="c" href="./02-ignition.html"><span class="n">02</span><div><span class="lib">canvas · gsap scrub</span><h2>Ignition</h2><div class="sig">Particle morph · pinned cinematic · horizontal panels</div><p>Two thousand particles form "86", then morph through IT and AI as you scroll a pinned 400vh hero, then scatter as the page turns from black to daylight. Sectors ride a horizontal track of full-colour posters.</p><div class="sw"><i style="background:#05060A"></i><i style="background:#F6F3EC"></i><i style="background:#F4C430"></i><i style="background:#D62828"></i></div><span class="open">Open 02</span></div></a>
+    <a class="c" href="./03-saturday.html"><span class="n">03</span><div><span class="lib">svg · gsap</span><h2>Saturday 6 a.m.</h2><div class="sig">Draggable time-of-day scene · three storylines</div><p>Drag the clock through a weekend morning at a clinic: the sky changes, an alert fires at 06:02, the engineer is paged at 06:03, you arrive at 07:45 and nothing is wrong. Flip to a Tuesday phishing attempt or a 2 a.m. ransomware night.</p><div class="sw"><i style="background:#FFF7E6"></i><i style="background:#1F3A89"></i><i style="background:#FF6B57"></i><i style="background:#F4C430"></i></div><span class="open">Open 03</span></div></a>
+    <a class="c" href="./04-layers.html"><span class="n">04</span><div><span class="lib">three.js · gsap</span><h2>Layers</h2><div class="sig">Draggable 3D defense stack · threat launcher</div><p>Five translucent planes in WebGL: email, identity, EDR/SOC, segmentation, immutable backup. Drag to rotate, hover the legend to light a layer, launch a threat and watch which layer stops it. Scroll and the stack pulls apart, one layer per screen.</p><div class="sw"><i style="background:#0B1220"></i><i style="background:#1F3A89"></i><i style="background:#F4C430"></i><i style="background:#FF5A5A"></i></div><span class="open">Open 04</span></div></a>
+    <a class="c" href="./05-split.html"><span class="n">05</span><div><span class="lib">clip-path · gsap</span><h2>Split</h2><div class="sig">Full-page before / after divider</div><p>Left half: the guy who knows a guy, glitching alerts, a shared password. Right half: calm serif, green checks, everything works. Drag the yellow line across the whole hero; the comparison continues row by row below.</p><div class="sw"><i style="background:#160A0A"></i><i style="background:#F7F3EA"></i><i style="background:#1F3A89"></i><i style="background:#F4C430"></i></div><span class="open">Open 05</span></div></a>
+    <a class="c" href="./06-kinetic.html"><span class="n">06</span><div><span class="lib">gsap velocity</span><h2>Kinetic</h2><div class="sig">Velocity marquees · clip-path wipes · colour blocks</div><p>Giant Anton marquees run in opposite directions and skew with your scroll speed. "86 the downtime" in the local sense of the word. Sections wipe in as flat yellow, navy, black and red slabs; a rotating text ring circles the phone number.</p><div class="sw"><i style="background:#F3EFE4"></i><i style="background:#F4C430"></i><i style="background:#1F3A89"></i><i style="background:#D62828"></i></div><span class="open">Open 06</span></div></a>
+    <a class="c" href="./07-command.html"><span class="n">07</span><div><span class="lib">game loop · gsap</span><h2>Command</h2><div class="sig">60-second triage game</div><p>Be the engineer for a minute. Alerts fire across 32 endpoints; most turn yellow and resolve on their own (that is the stack), a few turn red and need your click (that is us). The end screen tallies who handled what.</p><div class="sw"><i style="background:#0A0F1C"></i><i style="background:#F4C430"></i><i style="background:#FF4757"></i><i style="background:#3DDC84"></i></div><span class="open">Open 07</span></div></a>
+    <a class="c" href="./08-descent.html"><span class="n">08</span><div><span class="lib">gsap scrub · canvas</span><h2>Descent</h2><div class="sig">Scroll down through the stack · depth gauge</div><p>Start at your desk in daylight and sink through endpoints, network, servers, identity and security operations until you reach the vault, in the dark, where a backup was restored this month. A depth gauge tracks you; bubbles rise faster when you scroll faster.</p><div class="sw"><i style="background:#EAF2FF"></i><i style="background:#1F3A89"></i><i style="background:#030814"></i><i style="background:#F4C430"></i></div><span class="open">Open 08</span></div></a>
+    <a class="c" href="./09-restore.html"><span class="n">09</span><div><span class="lib">text scramble</span><h2>Restore</h2><div class="sig">Encrypted page → restore from backup</div><p>The site loads encrypted: red scanlines, scrambled headline, a padlock. Press Restore (or wait) and a progress bar walks the real recovery steps while the text decrypts character by character and the page washes to clean white. Replay anytime.</p><div class="sw"><i style="background:#0D0000"></i><i style="background:#FF2D2D"></i><i style="background:#FFFFFF"></i><i style="background:#1F3A89"></i></div><span class="open">Open 09</span></div></a>
+    <a class="c" href="./10-playground.html"><span class="n">10</span><div><span class="lib">matter.js · gsap</span><h2>Playground</h2><div class="sig">Physics sandbox · throw problems in the bin</div><p>Chips labelled Slow EMR, Phishing email, Untested backup and No MFA tumble into the hero. Grab them, throw them, drop them in the "86" bin and watch the counter climb. Shake, reset, add more. The most fun a clinic administrator will have on an IT website.</p><div class="sw"><i style="background:#F7F3EA"></i><i style="background:#1F3A89"></i><i style="background:#F4C430"></i><i style="background:#E23E3E"></i></div><span class="open">Open 10</span></div></a>
+  </div>
+  <h3>Signature moment, at a glance</h3>
   <div class="tw"><table>
-    <tr><th>#</th><th>Theme</th><th>Type</th><th>Structure</th><th>Interaction</th><th>Density</th></tr>
-    <tr><td>01</td><td>Warm paper</td><td>Serif + mono apparatus</td><td>Chapters, single column, margin notes</td><td>Reading progress, footnote popovers</td><td>Low</td></tr>
-    <tr><td>02</td><td>Off-white document</td><td>Humanist sans + code</td><td>Numbered clauses, tables, procedures</td><td>Collapsible procedures, print-ready</td><td>High</td></tr>
-    <tr><td>03</td><td>Near-black</td><td>Monospace only</td><td>Command / output blocks</td><td>Number keys, slash palette</td><td>Medium</td></tr>
-    <tr><td>04</td><td>White</td><td>Grotesk, tight</td><td>12-column modular grid, poster spreads</td><td>G toggles grid overlay</td><td>Medium</td></tr>
-    <tr><td>05</td><td>Cream</td><td>Slab + humanist sans</td><td>Two parallel language columns</td><td>Language emphasis toggle</td><td>Medium</td></tr>
-    <tr><td>06</td><td>Blueprint blue</td><td>Technical condensed + mono</td><td>Drawing sheets, title blocks</td><td>Callout ↔ part highlighting</td><td>Medium</td></tr>
-    <tr><td>07</td><td>Safety yellow / black</td><td>Bold condensed</td><td>Work-order form sections</td><td>Problem checkboxes build the scope</td><td>Medium–high</td></tr>
-    <tr><td>08</td><td>Sea and paper</td><td>Old-style serif + humanist</td><td>Map, gazetteer, field guide, route</td><td>Static map, legend</td><td>Medium</td></tr>
-    <tr><td>09</td><td>Pure white</td><td>System serif</td><td>Headed sections, tables, lists</td><td>Native disclosure only</td><td>High</td></tr>
-    <tr><td>10</td><td>Clinical pale</td><td>Humanist sans, tabular figures</td><td>S/O/A/P tabs + Orders / History / Consults</td><td>Tabs, order checklist</td><td>High</td></tr>
+    <tr><th>#</th><th>Concept</th><th>You…</th><th>Theme</th><th>Type</th></tr>
+    <tr><td>01</td><td>Pulse</td><td>Inject a threat, watch containment</td><td>Deep navy</td><td>Sora</td></tr>
+    <tr><td>02</td><td>Ignition</td><td>Scroll a particle "86" through IT → AI → light</td><td>Black to daylight</td><td>Unbounded</td></tr>
+    <tr><td>03</td><td>Saturday 6 a.m.</td><td>Drag the clock through an incident</td><td>Cream, coral, sky</td><td>Bricolage Grotesque</td></tr>
+    <tr><td>04</td><td>Layers</td><td>Rotate the 3D stack, launch threats</td><td>Navy glass</td><td>Schibsted Grotesk</td></tr>
+    <tr><td>05</td><td>Split</td><td>Drag before/after across the page</td><td>Red-black vs cream</td><td>Instrument Serif</td></tr>
+    <tr><td>06</td><td>Kinetic</td><td>Scroll fast, watch type skew</td><td>Flat poster blocks</td><td>Anton</td></tr>
+    <tr><td>07</td><td>Command</td><td>Play a 60-second shift</td><td>HUD dark</td><td>Chakra Petch</td></tr>
+    <tr><td>08</td><td>Descent</td><td>Sink seven layers to the vault</td><td>Daylight to abyss</td><td>Syne</td></tr>
+    <tr><td>09</td><td>Restore</td><td>Decrypt the page</td><td>Red-black to white</td><td>Red Hat Display</td></tr>
+    <tr><td>10</td><td>Playground</td><td>Throw problems in the bin</td><td>Cream, primary chips</td><td>Outfit</td></tr>
   </table></div>
 </div>

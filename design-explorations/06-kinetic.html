@@ -1,0 +1,166 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Eight Six — Kinetic</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;700&display=swap">
+<style>
+  :root{--yel:#F4C430;--navy:#1F3A89;--red:#D62828;--off:#F3EFE4;--k:#111111;--disp:'Anton',Impact,'Arial Narrow',sans-serif;--body:'Archivo',system-ui,sans-serif}
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--off);color:var(--k)}
+  body{font-family:var(--body);font-size:17px;line-height:1.5;overflow-x:hidden;cursor:none}
+  @media (pointer:coarse){body{cursor:auto}.blob{display:none}}
+  a{color:inherit;text-decoration:none}
+  .blob{position:fixed;left:0;top:0;width:34px;height:34px;border-radius:50%;background:var(--yel);mix-blend-mode:multiply;pointer-events:none;z-index:300;transform:translate(-50%,-50%);transition:width .25s,height .25s}
+  .blob.on{width:90px;height:90px}
+  nav{position:fixed;inset:0 0 auto;z-index:60;display:flex;justify-content:space-between;align-items:center;padding:16px 28px;background:var(--off);border-bottom:3px solid var(--k)}
+  .wm{font-family:var(--disp);font-size:28px;letter-spacing:.02em;text-transform:uppercase;line-height:1}.wm b{color:var(--red)}
+  nav ul{display:flex;gap:22px;list-style:none;margin:0;padding:0;font-weight:700;font-size:13px;letter-spacing:.1em;text-transform:uppercase}
+  nav ul a{display:inline-block;overflow:hidden;height:1.2em;line-height:1.2em}
+  nav ul a span{display:block;transition:transform .35s cubic-bezier(.76,0,.24,1)}nav ul a span::after{content:attr(data-t);display:block;color:var(--red)}
+  nav ul a:hover span{transform:translateY(-1.2em)}
+  nav .cta{background:var(--k);color:var(--yel);padding:10px 16px;font-family:var(--disp);font-size:16px;letter-spacing:.06em;text-transform:uppercase}
+  .hero{padding:110px 0 0;overflow:hidden}
+  .mq{white-space:nowrap;font-family:var(--disp);text-transform:uppercase;line-height:.95;will-change:transform;font-size:clamp(70px,12vw,170px);letter-spacing:-.01em}
+  .mq span{display:inline-block;padding-right:.35em}
+  .mq.a{color:var(--k)}.mq.b{color:transparent;-webkit-text-stroke:2px var(--k)}.mq.c{color:var(--navy)}
+  .center{max-width:1300px;margin:0 auto;padding:60px 28px 80px;display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:end}
+  h1{font-family:var(--disp);font-size:clamp(56px,9vw,132px);line-height:.9;letter-spacing:-.01em;text-transform:uppercase;margin:0}
+  h1 .l{display:block;overflow:hidden}h1 .l span{display:block;transform:translateY(110%)}
+  h1 .hl{background:var(--yel);padding:0 .12em;display:inline-block}
+  .lead{font-size:19px;max-width:44ch;margin:0 0 22px;font-weight:500}
+  .btn{display:inline-block;background:var(--k);color:#fff;font-family:var(--disp);font-size:20px;letter-spacing:.06em;text-transform:uppercase;padding:16px 26px;position:relative;overflow:hidden}
+  .btn::before{content:"";position:absolute;inset:0;background:var(--red);transform:translateX(-101%);transition:transform .4s cubic-bezier(.76,0,.24,1)}
+  .btn:hover::before{transform:translateX(0)}.btn span{position:relative}
+  .ph{font-family:var(--disp);font-size:28px;margin-left:18px;letter-spacing:.02em}
+  .band{padding:110px 28px;position:relative}
+  .band.y{background:var(--yel)}.band.n{background:var(--navy);color:#fff}.band.r{background:var(--red);color:#fff}.band.k{background:var(--k);color:var(--off)}
+  .band .in{max-width:1300px;margin:0 auto}
+  .wipe{clip-path:polygon(0 0,0 0,0 100%,0 100%)}
+  h2{font-family:var(--disp);font-size:clamp(48px,8vw,120px);line-height:.9;letter-spacing:-.01em;text-transform:uppercase;margin:0 0 30px}
+  h2 small{display:block;font-family:var(--body);font-weight:700;font-size:13px;letter-spacing:.3em;margin-bottom:14px}
+  .cols{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
+  .cols h3{font-family:var(--disp);font-size:34px;text-transform:uppercase;margin:0 0 10px;letter-spacing:.01em}
+  .cols p{margin:0;font-size:16px;font-weight:500}
+  .cols div{border-top:4px solid currentColor;padding-top:16px}
+  .list{list-style:none;margin:0;padding:0;border-top:3px solid currentColor}
+  .list li{border-bottom:3px solid currentColor;display:grid;grid-template-columns:80px 1fr 1fr;gap:20px;align-items:center;padding:18px 0;transition:padding .3s;position:relative}
+  .list li:hover{padding-left:20px}
+  .list b{font-family:var(--disp);font-size:24px}
+  .list h3{font-family:var(--disp);font-size:clamp(34px,5vw,72px);text-transform:uppercase;margin:0;line-height:1;letter-spacing:.01em}
+  .list p{margin:0;font-size:15px;font-weight:500;opacity:0;transform:translateX(-14px);transition:opacity .3s,transform .3s}
+  .list li:hover p{opacity:1;transform:none}
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  .steps b{font-family:var(--disp);font-size:clamp(80px,12vw,170px);line-height:.85;display:block;color:var(--yel)}
+  .steps h3{font-family:var(--disp);font-size:28px;text-transform:uppercase;margin:6px 0;letter-spacing:.02em}.steps p{margin:0;font-size:15px;opacity:.9}
+  .ship{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .ship div{background:var(--off);color:var(--k);padding:26px;transform:rotate(-1deg)}
+  .ship div:nth-child(2){transform:rotate(1.2deg)}.ship div:nth-child(3){transform:rotate(-.6deg)}
+  .ship b{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--red)}.ship h3{font-family:var(--disp);font-size:30px;text-transform:uppercase;margin:8px 0;letter-spacing:.02em}.ship p{margin:0;font-size:15px;font-weight:500}
+  .faq{max-width:900px}
+  .q{border-top:3px solid currentColor}.q button{width:100%;background:none;border:0;color:inherit;font:inherit;font-family:var(--disp);font-size:clamp(22px,3vw,36px);text-transform:uppercase;text-align:left;padding:20px 0;display:flex;justify-content:space-between;cursor:none;letter-spacing:.02em}
+  .q button i{font-style:normal;transition:transform .3s}.q.open button i{transform:rotate(45deg)}
+  .q .a{height:0;overflow:hidden}.q .a p{margin:0 0 22px;font-size:17px;font-weight:500;max-width:60ch}
+  .ring{position:relative;width:260px;height:260px;margin:0 auto}
+  .ring svg{position:absolute;inset:0;animation:spin 14s linear infinite;font-family:var(--disp);font-size:24px;letter-spacing:.14em;text-transform:uppercase}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .ring a{position:absolute;inset:60px;border-radius:50%;background:var(--yel);color:var(--k);display:grid;place-items:center;text-align:center;font-family:var(--disp);font-size:22px;line-height:1;text-transform:uppercase;letter-spacing:.04em;transition:transform .2s}
+  .ring a:hover{transform:scale(1.06)}
+  .ctaw{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+  form{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  form input,form select{width:100%;background:transparent;border:0;border-bottom:3px solid #fff;color:#fff;font:inherit;font-size:16px;padding:12px 0;outline:none;border-radius:0}
+  form select option{color:#111}
+  form button{grid-column:1/-1;background:var(--yel);color:var(--k);border:0;font-family:var(--disp);font-size:22px;letter-spacing:.06em;text-transform:uppercase;padding:16px;cursor:none}
+  footer{padding:30px 28px 60px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-weight:700;font-size:13px;letter-spacing:.06em;text-transform:uppercase;border-top:3px solid var(--k)}
+  @media (max-width:900px){nav ul{display:none}.center,.ctaw{grid-template-columns:1fr}.cols,.ship{grid-template-columns:1fr}.steps{grid-template-columns:1fr 1fr}.list li{grid-template-columns:60px 1fr}.list p{grid-column:2;opacity:1;transform:none}form{grid-template-columns:1fr}.band{padding:70px 22px}}
+  @media (prefers-reduced-motion:reduce){.wipe{clip-path:none}.ring svg{animation:none}h1 .l span{transform:none}}
+</style>
+
+<div class="blob" id="blob"></div>
+<nav><a class="wm" href="#">Eight Six<b>.</b></a><ul><li><a href="#do"><span data-t="Practices">Practices</span></a></li><li><a href="#who"><span data-t="Who">Who</span></a></li><li><a href="#how"><span data-t="How">How</span></a></li><li><a href="#faq"><span data-t="FAQ">FAQ</span></a></li><li><a href="https://console.eightsix.co"><span data-t="Login">Login</span></a></li></ul><a class="cta" href="#contact">Free assessment</a></nav>
+
+<header class="hero">
+  <div class="mq a" data-dir="1"><span>Managed IT —</span><span>Cybersecurity —</span><span>Practical AI —</span><span>Managed IT —</span><span>Cybersecurity —</span><span>Practical AI —</span></div>
+  <div class="mq b" data-dir="-1"><span>No ticket queue —</span><span>Flat monthly —</span><span>Founder-led —</span><span>No ticket queue —</span><span>Flat monthly —</span><span>Founder-led —</span></div>
+  <div class="center">
+    <h1><span class="l"><span>86 the</span></span><span class="l"><span><i class="hl" style="font-style:normal">downtime.</i></span></span></h1>
+    <div><p class="lead">In Puerto Rico, "86" means gone. Eighty-six the slow EMR, the phishing email, the backup nobody tested, the ticket queue. One founder-led engineering team runs your IT, defends it, and builds practical AI on top.</p><a class="btn" href="#contact"><span>Book the free assessment</span></a><a class="ph" href="tel:+17877149556">(787) 714-9556</a></div>
+  </div>
+  <div class="mq c" data-dir="1"><span>San Juan, Puerto Rico —</span><span>Since 2024 —</span><span>An engineer answers —</span><span>San Juan, Puerto Rico —</span><span>Since 2024 —</span><span>An engineer answers —</span></div>
+</header>
+
+<section class="band y" id="do"><div class="in wipe">
+  <h2><small>What we do</small>Run it. Defend it. Build on it.</h2>
+  <div class="cols">
+    <div><h3>Managed IT</h3><p>Unlimited support direct to an engineer. On-site anywhere on the island. Every endpoint, server and switch watched 24/7 and patched on your schedule. Network, cloud, voice, lifecycle, inventory.</p></div>
+    <div><h3>Cybersecurity</h3><p>Huntress EDR with a 24/7 SOC. Email filtering that stops phishing before delivery. MFA and zero-trust everywhere. Immutable backups, restore-tested every month.</p></div>
+    <div><h3>Practical AI</h3><p>A tool for the workflow that costs you the most time. Copilot or Claude rolled out securely. Governance so nothing leaks. Shipped: a clinical scribe, MIPS forecasting, alert analysis.</p></div>
+  </div>
+</div></section>
+
+<section class="band n" id="who"><div class="in wipe">
+  <h2><small>Who we serve</small>Where downtime has a face.</h2>
+  <ul class="list">
+    <li><b>01</b><h3>Clinics</h3><p>Oncology clinic, multi-site community health center, private practices. EMR, HIPAA, imaging, backups proven monthly.</p></li>
+    <li><b>02</b><h3>Law offices</h3><p>A bankruptcy firm among them. BEC stopped before delivery, remote work on zero-trust, filing deadlines protected.</p></li>
+    <li><b>03</b><h3>Vet hospitals</h3><p>Practice software, digital X-ray and analyzers kept alive with no in-house IT.</p></li>
+    <li><b>04</b><h3>Plants</h3><p>Concrete and packaging. Hardware for dust and heat; the office kept off the plant floor.</p></li>
+    <li><b>05</b><h3>Labs</h3><p>Calibration and certification. Records that can never be lost, instrument PCs patched with care.</p></li>
+  </ul>
+</div></section>
+
+<section class="band k" id="how"><div class="in wipe">
+  <h2><small>How it runs</small>Four weeks. No lock-in.</h2>
+  <div class="steps">
+    <div><b>1</b><h3>Discovery</h3><p>Day 1. Free, 30 minutes. Environment mapped, risks named, scope confirmed.</p></div>
+    <div><b>2</b><h3>Agreement</h3><p>Week 1. Plain language. Deliverables, response targets, one flat monthly price.</p></div>
+    <div><b>3</b><h3>Deploy</h3><p>Weeks 2–3. Agents, monitoring, backups, EDR, email security, MFA switched on.</p></div>
+    <div><b>4</b><h3>Live</h3><p>Week 4. Monitoring 24/7. Your engineer introduced. First report scheduled.</p></div>
+  </div>
+</div></section>
+
+<section class="band r"><div class="in wipe">
+  <h2><small>Proof, not slideware</small>We ship tools.</h2>
+  <div class="ship">
+    <div><b>Clinical</b><h3>AI medical scribe</h3><p>A recorded visit becomes a SOAP note before the patient leaves. Encryption, access control and audit trail designed in.</p></div>
+    <div><b>Finance</b><h3>MIPS forecasting</h3><p>How each reporting decision moves a practice's MIPS score, and the dollars, before submission.</p></div>
+    <div><b>Security</b><h3>Alert analysis</h3><p>Threats triaged and explained in plain language so a small team keeps up with the noise.</p></div>
+  </div>
+</div></section>
+
+<section class="band" id="faq"><div class="in wipe">
+  <h2><small>Asked every week</small>Straight answers.</h2>
+  <div class="faq">
+    <div class="q"><button>Is our data safe with AI?<i>+</i></button><div class="a"><p>Yes; that is the point of doing it with us. Private, governed deployments. Your data never trains public models. Access controlled and logged. HIPAA where it applies.</p></div></div>
+    <div class="q"><button>How fast do you respond?<i>+</i></button><div class="a"><p>You reach the engineer directly. Monitoring runs 24/7/365; a critical incident is drop-everything at any hour.</p></div></div>
+    <div class="q"><button>Long-term contracts?<i>+</i></button><div class="a"><p>No. Flat monthly. No exit clauses. Stay because it works.</p></div></div>
+    <div class="q"><button>Who answers the phone?<i>+</i></button><div class="a"><p>Lino E. Gómez, founder and principal engineer. HIPAA Security, MCSE, Mirth Certified, AWS and Azure. No call center.</p></div></div>
+  </div>
+</div></section>
+
+<section class="band n" id="contact"><div class="in wipe ctaw">
+  <div><div class="ring"><svg viewBox="0 0 260 260" aria-hidden="true"><defs><path id="circ" d="M130,130 m-100,0 a100,100 0 1,1 200,0 a100,100 0 1,1 -200,0"/></defs><text fill="#F4C430"><textPath href="#circ">Free assessment • No obligation • 30 minutes • An engineer, not sales •</textPath></text></svg><a href="tel:+17877149556">Call<br>(787)<br>714-9556</a></div></div>
+  <div><h2 style="font-size:clamp(40px,5.5vw,84px)">Tell us what's slowing you down.</h2>
+  <form onsubmit="event.preventDefault();this.querySelector('button').textContent='Received — an engineer will call'"><input placeholder="Name" required><input placeholder="Organization" required><input type="email" placeholder="Email" required><input type="tel" placeholder="Phone"><select><option>Both — AI and IT/security</option><option>AI opportunities</option><option>IT and security risk</option></select><select><option>Morning</option><option>Afternoon</option><option>Evening</option><option>Anytime</option></select><button type="submit">Send it</button></form></div>
+</div></section>
+<footer><span>Eight Six IT Engineering · San Juan, PR · <a href="mailto:info@eightsix.co">info@eightsix.co</a></span><span>Founded 2024 · HIPAA · MCSE · Mirth · © 2026</span></footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+(function(){
+  gsap.registerPlugin(ScrollTrigger);
+  var reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var blob=document.getElementById('blob'),bx=0,by=0,tx=0,ty=0;addEventListener('mousemove',function(e){tx=e.clientX;ty=e.clientY});(function l(){bx+=(tx-bx)*.16;by+=(ty-by)*.16;blob.style.transform='translate('+bx+'px,'+by+'px) translate(-50%,-50%)';requestAnimationFrame(l)})();
+  document.querySelectorAll('a,button,.list li').forEach(function(e){e.addEventListener('mouseenter',function(){blob.classList.add('on')});e.addEventListener('mouseleave',function(){blob.classList.remove('on')})});
+  /* velocity marquees */
+  var rows=[].slice.call(document.querySelectorAll('.mq')),vel=0,skew=0;
+  rows.forEach(function(r){r._x=0;r._w=r.scrollWidth/2;r._dir=+r.getAttribute('data-dir')});
+  ScrollTrigger.create({onUpdate:function(st){vel=st.getVelocity()}});
+  function tick(){var boost=Math.min(6,Math.abs(vel)/400);skew+=((-vel/180)-skew)*.1;skew=Math.max(-12,Math.min(12,skew));vel*=.9;
+    rows.forEach(function(r){r._x+=r._dir*(reduced?0:(1.2+boost));if(r._x>r._w)r._x-=r._w;if(r._x<-r._w)r._x+=r._w;r.style.transform='translate3d('+(-r._x)+'px,0,0) skewX('+(reduced?0:skew)+'deg)'});requestAnimationFrame(tick)}
+  tick();addEventListener('resize',function(){rows.forEach(function(r){r._w=r.scrollWidth/2})});
+  if(!reduced){gsap.to('h1 .l span',{y:0,duration:1,stagger:.12,ease:'expo.out',delay:.2});gsap.from('.center > div',{opacity:0,y:20,duration:.9,delay:.7});
+    document.querySelectorAll('.wipe').forEach(function(el){gsap.to(el,{clipPath:'polygon(0 0,100% 0,100% 100%,0 100%)',duration:1.1,ease:'expo.inOut',scrollTrigger:{trigger:el,start:'top 78%'}})});
+    document.querySelectorAll('.steps b').forEach(function(b){gsap.from(b,{y:80,opacity:0,duration:.9,ease:'back.out(1.5)',scrollTrigger:{trigger:b,start:'top 85%'}})})}
+  document.querySelectorAll('.q button').forEach(function(b){b.addEventListener('click',function(){var q=b.parentNode,a=q.querySelector('.a'),o=q.classList.toggle('open');gsap.to(a,{height:o?'auto':0,duration:.4,ease:'power3.inOut'})})});
+})();
+</script>

@@ -1,0 +1,191 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Eight Six — Layers</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700;900&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+  :root{--bg:#0B1220;--ink:#EEF1F8;--mute:#8B95AE;--navy:#1F3A89;--blue:#7D98E0;--yel:#F4C430;--red:#FF5A5A;--line:rgba(255,255,255,.1);--sans:'Schibsted Grotesk',system-ui,sans-serif;--mono:'JetBrains Mono',ui-monospace,monospace}
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--ink)}
+  body{font-family:var(--sans);font-size:17px;line-height:1.55;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  nav{position:fixed;inset:0 0 auto;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:18px 32px;background:linear-gradient(rgba(11,18,32,.9),rgba(11,18,32,0))}
+  .wm{font-weight:900;font-size:22px;letter-spacing:-.03em}.wm b{color:var(--red)}
+  nav ul{display:flex;gap:26px;list-style:none;margin:0;padding:0;font-size:14px;color:var(--mute)}nav ul a:hover{color:#fff}
+  .cta{background:var(--yel);color:#111;font-weight:700;padding:10px 18px;border-radius:6px;font-size:14px}
+  .stage{position:relative;height:100vh}
+  #gl{position:absolute;inset:0;width:100%;height:100%;display:block}
+  .hud{position:absolute;left:32px;bottom:44px;z-index:3;max-width:560px}
+  .hud .k{font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--yel);text-transform:uppercase}
+  h1{font-size:clamp(40px,5.6vw,80px);font-weight:900;letter-spacing:-.04em;line-height:.96;margin:12px 0 16px}
+  h1 span{display:block;overflow:hidden}h1 span i{display:block;font-style:normal;transform:translateY(105%)}
+  .hud p{color:var(--mute);margin:0 0 22px;max-width:46ch}
+  .btns{display:flex;gap:12px;flex-wrap:wrap}
+  .btn{display:inline-flex;align-items:center;gap:10px;padding:13px 20px;border-radius:6px;font-weight:700;font-size:15px;border:1px solid var(--line)}
+  .btn.p{background:var(--yel);color:#111;border-color:var(--yel)}
+  .legend{position:absolute;right:32px;top:50%;transform:translateY(-50%);z-index:3;display:grid;gap:6px;width:280px}
+  .legend button{background:rgba(11,18,32,.6);border:1px solid var(--line);color:var(--ink);text-align:left;padding:12px 14px;border-radius:8px;font:inherit;cursor:pointer;display:grid;grid-template-columns:28px 1fr;gap:10px;align-items:center;transition:border-color .25s,background .25s;backdrop-filter:blur(6px)}
+  .legend button b{font-family:var(--mono);font-size:11px;color:var(--yel)}
+  .legend button span{font-size:14px;font-weight:500}
+  .legend button small{display:block;font-size:12px;color:var(--mute);font-weight:400}
+  .legend button.on,.legend button:hover{border-color:var(--yel);background:rgba(31,58,137,.5)}
+  .legend .fire{background:var(--red);color:#fff;border-color:var(--red);justify-content:center;display:flex;font-weight:700}
+  .legend .note{font-family:var(--mono);font-size:10px;color:var(--mute);letter-spacing:.06em}
+  .scroll{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);font-family:var(--mono);font-size:10px;letter-spacing:.3em;color:var(--mute);z-index:3}
+  .explode{height:320vh;position:relative}
+  .explode .pinned{position:sticky;top:0;height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:0 32px;max-width:1300px;margin:0 auto}
+  .explode .copy h2{font-size:clamp(30px,3.6vw,48px);font-weight:900;letter-spacing:-.03em;line-height:1;margin:0 0 14px}
+  .explode .copy p{color:var(--mute);max-width:44ch;margin:0}
+  .explode .copy .k{font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--yel);text-transform:uppercase}
+  .stack{position:relative;height:60vh;perspective:1200px}
+  .layer{position:absolute;left:10%;right:10%;top:50%;height:42%;margin-top:-21%;border:1.5px solid var(--yel);border-radius:10px;background:linear-gradient(135deg,rgba(31,58,137,.55),rgba(31,58,137,.15));transform:rotateX(62deg) rotateZ(-28deg) translateZ(0);transform-style:preserve-3d;display:flex;align-items:flex-end;padding:12px 14px;font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--ink);box-shadow:0 30px 60px rgba(0,0,0,.35);transition:border-color .3s,background .3s}
+  .layer.on{border-color:#fff;background:linear-gradient(135deg,rgba(244,196,48,.55),rgba(244,196,48,.15))}
+  section{max-width:1300px;margin:0 auto;padding:110px 32px}
+  h2.t{font-size:clamp(32px,4.2vw,58px);font-weight:900;letter-spacing:-.035em;line-height:1;margin:0 0 14px;max-width:20ch}
+  .sub{color:var(--mute);font-size:18px;max-width:56ch;margin:0 0 44px}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--line)}
+  .grid3 div{background:var(--bg);padding:30px 26px}
+  .grid3 b{font-family:var(--mono);font-size:11px;color:var(--yel);letter-spacing:.2em;display:block;margin-bottom:14px}
+  .grid3 h3{margin:0 0 8px;font-size:24px;letter-spacing:-.02em;font-weight:700}.grid3 p{margin:0;color:var(--mute);font-size:15px}
+  .who{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+  .who div{border:1px solid var(--line);border-radius:10px;padding:20px 18px;position:relative;overflow:hidden}
+  .who div::after{content:"";position:absolute;inset:auto 0 0 0;height:3px;background:var(--yel);transform:scaleX(0);transform-origin:left;transition:transform .4s}
+  .who div:hover::after{transform:scaleX(1)}
+  .who h3{margin:0 0 6px;font-size:19px;letter-spacing:-.01em}.who p{margin:0;color:var(--mute);font-size:13.5px}
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  .steps div{border-top:2px solid var(--yel);padding-top:14px}
+  .steps b{font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--yel)}.steps h3{margin:6px 0;font-size:20px;letter-spacing:-.01em}.steps p{margin:0;color:var(--mute);font-size:14px}
+  .faq{max-width:860px}
+  .q{border-top:1px solid var(--line)}.q button{width:100%;background:none;border:0;color:inherit;font:inherit;font-size:19px;font-weight:700;text-align:left;padding:20px 0;display:flex;justify-content:space-between;cursor:pointer;letter-spacing:-.01em}
+  .q button i{font-style:normal;color:var(--yel);transition:transform .3s}.q.open button i{transform:rotate(45deg)}
+  .q .a{height:0;overflow:hidden}.q .a p{margin:0 0 22px;color:var(--mute);max-width:62ch}
+  .ctab{border:1px solid var(--yel);border-radius:14px;padding:50px;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;background:linear-gradient(135deg,rgba(31,58,137,.35),transparent)}
+  .ctab .ph{display:block;font-size:34px;font-weight:900;letter-spacing:-.03em;margin-top:12px}
+  form{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  form input,form select{width:100%;background:rgba(255,255,255,.05);border:1px solid var(--line);color:#fff;font:inherit;font-size:15px;padding:12px 14px;border-radius:6px;outline:none}
+  form input:focus,form select:focus{border-color:var(--yel)}form select option{background:#0B1220}
+  form .btn{grid-column:1/-1;justify-content:center;cursor:pointer;font:inherit;font-weight:700}
+  footer{max-width:1300px;margin:0 auto;padding:36px 32px 60px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;color:var(--mute);font-size:13px;border-top:1px solid var(--line)}
+  .rv{opacity:0;transform:translateY(24px)}
+  @media (max-width:980px){nav ul{display:none}.legend{position:static;transform:none;width:auto;margin:0;padding:0 32px;grid-template-columns:1fr 1fr;order:2}.stage{height:auto;display:flex;flex-direction:column;padding-top:80px}#gl{position:relative;height:56vh}.hud{position:static;padding:20px 32px 0}.explode .pinned{grid-template-columns:1fr}.stack{height:38vh}.grid3,.who,.steps{grid-template-columns:1fr}.ctab{grid-template-columns:1fr;padding:30px 24px}form{grid-template-columns:1fr}.scroll{display:none}}
+  @media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none}h1 span i{transform:none}}
+</style>
+
+<nav><a class="wm" href="#">eight six<b>.</b></a><ul><li><a href="#layers">The stack</a></li><li><a href="#practices">Practices</a></li><li><a href="#who">Who we serve</a></li><li><a href="#how">How</a></li><li><a href="https://console.eightsix.co">Client login</a></li></ul><a class="cta" href="#contact">Free assessment</a></nav>
+
+<header class="stage" id="stage">
+  <canvas id="gl" aria-label="Interactive 3D stack of the five defense layers; drag to rotate, launch a threat to see which layer stops it" role="img"></canvas>
+  <div class="hud">
+    <div class="k">Layered defense · drag to rotate</div>
+    <h1><span><i>When one layer</i></span><span><i>is tested,</i></span><span><i>four more hold.</i></span></h1>
+    <p>Managed IT, cybersecurity and practical AI from one founder-led team in San Juan. Every threat this page launches is a simulation; every layer is real and already running for clinics, law offices, plants and labs across Puerto Rico.</p>
+    <div class="btns"><a class="btn p" href="#contact">Book the free assessment</a><a class="btn" href="tel:+17877149556">(787) 714-9556</a></div>
+  </div>
+  <div class="legend" id="legend">
+    <button data-l="0"><b>L1</b><span>Email security<small>Phishing and BEC stopped before delivery</small></span></button>
+    <button data-l="1"><b>L2</b><span>Identity · MFA · zero-trust<small>Nobody trusted by default</small></span></button>
+    <button data-l="2"><b>L3</b><span>Huntress EDR · 24/7 SOC<small>Hunt, isolate, neutralize</small></span></button>
+    <button data-l="3"><b>L4</b><span>Segmentation<small>Office can't reach the floor or the modality</small></span></button>
+    <button data-l="4"><b>L5</b><span>Immutable backup<small>Restore-tested every month</small></span></button>
+    <button class="fire" id="fire" type="button">Launch a threat</button>
+    <div class="note" id="note">SIMULATION · not client data</div>
+  </div>
+  <div class="scroll">SCROLL TO OPEN THE STACK</div>
+</header>
+
+<div class="explode" id="layers">
+  <div class="pinned">
+    <div class="copy"><div class="k" id="lk">Layer 1 of 5</div><h2 id="lh">Email security</h2><p id="lp">Most compromises start as an email that looked right. Filtering for phishing, business-email compromise and malicious attachments runs ahead of the mailbox, so the wire-transfer request from your "partner" never arrives.</p></div>
+    <div class="stack" id="stack"><div class="layer" style="--i:0">L1 · EMAIL</div><div class="layer" style="--i:1">L2 · IDENTITY</div><div class="layer" style="--i:2">L3 · EDR / SOC</div><div class="layer" style="--i:3">L4 · SEGMENTATION</div><div class="layer" style="--i:4">L5 · IMMUTABLE BACKUP</div></div>
+  </div>
+</div>
+
+<section id="practices">
+  <h2 class="t rv">Security is one of three things the same team does.</h2>
+  <p class="sub rv">The stack above only works because the people who run your infrastructure are the people who defend it and build on it.</p>
+  <div class="grid3">
+    <div class="rv"><b>01 · MANAGED IT</b><h3>Keep it running</h3><p>Unlimited remote support direct to an engineer. On-site anywhere on the island. Every endpoint, server and switch monitored 24/7 and patched on your schedule. Network, cloud, voice, lifecycle, inventory.</p></div>
+    <div class="rv"><b>02 · CYBERSECURITY</b><h3>Keep it yours</h3><p>The five layers, plus vulnerability management, HIPAA technical safeguards with documentation an auditor can read, and an incident-response retainer so critical events are drop-everything at any hour.</p></div>
+    <div class="rv"><b>03 · PRACTICAL AI</b><h3>Make it faster</h3><p>Build a tool for your costliest workflow. Integrate Copilot or Claude securely. Govern all of it so nothing leaks. Shipped: an AI medical scribe, MIPS impact forecasting, AI security-alert analysis.</p></div>
+  </div>
+</section>
+
+<section id="who">
+  <h2 class="t rv">Where downtime is measured in patients, deadlines and idle trucks.</h2>
+  <div class="who">
+    <div class="rv"><h3>Clinics</h3><p>Oncology clinic, multi-site community health center, private practices. EMR, HIPAA, imaging.</p></div>
+    <div class="rv"><h3>Law offices</h3><p>A bankruptcy firm among them. BEC stopped, remote work secured, deadlines protected.</p></div>
+    <div class="rv"><h3>Vet hospitals</h3><p>Practice software and X-rays kept alive with no in-house IT.</p></div>
+    <div class="rv"><h3>Plants</h3><p>Concrete and packaging. Networks for dust, heat and distance; the office kept off the floor.</p></div>
+    <div class="rv"><h3>Labs</h3><p>Calibration and certification. Records that can never be lost.</p></div>
+  </div>
+</section>
+
+<section id="how">
+  <h2 class="t rv">Four weeks to fully managed.</h2>
+  <p class="sub rv">Flat monthly pricing. One dedicated engineer. No lock-in.</p>
+  <div class="steps">
+    <div class="rv"><b>DAY 1</b><h3>Discovery call</h3><p>Free, 30 minutes. Environment mapped, risks named, scope confirmed.</p></div>
+    <div class="rv"><b>WEEK 1</b><h3>Agreement</h3><p>Plain language. Deliverables, response targets, one flat price.</p></div>
+    <div class="rv"><b>WEEKS 2–3</b><h3>Deployment</h3><p>Agents, monitoring, backups, the five layers switched on.</p></div>
+    <div class="rv"><b>WEEK 4</b><h3>Fully managed</h3><p>Live 24/7. Your engineer introduced. First report scheduled.</p></div>
+  </div>
+</section>
+
+<section>
+  <h2 class="t rv">Questions we hear every week.</h2>
+  <div class="faq rv">
+    <div class="q"><button>Is our data safe if we start using AI?<i>+</i></button><div class="a"><p>Yes. Private, governed deployments; your data never trains public models; access controlled and logged; HIPAA built in where it applies.</p></div></div>
+    <div class="q"><button>How fast do you respond?<i>+</i></button><div class="a"><p>You reach the engineer directly. Monitoring runs 24/7/365; a critical incident is drop-everything at any hour.</p></div></div>
+    <div class="q"><button>Long-term contracts?<i>+</i></button><div class="a"><p>No. Flat monthly pricing, no expensive exit clauses.</p></div></div>
+    <div class="q"><button>Who will I actually talk to?<i>+</i></button><div class="a"><p>Lino E. Gómez, founder and principal engineer. HIPAA Security, MCSE, Mirth Certified, AWS and Azure.</p></div></div>
+  </div>
+</section>
+
+<section id="contact"><div class="ctab rv">
+  <div><h2 class="t">Tell us what's slowing you down.</h2><p class="sub" style="margin:0">Thirty minutes with the engineer who does the work. A prioritized, plain-language plan. Nobody sells you anything.</p><a class="ph" href="tel:+17877149556">(787) 714-9556</a></div>
+  <form onsubmit="event.preventDefault();this.querySelector('.btn').textContent='Received — an engineer will call'"><input placeholder="Name" required><input placeholder="Organization" required><input type="email" placeholder="Email" required><input type="tel" placeholder="Phone"><select><option>Both — AI and IT/security</option><option>AI opportunities</option><option>IT and security risk</option></select><select><option>Morning</option><option>Afternoon</option><option>Evening</option><option>Anytime</option></select><button class="btn p" type="submit">Request the free assessment</button></form>
+</div></section>
+<footer><span>Eight Six IT Engineering · San Juan, PR · <a href="mailto:info@eightsix.co">info@eightsix.co</a></span><span>Founded 2024 · HIPAA · MCSE · Mirth · © 2026</span></footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+(function(){
+  gsap.registerPlugin(ScrollTrigger);
+  var reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var names=['Email security','Identity · MFA · zero-trust','Huntress EDR · 24/7 SOC','Segmentation','Immutable backup'];
+  var descs=['Most compromises start as an email that looked right. Filtering for phishing, business-email compromise and malicious attachments runs ahead of the mailbox, so the wire-transfer request from your "partner" never arrives.','A stolen password is only useful if it works alone. MFA on every account, privileged-access management and zero-trust access mean no user or device is trusted by default, inside the office or out.','Huntress endpoint detection watches behavior, not signatures, with a human SOC hunting 24/7 behind it. A host that starts encrypting is isolated automatically, then an engineer is paged.','VLANs and firewall rules keep business systems apart from imaging modalities and production controllers. One infected front-desk PC cannot reach the plant floor or the PACS.','Write-once, off-site, replicated. Ransomware cannot encrypt or delete it, and a restore is tested every month with the result in your report. This is the layer that makes the others survivable.'];
+  var canvas=document.getElementById('gl'),ok=false,scene,camera,renderer,group,planes=[],edges=[],threat=null,rot={x:.55,y:-.45},drag=null,active=-1,spread=0;
+  try{
+    renderer=new THREE.WebGLRenderer({canvas:canvas,antialias:true,alpha:true});renderer.setPixelRatio(Math.min(devicePixelRatio,1.75));ok=true;
+    scene=new THREE.Scene();camera=new THREE.PerspectiveCamera(38,1,.1,100);camera.position.set(0,0,9.5);
+    scene.add(new THREE.AmbientLight(0xffffff,.55));var d=new THREE.DirectionalLight(0xffffff,.9);d.position.set(4,6,6);scene.add(d);var d2=new THREE.PointLight(0xF4C430,.6,30);d2.position.set(-4,-3,4);scene.add(d2);
+    group=new THREE.Group();scene.add(group);
+    for(var i=0;i<5;i++){var g=new THREE.BoxGeometry(4.6,.12,3.2),m=new THREE.MeshPhysicalMaterial({color:0x1f3a89,transparent:true,opacity:.55,roughness:.25,metalness:.2,transmission:.15,emissive:0x1f3a89,emissiveIntensity:.15});var mesh=new THREE.Mesh(g,m);var e=new THREE.LineSegments(new THREE.EdgesGeometry(g),new THREE.LineBasicMaterial({color:0xF4C430,transparent:true,opacity:.8}));mesh.add(e);group.add(mesh);planes.push(mesh);edges.push(e)}
+    var tg=new THREE.SphereGeometry(.22,24,24),tm=new THREE.MeshStandardMaterial({color:0xff5a5a,emissive:0xff2020,emissiveIntensity:.8});threat={mesh:new THREE.Mesh(tg,tm),active:false,stop:0,t:0};threat.mesh.visible=false;scene.add(threat.mesh);
+    var ring=new THREE.Mesh(new THREE.RingGeometry(.3,.36,48),new THREE.MeshBasicMaterial({color:0xF4C430,transparent:true,opacity:0,side:THREE.DoubleSide}));ring.rotation.x=Math.PI/2;group.add(ring);threat.ring=ring;
+    function resize(){var r=canvas.getBoundingClientRect();renderer.setSize(r.width,r.height,false);camera.aspect=r.width/r.height;camera.updateProjectionMatrix()}resize();addEventListener('resize',resize);
+    canvas.addEventListener('pointerdown',function(e){drag={x:e.clientX,y:e.clientY,rx:rot.x,ry:rot.y};canvas.style.cursor='grabbing'});
+    addEventListener('pointermove',function(e){if(!drag)return;rot.y=drag.ry+(e.clientX-drag.x)*.006;rot.x=Math.max(.15,Math.min(1.3,drag.rx+(e.clientY-drag.y)*.005))});addEventListener('pointerup',function(){drag=null;canvas.style.cursor='grab'});canvas.style.cursor='grab';
+    var gap=.55;
+    function frame(t){var s=gap+spread*.9;for(var i=0;i<5;i++){var m=planes[i];m.position.y=(2-i)*s;var on=i===active;m.material.color.setHex(on?0xF4C430:0x1f3a89);m.material.emissive.setHex(on?0xF4C430:0x1f3a89);m.material.emissiveIntensity=on?.5:.15;m.material.opacity=on?.85:(active>=0?.28:.55);edges[i].material.opacity=on?1:.7}
+      group.rotation.x=rot.x;group.rotation.y+= (rot.y-group.rotation.y)*.08;if(!drag&&!reduced)rot.y+=.0025;
+      if(threat.active){threat.t+=.016;var y=3.2-threat.t*2.2;threat.mesh.position.set(0,y,0);threat.mesh.visible=true;var stopY=planes[threat.stop].position.y;if(y<=stopY+.15){threat.active=false;threat.mesh.visible=false;threat.ring.position.y=stopY+.08;threat.ring.material.opacity=1;threat.ring.scale.set(1,1,1);gsap.to(threat.ring.scale,{x:9,y:9,z:9,duration:1.1,ease:'expo.out'});gsap.to(threat.ring.material,{opacity:0,duration:1.1});flash(threat.stop);note('STOPPED AT L'+(threat.stop+1)+' · '+names[threat.stop].toUpperCase())}else{threat.mesh.position.applyAxisAngle(new THREE.Vector3(0,1,0),0);var q=new THREE.Quaternion().setFromEuler(group.rotation);threat.mesh.position.set(0,y,0).applyQuaternion(q)}}
+      renderer.render(scene,camera);requestAnimationFrame(frame)}
+    requestAnimationFrame(frame);
+  }catch(e){ok=false;canvas.style.display='none'}
+  var noteEl=document.getElementById('note');function note(s){noteEl.textContent=s;gsap.fromTo(noteEl,{opacity:0},{opacity:1,duration:.4})}
+  function flash(i){var b=document.querySelector('.legend button[data-l="'+i+'"]');if(!b)return;gsap.fromTo(b,{backgroundColor:'rgba(244,196,48,.6)'},{backgroundColor:'rgba(11,18,32,.6)',duration:1.2})}
+  document.getElementById('fire').addEventListener('click',function(){if(!ok){note('WebGL unavailable · scroll for the stack');return}if(threat.active)return;var kinds=[[0,'PHISHING EMAIL'],[1,'STOLEN PASSWORD'],[2,'RANSOMWARE PROCESS'],[3,'LATERAL MOVEMENT'],[4,'ENCRYPTED BACKUPS?']];var k=kinds[Math.floor(Math.random()*kinds.length)];threat.stop=k[0];threat.t=0;threat.active=true;note('INCOMING · '+k[1])});
+  document.querySelectorAll('.legend button[data-l]').forEach(function(b){b.addEventListener('mouseenter',function(){active=+b.getAttribute('data-l');document.querySelectorAll('.legend button').forEach(function(x){x.classList.remove('on')});b.classList.add('on')});b.addEventListener('mouseleave',function(){active=-1;b.classList.remove('on')})});
+  /* explode section: CSS 3D stack tied to scroll */
+  var layers=document.querySelectorAll('.layer'),lk=document.getElementById('lk'),lh=document.getElementById('lh'),lp=document.getElementById('lp'),curL=-1;
+  function setL(i){if(i===curL)return;curL=i;lk.textContent='Layer '+(i+1)+' of 5';lh.textContent=names[i];lp.textContent=descs[i];gsap.fromTo([lh,lp],{opacity:0,y:10},{opacity:1,y:0,duration:.45,stagger:.06});layers.forEach(function(l,j){l.classList.toggle('on',j===i)})}
+  ScrollTrigger.create({trigger:'#layers',start:'top top',end:'bottom bottom',scrub:true,onUpdate:function(st){var p=st.progress;spread=p;layers.forEach(function(l,i){var y=(i-2)*(28+p*150);l.style.transform='rotateX(62deg) rotateZ(-28deg) translate3d(0,'+y+'px,0)';l.style.opacity=1-Math.abs(i-p*4.99)*.12});setL(Math.min(4,Math.floor(p*5)))}});setL(0);
+  if(!reduced){gsap.to('h1 span i',{y:0,duration:1.1,stagger:.1,ease:'expo.out',delay:.3});gsap.from('.hud p,.hud .btns,.legend',{opacity:0,y:16,stagger:.1,duration:.9,delay:.8});
+    document.querySelectorAll('.rv').forEach(function(el){gsap.to(el,{opacity:1,y:0,duration:.9,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 88%'}})})}
+  else document.querySelectorAll('.rv').forEach(function(e){e.style.opacity=1;e.style.transform='none'});
+  document.querySelectorAll('.q button').forEach(function(b){b.addEventListener('click',function(){var q=b.parentNode,a=q.querySelector('.a'),o=q.classList.toggle('open');gsap.to(a,{height:o?'auto':0,duration:.4,ease:'power3.inOut'})})});
+})();
+</script>

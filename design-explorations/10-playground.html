@@ -1,0 +1,170 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Eight Six — Playground</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700;900&display=swap">
+<style>
+  :root{--bg:#F7F3EA;--ink:#141414;--navy:#1F3A89;--yel:#F4C430;--red:#E23E3E;--mint:#9FE1CB;--pink:#FFB5C2;--mute:#5F6474;--font:'Outfit',system-ui,sans-serif}
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--ink)}
+  body{font-family:var(--font);font-size:17px;line-height:1.5;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  nav{position:fixed;inset:0 0 auto;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:16px 28px}
+  .wm{font-weight:900;font-size:26px;letter-spacing:-.04em;background:#fff;padding:6px 14px;border-radius:999px;border:3px solid var(--ink)}.wm b{color:var(--red)}
+  nav ul{display:flex;gap:6px;list-style:none;margin:0;padding:0;font-weight:700;font-size:14px}
+  nav ul a{background:#fff;border:3px solid var(--ink);border-radius:999px;padding:8px 14px;display:inline-block;transition:transform .15s}nav ul a:hover{transform:translateY(-3px) rotate(-2deg);background:var(--yel)}
+  .hero{position:relative;height:100vh;min-height:640px;overflow:hidden}
+  #world{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none}
+  .copy{position:absolute;left:28px;top:50%;transform:translateY(-50%);max-width:520px;z-index:3;pointer-events:none}
+  .copy > *{pointer-events:auto}
+  .k{display:inline-block;background:var(--ink);color:var(--yel);font-weight:700;font-size:12px;letter-spacing:.16em;text-transform:uppercase;padding:6px 12px;border-radius:999px}
+  h1{font-weight:900;font-size:clamp(46px,6.4vw,92px);line-height:.94;letter-spacing:-.05em;margin:16px 0 16px}
+  h1 span{color:var(--navy)}
+  .lead{font-size:18px;color:var(--mute);margin:0 0 20px;max-width:40ch}
+  .btn{display:inline-block;background:var(--navy);color:#fff;font-weight:700;padding:14px 22px;border-radius:999px;border:3px solid var(--ink);box-shadow:4px 4px 0 var(--ink);transition:transform .12s,box-shadow .12s}
+  .btn:hover{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ink)}
+  .btn.y{background:var(--yel);color:var(--ink)}
+  .ctr{position:absolute;right:28px;top:96px;z-index:3;background:#fff;border:3px solid var(--ink);border-radius:20px;padding:14px 18px;text-align:right;box-shadow:5px 5px 0 var(--ink)}
+  .ctr b{display:block;font-size:44px;font-weight:900;letter-spacing:-.04em;line-height:1}.ctr span{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+  .tools{position:absolute;right:28px;bottom:28px;z-index:3;display:flex;gap:8px}
+  .tools button{background:#fff;border:3px solid var(--ink);border-radius:999px;font:inherit;font-weight:700;padding:10px 16px;cursor:pointer;box-shadow:3px 3px 0 var(--ink)}
+  .tools button:hover{background:var(--yel)}
+  .hint{margin:22px 0 0;font-weight:700;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute)}
+  section{max-width:1240px;margin:0 auto;padding:100px 28px}
+  h2{font-weight:900;font-size:clamp(34px,4.6vw,64px);letter-spacing:-.05em;line-height:.96;margin:0 0 14px;max-width:20ch}
+  .sub{color:var(--mute);font-size:18px;max-width:52ch;margin:0 0 40px}
+  .three{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .card{background:#fff;border:3px solid var(--ink);border-radius:28px;padding:28px;box-shadow:6px 6px 0 var(--ink);position:relative;transition:transform .2s}
+  .card:hover{transform:translate(-2px,-4px) rotate(-1deg)}
+  .card .em{width:60px;height:60px;border-radius:18px;display:grid;place-items:center;border:3px solid var(--ink);margin-bottom:16px;font-weight:900;font-size:22px}
+  .card h3{font-weight:900;font-size:26px;letter-spacing:-.03em;margin:0 0 8px}.card p{margin:0 0 12px;color:var(--mute);font-size:15px}
+  .chips{display:flex;flex-wrap:wrap;gap:6px}.chips span{border:2px solid var(--ink);border-radius:999px;font-size:12px;font-weight:700;padding:4px 10px}
+  .belt{overflow:hidden;border:3px solid var(--ink);border-radius:22px;background:#fff;padding:22px 0;position:relative}
+  .belt::before,.belt::after{content:"";position:absolute;top:0;bottom:0;width:80px;z-index:2;pointer-events:none}
+  .belt::before{left:0;background:linear-gradient(90deg,#fff,transparent)}.belt::after{right:0;background:linear-gradient(-90deg,#fff,transparent)}
+  .belt .row{display:flex;gap:16px;width:max-content;animation:belt 28s linear infinite}
+  @keyframes belt{to{transform:translateX(-50%)}}
+  .belt .it{border:3px solid var(--ink);border-radius:16px;padding:14px 18px;min-width:230px;background:var(--bg)}
+  .belt .it b{display:block;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--red)}.belt .it h4{margin:4px 0 4px;font-size:18px;font-weight:900;letter-spacing:-.02em}.belt .it p{margin:0;font-size:13px;color:var(--mute)}
+  .who{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+  .who div{background:#fff;border:3px solid var(--ink);border-radius:20px;padding:20px 16px;transition:transform .2s,background .2s}
+  .who div:hover{transform:rotate(-2deg) scale(1.03);background:var(--mint)}
+  .who h3{margin:0 0 6px;font-size:20px;font-weight:900;letter-spacing:-.03em}.who p{margin:0;font-size:13.5px;color:var(--mute)}
+  .faq{max-width:860px}
+  .q{background:#fff;border:3px solid var(--ink);border-radius:18px;margin-bottom:10px;overflow:hidden}
+  .q button{width:100%;text-align:left;background:none;border:0;font:inherit;font-weight:900;font-size:19px;padding:18px 22px;display:flex;justify-content:space-between;cursor:pointer;letter-spacing:-.02em}
+  .q button i{font-style:normal;color:var(--red);transition:transform .3s}.q.open button i{transform:rotate(45deg)}
+  .q .a{height:0;overflow:hidden}.q .a p{margin:0;padding:0 22px 20px;color:var(--mute)}
+  .cta{background:var(--yel);border:3px solid var(--ink);border-radius:32px;padding:50px;box-shadow:10px 10px 0 var(--ink);display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+  .cta .ph{display:block;font-weight:900;font-size:34px;letter-spacing:-.04em;margin-top:10px}
+  form{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  form input,form select{width:100%;border:3px solid var(--ink);border-radius:14px;padding:12px 14px;font:inherit;font-size:15px;background:#fff;outline:none}
+  form input:focus,form select:focus{background:#fff;box-shadow:0 0 0 3px var(--navy)}
+  form .btn{grid-column:1/-1;text-align:center;font:inherit;font-weight:700;cursor:pointer}
+  footer{max-width:1240px;margin:0 auto;padding:30px 28px 60px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;color:var(--mute);font-size:14px}
+  .rv{opacity:0;transform:translateY(26px) scale(.97)}
+  @media (max-width:900px){nav ul{display:none}.copy{left:20px;right:20px;top:84px;bottom:auto;transform:none;max-width:none}.ctr{top:14px;right:20px;left:auto;bottom:auto;display:flex;align-items:baseline;gap:8px;padding:8px 14px;border-radius:999px}.ctr b{font-size:24px}.tools{left:20px;right:20px;bottom:20px;justify-content:flex-end}.three,.who{grid-template-columns:1fr}.cta{grid-template-columns:1fr;padding:30px 22px}form{grid-template-columns:1fr}h1{font-size:44px}.hint{display:none}}
+  @media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none}.belt .row{animation:none}}
+</style>
+
+<nav><a class="wm" href="#">eight six<b>.</b></a><ul><li><a href="#do">What we do</a></li><li><a href="#who">Who</a></li><li><a href="#how">How</a></li><li><a href="#faq">FAQ</a></li><li><a href="https://console.eightsix.co">Login</a></li><li><a href="#contact" style="background:var(--navy);color:#fff">Free assessment</a></li></ul></nav>
+
+<header class="hero" id="hero">
+  <canvas id="world" aria-label="Interactive physics playground: drag your IT problems into the bin" role="img"></canvas>
+  <div class="copy">
+    <span class="k">Drag things. Toss them. Try the bin.</span>
+    <h1>Drop your IT problems <span>here.</span></h1>
+    <p class="lead">Every chip falling past you is something a clinic, law office, plant or lab in Puerto Rico called us about. Throw them in the bin. That is, roughly, the job.</p>
+    <a class="btn" href="#contact">Book the free assessment</a> <a class="btn y" href="tel:+17877149556">(787) 714-9556</a>
+    <p class="hint">↓ scroll for the non-physics version</p>
+  </div>
+  <div class="ctr"><b id="cnt">0</b><span>problems 86'd</span></div>
+  <div class="tools"><button id="more" type="button">More problems</button><button id="shake" type="button">Shake</button><button id="reset" type="button">Reset</button></div>
+</header>
+
+<section id="do">
+  <h2 class="rv">Three things, one team that actually picks up.</h2>
+  <p class="sub rv">Eight Six IT Engineering is founder-led, based in San Juan, and deliberately small: the engineer who designs your systems is the one who answers when they misbehave.</p>
+  <div class="three">
+    <div class="card rv"><div class="em" style="background:var(--mint)">IT</div><h3>Managed IT</h3><p>Unlimited support direct to an engineer. On-site anywhere on the island. Every device watched 24/7 and patched on your schedule.</p><div class="chips"><span>Helpdesk</span><span>Monitoring</span><span>Patching</span><span>Network · Cloud</span></div></div>
+    <div class="card rv"><div class="em" style="background:var(--pink)">SEC</div><h3>Cybersecurity</h3><p>Huntress EDR with a 24/7 SOC. Email filtering before delivery. MFA everywhere. Immutable backups, restore-tested monthly.</p><div class="chips"><span>Huntress</span><span>Email</span><span>Zero-trust</span><span>HIPAA</span></div></div>
+    <div class="card rv"><div class="em" style="background:var(--yel)">AI</div><h3>Practical AI</h3><p>A tool for the workflow that costs you the most time. Copilot or Claude rolled out securely. Governance so nothing leaks. Shipped: clinical scribe, MIPS forecasting, alert analysis.</p><div class="chips"><span>Build</span><span>Integrate</span><span>Govern</span></div></div>
+  </div>
+</section>
+
+<section id="how">
+  <h2 class="rv">How a problem gets 86'd.</h2>
+  <p class="sub rv">Four weeks from first call to fully managed. Flat monthly, one dedicated engineer, no lock-in.</p>
+  <div class="belt rv"><div class="row">
+    <div class="it"><b>Day 1</b><h4>Discovery call</h4><p>Free, 30 min. Environment mapped, risks named.</p></div><div class="it"><b>Week 1</b><h4>Agreement</h4><p>Plain language, one flat price.</p></div><div class="it"><b>Weeks 2–3</b><h4>Deployment</h4><p>Agents, monitoring, backups, EDR, MFA on.</p></div><div class="it"><b>Week 4</b><h4>Fully managed</h4><p>Live 24/7. First report scheduled.</p></div><div class="it"><b>Every month</b><h4>Restore test</h4><p>Backup proven, result in your report.</p></div><div class="it"><b>Every quarter</b><h4>Roadmap</h4><p>vCIO review, budget, vendors.</p></div>
+    <div class="it"><b>Day 1</b><h4>Discovery call</h4><p>Free, 30 min. Environment mapped, risks named.</p></div><div class="it"><b>Week 1</b><h4>Agreement</h4><p>Plain language, one flat price.</p></div><div class="it"><b>Weeks 2–3</b><h4>Deployment</h4><p>Agents, monitoring, backups, EDR, MFA on.</p></div><div class="it"><b>Week 4</b><h4>Fully managed</h4><p>Live 24/7. First report scheduled.</p></div><div class="it"><b>Every month</b><h4>Restore test</h4><p>Backup proven, result in your report.</p></div><div class="it"><b>Every quarter</b><h4>Roadmap</h4><p>vCIO review, budget, vendors.</p></div>
+  </div></div>
+</section>
+
+<section id="who">
+  <h2 class="rv">Who keeps throwing problems in.</h2>
+  <div class="who">
+    <div class="rv"><h3>Clinics</h3><p>Oncology clinic, multi-site community health center, private practices.</p></div>
+    <div class="rv"><h3>Law offices</h3><p>A bankruptcy firm among them. BEC stopped; deadlines protected.</p></div>
+    <div class="rv"><h3>Vet hospitals</h3><p>Practice software and X-rays kept alive, no in-house IT.</p></div>
+    <div class="rv"><h3>Plants</h3><p>Concrete and packaging. Office segmented from the floor.</p></div>
+    <div class="rv"><h3>Labs</h3><p>Calibration and certification. Records that can never be lost.</p></div>
+  </div>
+</section>
+
+<section id="faq">
+  <h2 class="rv">Asked every week.</h2>
+  <div class="faq rv">
+    <div class="q"><button>Is our data safe if we start using AI?<i>+</i></button><div class="a"><p>Yes. Private, governed deployments; your data never trains public models; access controlled and logged; HIPAA where it applies.</p></div></div>
+    <div class="q"><button>How fast do you respond?<i>+</i></button><div class="a"><p>You reach the engineer directly. Monitoring runs 24/7/365; a critical incident is drop-everything at any hour.</p></div></div>
+    <div class="q"><button>Long-term contracts?<i>+</i></button><div class="a"><p>No. Flat monthly, no exit clauses.</p></div></div>
+    <div class="q"><button>Who will I actually talk to?<i>+</i></button><div class="a"><p>Lino E. Gómez, founder and principal engineer. HIPAA Security, MCSE, Mirth Certified, AWS and Azure.</p></div></div>
+  </div>
+</section>
+
+<section id="contact"><div class="cta rv">
+  <div><h2>Tell us what's slowing you down.</h2><p class="sub" style="margin:0;color:var(--ink)">Thirty minutes with the engineer who does the work. A prioritized, plain-language plan. Nobody sells you anything.</p><a class="ph" href="tel:+17877149556">(787) 714-9556</a></div>
+  <form id="f"><input placeholder="Name" required><input placeholder="Organization" required><input type="email" placeholder="Email" required><input type="tel" placeholder="Phone"><select><option>Both — AI and IT/security</option><option>AI opportunities</option><option>IT and security risk</option></select><select><option>Morning</option><option>Afternoon</option><option>Evening</option><option>Anytime</option></select><button class="btn" type="submit">Request the free assessment</button></form>
+</div></section>
+<footer><span>Eight Six IT Engineering · San Juan, PR · <a href="mailto:info@eightsix.co">info@eightsix.co</a></span><span>Founded 2024 · HIPAA · MCSE · Mirth · © 2026</span></footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+(function(){
+  gsap.registerPlugin(ScrollTrigger);
+  var reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var M=Matter,cv=document.getElementById('world'),ctx=cv.getContext('2d'),eng=M.Engine.create(),world=eng.world,W,H,chips=[],cnt=0,bin;
+  var PROBLEMS=[['Slow EMR','#7D98E0'],['Phishing email','#FFB5C2'],['Untested backup','#F4C430'],['Printer #4','#9FE1CB'],['No MFA','#FFB5C2'],['Shadow AI','#7D98E0'],['Ticket #4471','#F4C430'],['Dead switch','#9FE1CB'],['Ransomware','#E23E3E'],['Wi-Fi drops','#7D98E0'],['Old server','#F4C430'],['Flat network','#FFB5C2'],['Password: Clinic2019!','#E23E3E'],['Unknown login','#7D98E0'],['Audit scramble','#9FE1CB'],['3 vendors, no owner','#F4C430']];
+  function size(){var r=cv.parentElement.getBoundingClientRect();W=cv.width=r.width;H=cv.height=r.height;M.Composite.clear(world,false);
+    var opts={isStatic:true,render:{visible:false}};M.Composite.add(world,[M.Bodies.rectangle(W/2,H-30,W*2,80,opts),M.Bodies.rectangle(-40,H/2,80,H*3,opts),M.Bodies.rectangle(W+40,H/2,80,H*3,opts)]);
+    var bw=Math.min(260,Math.max(W*.24,W<700?W*.42:0)),bx=W-bw/2-(W<700?20:40),by=H-145;bin={x:bx,y:by,w:bw,h:150};
+    M.Composite.add(world,[M.Bodies.rectangle(bx-bw/2,by,14,150,opts),M.Bodies.rectangle(bx+bw/2,by,14,150,opts),M.Bodies.rectangle(bx,by+75,bw,14,opts)]);
+    chips.forEach(function(c){M.Composite.add(world,c)})}
+  function chip(txt,col){var s=W<700?.78:1,w=Math.max(120,txt.length*12+40)*s,h=54*s,b=M.Bodies.rectangle(W*.5+(Math.random()-.5)*W*.5,-60-Math.random()*300,w,h,{chamfer:{radius:h/2},restitution:.5,friction:.4,frictionAir:.01,angle:(Math.random()-.5)*.6});b.label=txt;b.col=col;b.w=w;b.h=h;b.s=s;chips.push(b);M.Composite.add(world,b)}
+  function seed(n){for(var i=0;i<n;i++){var p=PROBLEMS[(chips.length+i)%PROBLEMS.length];chip(p[0],p[1])}}
+  size();addEventListener('resize',size);seed(innerWidth<700?6:Math.min(14,Math.max(8,Math.floor(innerWidth/110))));
+  var mouse=M.Mouse.create(cv),mc=M.MouseConstraint.create(eng,{mouse:mouse,constraint:{stiffness:.2,render:{visible:false}}});M.Composite.add(world,mc);
+  mouse.element.removeEventListener('mousewheel',mouse.mousewheel);mouse.element.removeEventListener('DOMMouseScroll',mouse.mousewheel);
+  var pops=[];
+  function draw(){ctx.clearRect(0,0,W,H);
+    // bin
+    ctx.save();ctx.translate(bin.x,bin.y);ctx.fillStyle='#141414';ctx.fillRect(-bin.w/2-7,-75,14,150);ctx.fillRect(bin.w/2-7,-75,14,150);ctx.fillRect(-bin.w/2,68,bin.w,14);ctx.fillStyle='#1F3A89';ctx.fillRect(-bin.w/2+7,-60,bin.w-14,128);ctx.fillStyle='#F4C430';ctx.font='900 34px Outfit, sans-serif';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText('86',0,4);ctx.font='700 11px Outfit, sans-serif';ctx.fillStyle='#fff';ctx.fillText('THE BIN',0,36);ctx.restore();
+    chips.forEach(function(b){var p=b.position,h=b.h,r=h/2;ctx.save();ctx.translate(p.x,p.y);ctx.rotate(b.angle);ctx.fillStyle='#141414';rr(-b.w/2+4,-r+4,b.w,h,r);ctx.fill();ctx.fillStyle=b.col;rr(-b.w/2,-r,b.w,h,r);ctx.fill();ctx.lineWidth=3;ctx.strokeStyle='#141414';rr(-b.w/2,-r,b.w,h,r);ctx.stroke();ctx.fillStyle='#141414';ctx.font='700 '+Math.round(16*b.s)+'px Outfit, sans-serif';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(b.label,0,1);ctx.restore()});
+    for(var i=pops.length-1;i>=0;i--){var q=pops[i];q.t+=.05;ctx.globalAlpha=1-q.t;ctx.strokeStyle='#F4C430';ctx.lineWidth=4;ctx.beginPath();ctx.arc(q.x,q.y,10+q.t*60,0,Math.PI*2);ctx.stroke();ctx.globalAlpha=1;if(q.t>=1)pops.splice(i,1)}}
+  function rr(x,y,w,h,r){ctx.beginPath();ctx.moveTo(x+r,y);ctx.arcTo(x+w,y,x+w,y+h,r);ctx.arcTo(x+w,y+h,x,y+h,r);ctx.arcTo(x,y+h,x,y,r);ctx.arcTo(x,y,x+w,y,r);ctx.closePath()}
+  var run=true;function loop(){if(run){M.Engine.update(eng,1000/60);
+    for(var i=chips.length-1;i>=0;i--){var b=chips[i],p=b.position;if(p.x>bin.x-bin.w/2+10&&p.x<bin.x+bin.w/2-10&&p.y>bin.y-40&&p.y<bin.y+60&&Math.abs(b.velocity.y)<2){M.Composite.remove(world,b);chips.splice(i,1);pops.push({x:p.x,y:p.y,t:0});cnt++;var c=document.getElementById('cnt');c.textContent=cnt;gsap.fromTo(c,{scale:1.4},{scale:1,duration:.4,ease:'back.out(2)'});if(chips.length<3)seed(4)}}
+    draw()}requestAnimationFrame(loop)}
+  loop();
+  ScrollTrigger.create({trigger:'#hero',start:'top top',end:'bottom top',onLeave:function(){run=false},onEnterBack:function(){run=true}});
+  document.getElementById('more').addEventListener('click',function(){seed(5)});
+  document.getElementById('shake').addEventListener('click',function(){chips.forEach(function(b){M.Body.applyForce(b,b.position,{x:(Math.random()-.5)*.25,y:-Math.random()*.3})})});
+  document.getElementById('reset').addEventListener('click',function(){chips.forEach(function(b){M.Composite.remove(world,b)});chips=[];cnt=0;document.getElementById('cnt').textContent=0;seed(12)});
+  if(!reduced){gsap.from('.copy > *',{opacity:0,y:20,stagger:.08,duration:.8,ease:'back.out(1.4)',delay:.2});gsap.from('.ctr,.tools',{opacity:0,scale:.9,duration:.6,delay:.6,ease:'back.out(2)'});
+    document.querySelectorAll('.rv').forEach(function(el){gsap.to(el,{opacity:1,y:0,scale:1,duration:.8,ease:'back.out(1.6)',scrollTrigger:{trigger:el,start:'top 88%'}})})}
+  else document.querySelectorAll('.rv').forEach(function(e){e.style.opacity=1;e.style.transform='none'});
+  document.querySelectorAll('.q button').forEach(function(b){b.addEventListener('click',function(){var q=b.parentNode,a=q.querySelector('.a'),o=q.classList.toggle('open');gsap.to(a,{height:o?'auto':0,duration:.4,ease:'power3.inOut'})})});
+  document.getElementById('f').addEventListener('submit',function(e){e.preventDefault();this.querySelector('.btn').textContent='Received! An engineer will call.';gsap.fromTo(this,{rotate:-1},{rotate:0,duration:.6,ease:'elastic.out(1,.3)'})});
+})();
+</script>

@@ -1,0 +1,172 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Eight Six — Restore</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@500;700;900&family=Red+Hat+Mono:wght@400;500&display=swap">
+<style>
+  :root{--red:#FF2D2D;--yel:#F4C430;--navy:#1F3A89;--disp:'Red Hat Display',system-ui,sans-serif;--mono:'Red Hat Mono',ui-monospace,monospace}
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{font-family:var(--disp);font-size:17px;line-height:1.55;overflow-x:hidden;background:#0D0000;color:#FFD5D5;transition:background 1.4s ease,color 1.4s ease}
+  body.clean{background:#FFFFFF;color:#101528}
+  a{color:inherit;text-decoration:none}
+  .noise{position:fixed;inset:0;pointer-events:none;z-index:2;opacity:.35;background:repeating-linear-gradient(0deg,rgba(255,45,45,.08) 0 2px,transparent 2px 4px);mix-blend-mode:screen;transition:opacity 1.2s}
+  body.clean .noise{opacity:0}
+  nav{position:fixed;inset:0 0 auto;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:18px 32px;font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+  .wm{font-family:var(--disp);font-weight:900;font-size:22px;letter-spacing:-.03em;text-transform:none}.wm b{color:var(--red)}body.clean .wm b{color:var(--red)}
+  nav ul{display:flex;gap:22px;list-style:none;margin:0;padding:0;opacity:.85}
+  nav .replay{border:1px solid currentColor;padding:6px 10px;cursor:pointer;background:none;font:inherit;color:inherit}
+  .hero{min-height:100vh;display:grid;place-items:center;padding:100px 32px 60px;position:relative;z-index:3}
+  .hero .in{max-width:1100px;width:100%;display:grid;grid-template-columns:1.2fr 1fr;gap:50px;align-items:center}
+  .tag{font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--red);display:flex;gap:10px;align-items:center}
+  .tag i{width:10px;height:10px;background:var(--red);animation:bl 1s steps(1) infinite}@keyframes bl{50%{opacity:0}}
+  body.clean .tag{color:var(--navy)}body.clean .tag i{background:#1E8C5A;animation:none}
+  h1{font-weight:900;font-size:clamp(40px,6vw,86px);line-height:.98;letter-spacing:-.04em;margin:14px 0 18px;font-family:var(--mono);transition:font-family .2s}
+  body.clean h1{font-family:var(--disp)}
+  .lead{font-size:18px;max-width:48ch;margin:0 0 24px;opacity:.85}
+  .btns{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+  .restore{background:var(--red);color:#fff;border:0;font:inherit;font-weight:900;font-size:16px;letter-spacing:.06em;text-transform:uppercase;padding:16px 26px;cursor:pointer;position:relative;overflow:hidden}
+  .restore span{position:relative;z-index:1}
+  .restore i{position:absolute;left:0;top:0;bottom:0;width:0;background:var(--yel);transition:width .2s linear}
+  body.clean .restore{display:none}
+  .cta{display:none;background:var(--navy);color:#fff;font-weight:700;padding:15px 24px;border-radius:999px}
+  body.clean .cta{display:inline-block}
+  .ph{font-weight:900;font-size:20px;margin-left:6px}
+  .lock{position:relative;width:100%;aspect-ratio:1;max-width:420px;margin:0 auto}
+  .lock svg{width:100%;height:100%;overflow:visible}
+  .lock .sh{transform-origin:50% 60%;transition:transform 1s cubic-bezier(.34,1.56,.64,1)}
+  body.clean .lock .sh{transform:translateY(-40px) rotate(-20deg)}
+  .log{font-family:var(--mono);font-size:12px;line-height:1.7;color:#FF9C9C;margin-top:18px;min-height:96px;letter-spacing:.02em}
+  body.clean .log{color:#1E8C5A}
+  .log div{opacity:0;animation:fin .3s forwards}@keyframes fin{to{opacity:1}}
+  section{max-width:1100px;margin:0 auto;padding:100px 32px;position:relative;z-index:3}
+  h2{font-weight:900;font-size:clamp(32px,4.4vw,60px);letter-spacing:-.04em;line-height:1;margin:0 0 14px;max-width:20ch}
+  .sub{opacity:.75;font-size:18px;max-width:56ch;margin:0 0 40px}
+  .stages{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid currentColor}
+  .st{padding:26px 22px;border-right:1px solid currentColor;cursor:pointer;transition:background .3s,color .3s;position:relative}
+  .st:last-child{border-right:0}
+  .st b{font-family:var(--mono);font-size:11px;letter-spacing:.2em;display:block;margin-bottom:8px;opacity:.7}
+  .st h3{margin:0 0 8px;font-size:22px;letter-spacing:-.02em;font-weight:900}.st p{margin:0;font-size:14px;opacity:.85}
+  .st.on{background:var(--navy);color:#fff}
+  .st .bar{position:absolute;left:0;bottom:0;height:3px;width:0;background:var(--yel)}
+  .st.on .bar{width:100%;transition:width 3s linear}
+  .three{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .three div{border-top:3px solid currentColor;padding-top:16px}
+  .three h3{margin:0 0 8px;font-size:24px;letter-spacing:-.02em;font-weight:900}.three p{margin:0;font-size:15px;opacity:.85}
+  .who{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+  .who div{border:1px solid currentColor;padding:18px 16px}
+  .who h3{margin:0 0 6px;font-size:18px;font-weight:900;letter-spacing:-.02em}.who p{margin:0;font-size:13.5px;opacity:.8}
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  .steps b{font-family:var(--mono);font-size:11px;letter-spacing:.2em;display:block;margin-bottom:6px;color:var(--yel)}
+  body.clean .steps b{color:var(--navy)}
+  .steps h3{margin:0 0 6px;font-size:20px;font-weight:900;letter-spacing:-.02em}.steps p{margin:0;font-size:14px;opacity:.85}
+  .faq{max-width:860px}
+  .q{border-top:1px solid currentColor}.q button{width:100%;background:none;border:0;color:inherit;font:inherit;font-weight:900;font-size:19px;text-align:left;padding:20px 0;display:flex;justify-content:space-between;cursor:pointer;letter-spacing:-.02em}
+  .q button i{font-style:normal;transition:transform .3s}.q.open button i{transform:rotate(45deg)}
+  .q .a{height:0;overflow:hidden}.q .a p{margin:0 0 22px;opacity:.85;max-width:62ch}
+  .ctab{background:var(--navy);color:#fff;padding:50px;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;border-radius:6px}
+  .ctab .big{font-weight:900;font-size:34px;display:block;margin-top:10px;letter-spacing:-.03em}
+  form{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  form input,form select{width:100%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.25);color:#fff;font:inherit;font-size:15px;padding:12px 14px;outline:none}
+  form input:focus,form select:focus{border-color:var(--yel)}form select option{background:#1F3A89}
+  form button{grid-column:1/-1;background:var(--yel);color:#101528;border:0;font:inherit;font-weight:900;padding:14px;cursor:pointer}
+  footer{max-width:1100px;margin:0 auto;padding:30px 32px 60px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:13px;opacity:.75;border-top:1px solid currentColor;position:relative;z-index:3}
+  .scr{display:inline-block}
+  @media (max-width:900px){.hero .in{grid-template-columns:1fr}.lock{max-width:260px}.stages{grid-template-columns:1fr 1fr}.st{border-bottom:1px solid currentColor}.three,.who,.steps{grid-template-columns:1fr}.ctab{grid-template-columns:1fr;padding:30px 24px}form{grid-template-columns:1fr}nav ul{display:none}}
+  @media (prefers-reduced-motion:reduce){.tag i{animation:none}}
+</style>
+
+<div class="noise" aria-hidden="true"></div>
+<nav><a class="wm" href="#">eight six<b>.</b></a><ul><li><a href="#stages">Recovery</a></li><li><a href="#do">Practices</a></li><li><a href="#who">Who</a></li><li><a href="#contact">Contact</a></li><li><a href="https://console.eightsix.co">Console</a></li></ul><button class="replay" id="replay" type="button">↺ Replay</button></nav>
+
+<header class="hero"><div class="in">
+  <div>
+    <div class="tag" id="tag"><i></i><span id="tagt">Simulated incident · Tuesday 02:14</span></div>
+    <h1 id="h1" data-text="Your files are back. It took 3 hours, not 3 weeks.">YOUR FILES HAVE BEEN ENCRYPTED. PAY 40 BTC.</h1>
+    <p class="lead scr" data-text="This is what a ransomware Tuesday looks like for a clinic with untested backups. It is also what it looks like for one of ours: isolate, rebuild, restore from an immutable snapshot, back to work before the news cycle starts.">▓▓ Every workstation. Every record. Every X-ray. Read the note. Do not restart. Do not call anyone. ▓▓</p>
+    <div class="btns"><button class="restore" id="btn" type="button"><i id="fill"></i><span id="btnt">Restore from backup</span></button><a class="cta" href="#contact">Book the free assessment</a><a class="ph" href="tel:+17877149556">(787) 714-9556</a></div>
+    <div class="log" id="log"><div>› 02:14:07 encryption behavior detected on FRONTDESK-02</div><div style="animation-delay:.4s">› 02:14:08 huntress: host isolated · lateral movement blocked</div><div style="animation-delay:.8s">› 02:14:11 engineer paged · no queue</div></div>
+  </div>
+  <div class="lock" aria-hidden="true"><svg viewBox="0 0 400 400"><g class="sh"><path d="M130 190 V140 a70 70 0 0 1 140 0 V190" fill="none" stroke="currentColor" stroke-width="22" stroke-linecap="round"/></g><rect x="90" y="180" width="220" height="170" rx="22" fill="currentColor"/><circle cx="200" cy="255" r="22" fill="#0D0000" id="hole"/><rect x="192" y="255" width="16" height="50" rx="8" fill="#0D0000" id="key"/></svg></div>
+</div></header>
+
+<section id="stages">
+  <h2 class="scr" data-text="Four verbs. In that order.">Four verbs. In that order.</h2>
+  <p class="sub">Backup is not a security strategy; attackers target your backups first. Click a stage. Or wait, and it will walk itself.</p>
+  <div class="stages" id="stg">
+    <div class="st on" data-i="0"><b>01 · PREVENT</b><h3>Stop it before it runs</h3><p>EDR behavioral analysis, email filtering before delivery, MFA and zero-trust access stop most attacks from ever executing.</p><span class="bar"></span></div>
+    <div class="st" data-i="1"><b>02 · DETECT</b><h3>See what slips through</h3><p>Huntress hunters and SOC correlation surface anomalous behavior in minutes, not months.</p><span class="bar"></span></div>
+    <div class="st" data-i="2"><b>03 · CONTAIN</b><h3>Cut the blast radius</h3><p>Automatic host isolation and network segmentation stop lateral movement before it spreads.</p><span class="bar"></span></div>
+    <div class="st" data-i="3"><b>04 · RECOVER</b><h3>Restore in hours</h3><p>Air-gapped immutable backups with monthly restore tests. We execute the recovery; you open on time.</p><span class="bar"></span></div>
+  </div>
+</section>
+
+<section id="do">
+  <h2 class="scr" data-text="Security is one of three things the same team does.">Security is one of three things the same team does.</h2>
+  <p class="sub">Eight Six IT Engineering: managed IT, cybersecurity and practical AI from one founder-led team in San Juan, Puerto Rico.</p>
+  <div class="three">
+    <div><h3>Managed IT</h3><p>Unlimited support direct to an engineer. On-site anywhere on the island. Every device monitored 24/7 and patched on your schedule. Network, cloud, voice, lifecycle, inventory.</p></div>
+    <div><h3>Cybersecurity</h3><p>The four verbs above, plus vulnerability management, HIPAA technical safeguards an auditor can read, and an incident-response retainer so critical events are drop-everything at any hour.</p></div>
+    <div><h3>Practical AI</h3><p>A tool for your costliest workflow. Copilot or Claude rolled out securely. Governance so nothing leaks. Shipped: an AI medical scribe, MIPS forecasting, security-alert analysis.</p></div>
+  </div>
+</section>
+
+<section id="who">
+  <h2 class="scr" data-text="Where downtime has a face.">Where downtime has a face.</h2>
+  <div class="who">
+    <div><h3>Clinics</h3><p>Oncology clinic, multi-site community health center, private practices.</p></div>
+    <div><h3>Law offices</h3><p>A bankruptcy firm among them. BEC stopped; deadlines protected.</p></div>
+    <div><h3>Vet hospitals</h3><p>Practice software and X-rays kept alive, no in-house IT.</p></div>
+    <div><h3>Plants</h3><p>Concrete and packaging. Office segmented from the floor.</p></div>
+    <div><h3>Labs</h3><p>Calibration and certification. Records that can never be lost.</p></div>
+  </div>
+</section>
+
+<section>
+  <h2 class="scr" data-text="Four weeks to fully managed.">Four weeks to fully managed.</h2>
+  <p class="sub">Flat monthly pricing. One dedicated engineer. No lock-in.</p>
+  <div class="steps">
+    <div><b>DAY 1</b><h3>Discovery call</h3><p>Free, 30 minutes. Environment mapped, risks named, scope confirmed.</p></div>
+    <div><b>WEEK 1</b><h3>Agreement</h3><p>Plain language. Deliverables, response targets, one flat price.</p></div>
+    <div><b>WEEKS 2–3</b><h3>Deployment</h3><p>Agents, monitoring, backups, EDR, email security, MFA.</p></div>
+    <div><b>WEEK 4</b><h3>Fully managed</h3><p>Live 24/7. Your engineer introduced. First restore test on the calendar.</p></div>
+  </div>
+</section>
+
+<section>
+  <h2 class="scr" data-text="Questions we hear every week.">Questions we hear every week.</h2>
+  <div class="faq">
+    <div class="q"><button>Is our data safe if we start using AI?<i>+</i></button><div class="a"><p>Yes. Private, governed deployments; your data never trains public models; access controlled and logged; HIPAA where it applies.</p></div></div>
+    <div class="q"><button>How fast do you respond?<i>+</i></button><div class="a"><p>You reach the engineer directly. Monitoring runs 24/7/365; a critical incident is drop-everything at any hour, which is the whole point of the page you are reading.</p></div></div>
+    <div class="q"><button>Long-term contracts?<i>+</i></button><div class="a"><p>No. Flat monthly, no exit clauses.</p></div></div>
+    <div class="q"><button>Who will I actually talk to?<i>+</i></button><div class="a"><p>Lino E. Gómez, founder and principal engineer. HIPAA Security, MCSE, Mirth Certified, AWS and Azure.</p></div></div>
+  </div>
+</section>
+
+<section id="contact"><div class="ctab">
+  <div><h2>Tell us what's slowing you down.</h2><p style="opacity:.85;margin:0">Thirty minutes with the engineer who does the work. A prioritized, plain-language plan. Nobody sells you anything.</p><a class="big" href="tel:+17877149556">(787) 714-9556</a></div>
+  <form onsubmit="event.preventDefault();this.querySelector('button').textContent='Received — an engineer will call'"><input placeholder="Name" required><input placeholder="Organization" required><input type="email" placeholder="Email" required><input type="tel" placeholder="Phone"><select><option>Both — AI and IT/security</option><option>AI opportunities</option><option>IT and security risk</option></select><select><option>Morning</option><option>Afternoon</option><option>Evening</option><option>Anytime</option></select><button type="submit">Request the free assessment</button></form>
+</div></section>
+<footer><span>Eight Six IT Engineering · San Juan, PR · <a href="mailto:info@eightsix.co">info@eightsix.co</a></span><span>Founded 2024 · HIPAA · MCSE · Mirth · © 2026</span></footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script>
+(function(){
+  var reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var GL='▓▒░#%&@$*+=-_/\\|<>0123456789';
+  function scrambleTo(el,text,dur,cb){var start=performance.now(),from=el.textContent,len=Math.max(from.length,text.length);function f(now){var p=Math.min(1,(now-start)/dur),out='';for(var i=0;i<text.length;i++){out+=(i/text.length<p)?text[i]:(text[i]===' '?' ':GL[Math.floor(Math.random()*GL.length)])}el.textContent=out;if(p<1)requestAnimationFrame(f);else{el.textContent=text;cb&&cb()}}requestAnimationFrame(f)}
+  var body=document.body,h1=document.getElementById('h1'),lead=document.querySelector('.lead'),btn=document.getElementById('btn'),fill=document.getElementById('fill'),btnt=document.getElementById('btnt'),log=document.getElementById('log'),tagt=document.getElementById('tagt'),done=false,autoT;
+  var encH=h1.textContent,encL=lead.textContent;
+  function say(m,d){var x=document.createElement('div');x.style.animationDelay=(d||0)+'s';x.textContent='› '+m;log.appendChild(x);while(log.children.length>5)log.removeChild(log.firstChild)}
+  function restore(){if(done)return;done=true;clearTimeout(autoT);btn.disabled=true;var steps=[[0,'02:19 locating immutable snapshot · 02:00'],[22,'02:21 integrity verified · write-once repository'],[48,'02:40 clean image → FRONTDESK-02 · rebuilding'],[74,'04:05 restoring records, imaging, shares (simulated)'],[100,'05:55 done · 3h 41m · under the 4h target']];var i=0;
+    var iv=setInterval(function(){var p=parseFloat(fill.style.width||0)+1.2;fill.style.width=Math.min(100,p)+'%';btnt.textContent='Restoring… '+Math.floor(Math.min(100,p))+'%';if(steps[i]&&p>=steps[i][0]){say(steps[i][1]);i++}if(p>=100){clearInterval(iv);finish()}},reduced?10:36)}
+  function finish(){body.classList.add('clean');tagt.textContent='Restored · monthly restore test: passed';document.getElementById('hole').setAttribute('fill','#fff');document.getElementById('key').setAttribute('fill','#fff');scrambleTo(h1,h1.getAttribute('data-text'),reduced?50:1400);setTimeout(function(){scrambleTo(lead,lead.getAttribute('data-text'),reduced?50:1600)},300)}
+  btn.addEventListener('click',restore);autoT=setTimeout(restore,4200);
+  document.getElementById('replay').addEventListener('click',function(){done=false;body.classList.remove('clean');btn.disabled=false;fill.style.width='0%';btnt.textContent='Restore from backup';tagt.textContent='Simulated incident · Tuesday 02:14';document.getElementById('hole').setAttribute('fill','#0D0000');document.getElementById('key').setAttribute('fill','#0D0000');log.innerHTML='';say('02:14:07 encryption behavior detected on FRONTDESK-02');say('02:14:08 huntress: host isolated · lateral movement blocked',.4);say('02:14:11 engineer paged · no queue',.8);scrambleTo(h1,encH,600);scrambleTo(lead,encL,600);scrollTo({top:0,behavior:'smooth'});autoT=setTimeout(restore,4200)});
+  /* headings scramble in on scroll, once clean */
+  if('IntersectionObserver' in window&&!reduced){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var el=e.target;io.unobserve(el);var t=el.getAttribute('data-text');if(t&&el!==lead){el.textContent=t.replace(/[^ ]/g,function(){return GL[Math.floor(Math.random()*GL.length)]});scrambleTo(el,t,900)}}})},{threshold:.4});document.querySelectorAll('h2.scr').forEach(function(el){io.observe(el)})}
+  /* stages stepper */
+  var sts=[].slice.call(document.querySelectorAll('.st')),cur=0,stT;function setS(i){cur=i;sts.forEach(function(s,j){s.classList.toggle('on',j===i);var b=s.querySelector('.bar');b.style.transition='none';b.style.width='0';if(j===i)requestAnimationFrame(function(){b.style.transition='width 3s linear';b.style.width='100%'})});clearTimeout(stT);stT=setTimeout(function(){setS((cur+1)%4)},3000)}
+  sts.forEach(function(s){s.addEventListener('click',function(){setS(+s.getAttribute('data-i'))})});setS(0);
+  document.querySelectorAll('.q button').forEach(function(b){b.addEventListener('click',function(){var q=b.parentNode,a=q.querySelector('.a'),o=q.classList.toggle('open');gsap.to(a,{height:o?'auto':0,duration:.4,ease:'power3.inOut'})})});
+})();
+</script>

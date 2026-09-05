@@ -1,0 +1,145 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Eight Six — Descent</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=Hanken+Grotesk:wght@400;500;600&display=swap">
+<style>
+  :root{--yel:#F4C430;--navy:#1F3A89;--red:#E5484D;--disp:'Syne',system-ui,sans-serif;--body:'Hanken Grotesk',system-ui,sans-serif}
+  *{box-sizing:border-box}
+  html,body{margin:0;background:#EAF2FF;color:#0E1A3A}
+  body{font-family:var(--body);font-size:17px;line-height:1.55;overflow-x:hidden;transition:color .4s}
+  a{color:inherit;text-decoration:none}
+  #bub{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:1;opacity:.7}
+  nav{position:fixed;inset:0 0 auto;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:18px 32px;mix-blend-mode:difference;color:#fff}
+  .wm{font-family:var(--disp);font-weight:800;font-size:22px;letter-spacing:-.03em}.wm b{color:var(--yel)}
+  nav ul{display:flex;gap:22px;list-style:none;margin:0;padding:0;font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+  .gauge{position:fixed;right:28px;top:50%;transform:translateY(-50%);z-index:40;display:flex;gap:14px;align-items:stretch;height:52vh;mix-blend-mode:difference;color:#fff}
+  .gauge .rail{width:2px;background:rgba(255,255,255,.35);position:relative}
+  .gauge .rail i{position:absolute;left:-5px;top:0;width:12px;height:12px;border-radius:50%;background:#fff}
+  .gauge ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;justify-content:space-between;font-family:var(--disp);font-size:11px;letter-spacing:.14em;text-transform:uppercase;opacity:.75}
+  .gauge li{transition:opacity .3s,transform .3s}.gauge li.on{opacity:1;transform:translateX(-4px);font-weight:800}
+  .scene{position:relative;min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:40px;max-width:1300px;margin:0 auto;padding:0 32px;z-index:2}
+  .scene .txt .k{font-family:var(--disp);font-size:12px;letter-spacing:.24em;text-transform:uppercase;font-weight:700;color:var(--yel);text-shadow:0 1px 0 rgba(0,0,0,.2)}
+  .scene h2{font-family:var(--disp);font-weight:800;font-size:clamp(38px,5vw,72px);letter-spacing:-.04em;line-height:.98;margin:10px 0 16px}
+  .scene p{margin:0 0 10px;max-width:46ch;font-size:17px;opacity:.85}
+  .scene .fig{position:relative;height:60vh}
+  .scene .fig svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+  .lyr{will-change:transform}
+  .surface{color:#0E1A3A}.dark{color:#EAF2FF}
+  .depth{font-family:var(--disp);font-weight:800;font-size:clamp(60px,9vw,130px);letter-spacing:-.05em;line-height:1;opacity:.09;position:absolute;left:32px;top:84px;pointer-events:none}
+  .btn{display:inline-block;background:var(--yel);color:#0E1A3A;font-weight:700;padding:14px 22px;border-radius:999px;margin-top:10px}
+  .btn.g{background:transparent;border:1.5px solid currentColor;color:inherit;margin-left:8px}
+  .list{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:6px;font-size:15px}
+  .list li{display:flex;gap:10px;align-items:baseline}.list li::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--yel);flex:none;transform:translateY(-1px)}
+  .vault{text-align:center;max-width:1300px;margin:0 auto;padding:10vh 32px 12vh;position:relative;z-index:2;display:grid;grid-template-columns:1fr;gap:20px}
+  .vault h2{font-family:var(--disp);font-weight:800;font-size:clamp(44px,7vw,110px);letter-spacing:-.05em;line-height:.95;margin:0}
+  .vault p{max-width:52ch;margin:0 auto;font-size:19px;opacity:.85}
+  .who{position:relative;z-index:2;max-width:1300px;margin:0 auto;padding:60px 32px;display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+  .who div{border:1px solid rgba(255,255,255,.2);border-radius:12px;padding:18px 16px;backdrop-filter:blur(4px)}
+  .who h3{font-family:var(--disp);font-size:18px;margin:0 0 6px;letter-spacing:-.02em}.who p{margin:0;font-size:13.5px;opacity:.8}
+  .up{position:relative;z-index:2;max-width:1300px;margin:0 auto;padding:12vh 32px;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+  .up h2{font-family:var(--disp);font-weight:800;font-size:clamp(36px,5vw,72px);letter-spacing:-.04em;line-height:.98;margin:0 0 14px}
+  .up p{max-width:46ch;opacity:.85}
+  .up .ph{font-family:var(--disp);font-weight:800;font-size:32px;display:block;margin-top:12px;letter-spacing:-.03em}
+  form{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  form input,form select{width:100%;background:rgba(255,255,255,.9);border:1.5px solid #0E1A3A;color:#0E1A3A;font:inherit;font-size:15px;padding:12px 14px;border-radius:10px;outline:none}
+  form .btn{grid-column:1/-1;border:0;font:inherit;font-weight:700;cursor:pointer;text-align:center;margin:0}
+  .faq{position:relative;z-index:2;max-width:860px;margin:0 auto;padding:0 32px 10vh}
+  .q{border-top:1px solid currentColor}.q button{width:100%;background:none;border:0;color:inherit;font:inherit;font-family:var(--disp);font-weight:700;font-size:20px;text-align:left;padding:18px 0;display:flex;justify-content:space-between;cursor:pointer;letter-spacing:-.02em}
+  .q button i{font-style:normal;color:var(--yel);transition:transform .3s}.q.open button i{transform:rotate(45deg)}
+  .q .a{height:0;overflow:hidden}.q .a p{margin:0 0 18px;opacity:.85;max-width:60ch}
+  footer{position:relative;z-index:2;max-width:1300px;margin:0 auto;padding:20px 32px 50px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:13px;opacity:.8}
+  @media (max-width:980px){.scene,.up{grid-template-columns:1fr}.scene .fig{height:38vh;order:-1}.who{grid-template-columns:1fr 1fr}.gauge{display:none}nav ul{display:none}form{grid-template-columns:1fr}.depth{display:none}}
+  @media (max-width:600px){.who{grid-template-columns:1fr}}
+</style>
+
+<canvas id="bub" aria-hidden="true"></canvas>
+<nav><a class="wm" href="#">eight six<b>.</b></a><ul><li><a href="#s1">Descend</a></li><li><a href="#who">Who we serve</a></li><li><a href="#up">Contact</a></li><li><a href="https://console.eightsix.co">Client login</a></li></ul></nav>
+<div class="gauge" aria-hidden="true"><ol id="gl"><li class="on">Surface</li><li>Endpoints</li><li>Network</li><li>Servers</li><li>Identity</li><li>Security ops</li><li>The vault</li></ol><div class="rail"><i id="gi"></i></div></div>
+
+<section class="scene surface" id="s0" data-bg="#EAF2FF" data-ink="#0E1A3A"><div class="depth">0 m</div>
+  <div class="txt"><div class="k">Eight Six IT Engineering · San Juan</div><h2>It starts at your desk. It goes a lot deeper.</h2><p>Every screen in your clinic, office, plant or lab stands on layers you never see. We run every one of them, defend every one of them, and build practical AI on top. Scroll down through the stack.</p><a class="btn" href="#up">Book the free assessment</a><a class="btn g" href="tel:+17877149556">(787) 714-9556</a></div>
+  <div class="fig"><svg viewBox="0 0 600 500"><g class="lyr" data-p="0.2"><ellipse cx="300" cy="470" rx="240" ry="14" fill="#0E1A3A" opacity=".08"/></g><g class="lyr" data-p="0.5"><rect x="150" y="120" width="300" height="190" rx="14" fill="#0E1A3A"/><rect x="164" y="134" width="272" height="160" rx="6" fill="#FFFFFF"/><rect x="180" y="150" width="120" height="10" rx="5" fill="#1F3A89"/><rect x="180" y="172" width="240" height="6" rx="3" fill="#C7D3EA"/><rect x="180" y="186" width="200" height="6" rx="3" fill="#C7D3EA"/><rect x="180" y="200" width="220" height="6" rx="3" fill="#C7D3EA"/><rect x="180" y="230" width="90" height="40" rx="6" fill="#F4C430"/><rect x="280" y="230" width="140" height="40" rx="6" fill="#E8EEFA"/><rect x="280" y="312" width="40" height="40" fill="#0E1A3A"/><rect x="220" y="350" width="160" height="10" rx="5" fill="#0E1A3A"/></g><g class="lyr" data-p="1"><circle cx="470" cy="90" r="34" fill="#F4C430"/></g></svg></div>
+</section>
+
+<section class="scene dark" id="s1" data-bg="#1F3A89" data-ink="#EAF2FF"><div class="depth">−1</div>
+  <div class="txt"><div class="k">Layer 1 · Endpoints</div><h2>Every laptop carries two quiet passengers.</h2><p>An RMM agent that reports health and applies patches in windows that respect your hours, and a Huntress EDR agent watching behavior, not signatures. Lenovo hardware chosen to last. An inventory that makes an audit a lookup.</p><ul class="list"><li>Unlimited helpdesk direct to an engineer</li><li>On-site anywhere on the island</li><li>Patched on your schedule</li></ul></div>
+  <div class="fig"><svg viewBox="0 0 600 500"><g class="lyr" data-p="0.3"><rect x="60" y="300" width="150" height="100" rx="8" fill="#0E1A3A"/><rect x="70" y="310" width="130" height="80" rx="4" fill="#7D98E0"/><rect x="230" y="260" width="150" height="100" rx="8" fill="#0E1A3A"/><rect x="240" y="270" width="130" height="80" rx="4" fill="#7D98E0"/><rect x="400" y="300" width="150" height="100" rx="8" fill="#0E1A3A"/><rect x="410" y="310" width="130" height="80" rx="4" fill="#7D98E0"/></g><g class="lyr" data-p="0.8"><circle cx="135" cy="290" r="10" fill="#F4C430"/><circle cx="305" cy="250" r="10" fill="#F4C430"/><circle cx="475" cy="290" r="10" fill="#F4C430"/><path d="M135 290 Q220 200 305 250 Q390 200 475 290" fill="none" stroke="#F4C430" stroke-width="2" stroke-dasharray="6 6"/></g></svg></div>
+</section>
+
+<section class="scene dark" id="s2" data-bg="#152C6B" data-ink="#EAF2FF"><div class="depth">−2</div>
+  <div class="txt"><div class="k">Layer 2 · Network</div><h2>Walls where walls belong.</h2><p>Enterprise Wi-Fi, structured cabling, firewalls and SD-WAN between sites. VLANs so an infected front-desk PC can never reach the imaging modality or the plant controller. Hardware selected for dust, heat, vibration and distance.</p></div>
+  <div class="fig"><svg viewBox="0 0 600 500"><g class="lyr" data-p="0.3"><rect x="120" y="220" width="360" height="60" rx="8" fill="#0E1A3A"/><g fill="#F4C430"><rect x="140" y="242" width="16" height="16"/><rect x="170" y="242" width="16" height="16"/><rect x="200" y="242" width="16" height="16"/><rect x="230" y="242" width="16" height="16"/><rect x="260" y="242" width="16" height="16"/><rect x="290" y="242" width="16" height="16"/></g></g><g class="lyr" data-p="0.7"><path d="M160 280 V380 M300 280 V380 M440 280 V380" stroke="#F4C430" stroke-width="3"/><rect x="110" y="380" width="100" height="50" rx="6" fill="#7D98E0"/><rect x="250" y="380" width="100" height="50" rx="6" fill="#E5484D"/><rect x="390" y="380" width="100" height="50" rx="6" fill="#7D98E0"/><line x1="230" y1="360" x2="230" y2="450" stroke="#F4C430" stroke-width="4" stroke-dasharray="8 6"/><line x1="370" y1="360" x2="370" y2="450" stroke="#F4C430" stroke-width="4" stroke-dasharray="8 6"/></g><g class="lyr" data-p="1"><path d="M300 140 a70 70 0 0 1 120 0" fill="none" stroke="#F4C430" stroke-width="4"/><path d="M320 165 a45 45 0 0 1 80 0" fill="none" stroke="#F4C430" stroke-width="4"/><circle cx="360" cy="190" r="6" fill="#F4C430"/></g></svg></div>
+</section>
+
+<section class="scene dark" id="s3" data-bg="#0F2050" data-ink="#EAF2FF"><div class="depth">−3</div>
+  <div class="txt"><div class="k">Layer 3 · Servers &amp; line-of-business</div><h2>The EMR is slow every morning. Not anymore.</h2><p>eClinicalWorks, Epic, Athenahealth, practice-management, ERP and dispatch: kept online, patched and backed up. HL7 interfaces engineered by a Mirth-certified engineer. PACS storage sized for the DICOM workload you actually have.</p></div>
+  <div class="fig"><svg viewBox="0 0 600 500"><g class="lyr" data-p="0.3"><rect x="180" y="120" width="240" height="280" rx="10" fill="#0E1A3A"/><g fill="#1F3A89"><rect x="200" y="140" width="200" height="40" rx="4"/><rect x="200" y="192" width="200" height="40" rx="4"/><rect x="200" y="244" width="200" height="40" rx="4"/><rect x="200" y="296" width="200" height="40" rx="4"/><rect x="200" y="348" width="200" height="40" rx="4"/></g><g fill="#3DDC84"><circle cx="380" cy="160" r="5"/><circle cx="380" cy="212" r="5"/><circle cx="380" cy="264" r="5"/><circle cx="380" cy="316" r="5"/><circle cx="380" cy="368" r="5"/></g></g><g class="lyr" data-p="0.9"><path d="M420 200 H500 V300 H420" fill="none" stroke="#F4C430" stroke-width="3"/><text x="440" y="248" fill="#F4C430" font-family="Syne,sans-serif" font-weight="800" font-size="16">HL7</text></g></svg></div>
+</section>
+
+<section class="scene dark" id="s4" data-bg="#0B1840" data-ink="#EAF2FF"><div class="depth">−4</div>
+  <div class="txt"><div class="k">Layer 4 · Identity &amp; cloud</div><h2>Nobody is trusted by default. Not even you.</h2><p>Microsoft 365 and Azure administered properly: SSO, MFA on every account, least privilege, conditional access. This is the ground practical AI stands on: when we roll out Copilot or Claude, your data stays in your tenant and never trains a public model.</p><ul class="list"><li>Build: a tool for your costliest workflow</li><li>Integrate: Copilot / Claude, securely</li><li>Govern: audit logs, shadow-AI discovery, policy</li></ul></div>
+  <div class="fig"><svg viewBox="0 0 600 500"><g class="lyr" data-p="0.4"><circle cx="300" cy="250" r="120" fill="none" stroke="#7D98E0" stroke-width="2" stroke-dasharray="4 8"/><circle cx="300" cy="250" r="70" fill="none" stroke="#F4C430" stroke-width="2"/><circle cx="300" cy="250" r="28" fill="#F4C430"/><path d="M290 250 l7 7 l14 -16" stroke="#0E1A3A" stroke-width="4" fill="none"/></g><g class="lyr" data-p="0.9"><circle cx="300" cy="130" r="10" fill="#EAF2FF"/><circle cx="404" cy="310" r="10" fill="#EAF2FF"/><circle cx="196" cy="310" r="10" fill="#EAF2FF"/><circle cx="420" cy="180" r="6" fill="#E5484D"/><line x1="420" y1="180" x2="372" y2="222" stroke="#E5484D" stroke-width="2"/><line x1="382" y1="228" x2="362" y2="216" stroke="#E5484D" stroke-width="4"/></g></svg></div>
+</section>
+
+<section class="scene dark" id="s5" data-bg="#07112E" data-ink="#EAF2FF"><div class="depth">−5</div>
+  <div class="txt"><div class="k">Layer 5 · Security operations</div><h2>Something is always awake down here.</h2><p>Huntress threat hunters and a 24/7 SOC behind the EDR agents. Email filtering that stops phishing and business-email compromise before delivery. Continuous vulnerability scanning. When a host starts encrypting, it is isolated automatically and an engineer is paged, not a queue.</p></div>
+  <div class="fig"><svg viewBox="0 0 600 500"><g class="lyr" data-p="0.3"><ellipse cx="300" cy="250" rx="220" ry="120" fill="none" stroke="#F4C430" stroke-width="3"/><circle cx="300" cy="250" r="80" fill="#0E1A3A" stroke="#F4C430" stroke-width="3"/><circle cx="300" cy="250" r="34" fill="#F4C430"/><circle cx="300" cy="250" r="12" fill="#0E1A3A"/></g><g class="lyr" data-p="0.9"><circle cx="120" cy="150" r="8" fill="#E5484D"/><circle cx="480" cy="360" r="8" fill="#E5484D"/><path d="M120 150 L230 220 M480 360 L370 290" stroke="#E5484D" stroke-width="2" stroke-dasharray="5 5"/><circle cx="230" cy="220" r="14" fill="none" stroke="#3DDC84" stroke-width="3"/><circle cx="370" cy="290" r="14" fill="none" stroke="#3DDC84" stroke-width="3"/></g></svg></div>
+</section>
+
+<section class="scene dark" id="s6" data-bg="#030814" data-ink="#EAF2FF"><div class="depth">−6</div>
+  <div class="txt"><div class="k">Layer 6 · The vault</div><h2>At the bottom of everything: a backup that was restored this month.</h2><p>Write-once. Off-site. Replicated. Ransomware cannot encrypt or delete it, even with admin credentials. Recovery objectives defined per workload. A restore is tested every month and the result goes in your report. This is the floor the whole stack stands on.</p></div>
+  <div class="fig"><svg viewBox="0 0 600 500"><g class="lyr" data-p="0.3"><rect x="150" y="120" width="300" height="280" rx="16" fill="#0E1A3A" stroke="#F4C430" stroke-width="4"/><circle cx="300" cy="250" r="70" fill="none" stroke="#F4C430" stroke-width="10"/><circle cx="300" cy="250" r="30" fill="#F4C430"/><rect x="292" y="250" width="16" height="50" fill="#F4C430"/></g><g class="lyr" data-p="0.8"><g fill="#3DDC84"><circle cx="180" cy="150" r="6"/><circle cx="420" cy="150" r="6"/><circle cx="180" cy="370" r="6"/><circle cx="420" cy="370" r="6"/></g><text x="300" y="440" text-anchor="middle" fill="#F4C430" font-family="Syne,sans-serif" font-weight="800" font-size="16" letter-spacing="4">RESTORE TESTED · OK</text></g></svg></div>
+</section>
+
+<div class="vault dark" data-bg="#030814">
+  <h2>Now come back up.</h2>
+  <p>Six layers, one founder-led team, one flat monthly price, no contract that locks you in. The engineer who built the stack is the one who answers when something in it misbehaves.</p>
+</div>
+
+<div class="who dark" id="who" data-bg="#030814" data-ink="#EAF2FF">
+  <div><h3>Clinics</h3><p>Oncology clinic, multi-site community health center, private practices.</p></div>
+  <div><h3>Law offices</h3><p>A bankruptcy firm among them. BEC stopped; deadlines protected.</p></div>
+  <div><h3>Vet hospitals</h3><p>Practice software and X-rays kept alive, no in-house IT.</p></div>
+  <div><h3>Plants</h3><p>Concrete and packaging. Office segmented from the floor.</p></div>
+  <div><h3>Labs</h3><p>Calibration and certification. Records that can never be lost.</p></div>
+</div>
+
+<div class="faq dark" data-bg="#030814" data-ink="#EAF2FF">
+  <div class="q"><button>Is our data safe if we start using AI?<i>+</i></button><div class="a"><p>Yes. Private, governed deployments; your data never trains public models; access controlled and logged; HIPAA where it applies.</p></div></div>
+  <div class="q"><button>How fast do you respond?<i>+</i></button><div class="a"><p>You reach the engineer directly. Monitoring runs 24/7/365; a critical incident is drop-everything at any hour.</p></div></div>
+  <div class="q"><button>Long-term contracts?<i>+</i></button><div class="a"><p>No. Flat monthly, no exit clauses. Four weeks from first call to fully managed.</p></div></div>
+  <div class="q"><button>Who will I actually talk to?<i>+</i></button><div class="a"><p>Lino E. Gómez, founder and principal engineer. HIPAA Security, MCSE, Mirth Certified, AWS and Azure.</p></div></div>
+</div>
+
+<section class="up surface" id="up" data-bg="#EAF2FF" data-ink="#0E1A3A">
+  <div><div class="k" style="font-family:var(--disp);font-size:12px;letter-spacing:.24em;text-transform:uppercase;font-weight:700;color:var(--navy)">Back at the surface</div><h2>Tell us what's slowing you down.</h2><p>Thirty minutes with the engineer who does the work. A prioritized, plain-language plan. Nobody sells you anything.</p><a class="ph" href="tel:+17877149556">(787) 714-9556</a></div>
+  <form onsubmit="event.preventDefault();this.querySelector('.btn').textContent='Received — an engineer will call'"><input placeholder="Name" required><input placeholder="Organization" required><input type="email" placeholder="Email" required><input type="tel" placeholder="Phone"><select><option>Both — AI and IT/security</option><option>AI opportunities</option><option>IT and security risk</option></select><select><option>Morning</option><option>Afternoon</option><option>Evening</option><option>Anytime</option></select><button class="btn" type="submit">Request the free assessment</button></form>
+</section>
+<footer class="surface"><span>Eight Six IT Engineering · San Juan, PR · <a href="mailto:info@eightsix.co">info@eightsix.co</a></span><span>Founded 2024 · HIPAA · MCSE · Mirth · © 2026</span></footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+(function(){
+  gsap.registerPlugin(ScrollTrigger);
+  var reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  /* background colour follows the descent */
+  var els=[].slice.call(document.querySelectorAll('[data-bg]'));
+  els.forEach(function(el,i){ScrollTrigger.create({trigger:el,start:'top 55%',end:'bottom 55%',onEnter:function(){go(el)},onEnterBack:function(){go(el)}})});
+  function go(el){gsap.to('body',{backgroundColor:el.getAttribute('data-bg'),duration:.9,ease:'power2.out'});var ink=el.getAttribute('data-ink');if(ink)gsap.to('body',{color:ink,duration:.6})}
+  /* gauge */
+  var scenes=[].slice.call(document.querySelectorAll('.scene[id^=s]')),gl=document.querySelectorAll('#gl li'),gi=document.getElementById('gi');
+  ScrollTrigger.create({trigger:'#s0',endTrigger:'#s6',start:'top top',end:'bottom bottom',onUpdate:function(st){gi.style.top=(st.progress*100)+'%';var k=Math.min(6,Math.floor(st.progress*6.99));gl.forEach(function(l,i){l.classList.toggle('on',i===k)})}});
+  ScrollTrigger.create({trigger:'#who',start:'top 75%',onEnter:function(){gsap.to('.gauge',{opacity:0,duration:.4})},onLeaveBack:function(){gsap.to('.gauge',{opacity:1,duration:.4})}});
+  /* parallax layers */
+  if(!reduced){scenes.forEach(function(s){s.querySelectorAll('.lyr').forEach(function(l){var p=+l.getAttribute('data-p');gsap.fromTo(l,{y:80*p},{y:-80*p,ease:'none',scrollTrigger:{trigger:s,start:'top bottom',end:'bottom top',scrub:true}})});gsap.from(s.querySelectorAll('.txt > *'),{opacity:0,y:24,stagger:.08,duration:.8,ease:'power3.out',scrollTrigger:{trigger:s,start:'top 65%'}})});
+    gsap.from('.vault > *',{opacity:0,y:30,stagger:.15,duration:1,scrollTrigger:{trigger:'.vault',start:'top 70%'}});gsap.from('.who div',{opacity:0,y:20,stagger:.08,duration:.7,scrollTrigger:{trigger:'.who',start:'top 80%'}})}
+  /* rising bubbles */
+  var cv=document.getElementById('bub'),cx=cv.getContext('2d'),W,H,B=[],speed=1;
+  function sz(){W=cv.width=innerWidth;H=cv.height=innerHeight}sz();addEventListener('resize',sz);
+  for(var i=0;i<70;i++)B.push({x:Math.random()*innerWidth,y:Math.random()*innerHeight,r:1+Math.random()*3,v:.3+Math.random()*.8,o:.2+Math.random()*.5});
+  ScrollTrigger.create({onUpdate:function(st){speed=1+Math.min(6,Math.abs(st.getVelocity())/300)}});
+  function draw(){cx.clearRect(0,0,W,H);var dark=getComputedStyle(document.body).color.indexOf('234')>-1;cx.fillStyle=dark?'rgba(255,255,255,.55)':'rgba(31,58,137,.35)';B.forEach(function(b){b.y-=b.v*speed;if(b.y<-10){b.y=H+10;b.x=Math.random()*W}cx.globalAlpha=b.o;cx.beginPath();cx.arc(b.x,b.y,b.r,0,Math.PI*2);cx.fill()});cx.globalAlpha=1;speed+=(1-speed)*.05;if(!reduced)requestAnimationFrame(draw)}draw();
+  document.querySelectorAll('.q button').forEach(function(b){b.addEventListener('click',function(){var q=b.parentNode,a=q.querySelector('.a'),o=q.classList.toggle('open');gsap.to(a,{height:o?'auto':0,duration:.4,ease:'power3.inOut'})})});
+})();
+</script>
