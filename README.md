@@ -25,6 +25,23 @@ be served (`build/`, this README, the dotfiles, the config itself).
 The Node tooling lives in `build/`, not the root, so the served directory
 contains nothing but the site.
 
+### Checking MIPS Intelligence
+
+From `build/`, run `npm ci`, `npx playwright install chromium`,
+`npm run check:js`, `npm run test:mips`, and `npm run build`.
+`test:mips` starts its own loopback-only server and checks HTML, responsive
+layouts, visible content with and without JavaScript, accessibility, links,
+and demo-form success/failure states. External requests are blocked; form
+responses are mocked. It never sends a real demo request.
+
+Screenshots and `checks.json` go to the system temporary directory under
+`mips-intelligence-review`. Set `MIPS_QA_OUTPUT` to choose another directory,
+or `PLAYWRIGHT_CHROMIUM_EXECUTABLE` to use an existing Chromium installation.
+The review record and selected screenshots are in `build/review/`, which is
+excluded from the deployed site. Source screenshots with study identifiers or
+report excerpts are also excluded via `.assetsignore`; use only the reviewed
+crops on the page. The originals remain unchanged for traceability.
+
 ### The one build step
 
 Tailwind classes are compiled ahead of time into `tailwind.css`, which **is

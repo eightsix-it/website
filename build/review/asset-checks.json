@@ -1,0 +1,38 @@
+[
+  {
+    "path": "/mips-intelligence",
+    "status": 200
+  },
+  {
+    "path": "/assets/mips/forecast-focus.webp",
+    "status": 200
+  },
+  {
+    "path": "/assets/mips/result-met.webp",
+    "status": 200
+  },
+  {
+    "path": "/assets/mips/result-not-met.webp",
+    "status": 200
+  },
+  {
+    "path": "/assets/mips/study-results.webp",
+    "status": 200
+  },
+  {
+    "path": "/assets/mips/studies-acrad-44.webp",
+    "status": 404
+  },
+  {
+    "path": "/assets/mips/detail-met.webp",
+    "status": 404
+  },
+  {
+    "path": "/assets/mips/detail-not-met.webp",
+    "status": 404
+  },
+  {
+    "path": "/build/review/checks.json",
+    "status": 404
+  }
+]
