@@ -1,0 +1,21 @@
+{
+  "checks": [
+    "HTML structure and accessible names",
+    "Only reviewed crops referenced; originals excluded from deployment",
+    "desktop: visible content, layout, navigation, links, WCAG checks",
+    "laptop: visible content, layout, navigation, links, WCAG checks",
+    "tablet: visible content, layout, navigation, links, WCAG checks",
+    "mobile: visible content, layout, navigation, links, WCAG checks",
+    "small-mobile: visible content, layout, navigation, links, WCAG checks",
+    "reduced-motion: visible content, layout, navigation, links, WCAG checks",
+    "no-javascript: visible content, layout, navigation, links",
+    "Form: required fields and invalid email never send",
+    "Form: API rejection, HTTP error and network failure allow retry",
+    "Form: single in-flight submission, mocked success, confirmation focus",
+    "Form: successful submission starts the cooldown",
+    "Form: honeypot never sends",
+    "Form: storage unavailable still completes with mocked success"
+  ],
+  "externalFormSubmissions": 0,
+  "mockedFormRequests": 5
+}

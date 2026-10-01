@@ -5,3 +5,7 @@
 wrangler.jsonc
 build
 README.md
+# Keep source screenshots for traceability; serve only reviewed public crops.
+assets/mips/studies-acrad-44.webp
+assets/mips/detail-met.webp
+assets/mips/detail-not-met.webp
