@@ -80,17 +80,23 @@ visitor's browser on every page view. Do not put it back.
   `experience.js`, `fonts.css` and `tailwind.css`. Bump it in all eight pages
   when you change one of those files.
 - **Icons** are ligatures from a subset font holding only the ~90 glyphs in use.
-  To add one, refetch the subset from Google Fonts with the extra name in the
-  `icon_names` parameter and replace `fonts/material-symbols-subset.woff2`:
+  The ligature name goes in `data-icon` on an empty
+  `<span class="material-symbols-outlined" data-icon="arrow_forward" aria-hidden="true"></span>`.
+  Do not put the name in the span's text — that is what leaked `arrow_forward`
+  into screen readers, slow-connection fallback, and search snippets.
+  `fonts.css` draws it with `content: attr(data-icon)` and the icon face uses
+  `font-display: block`. To add a glyph, refetch the subset from Google Fonts
+  with the extra name in the `icon_names` parameter and replace
+  `fonts/material-symbols-subset.woff2`:
 
   ```
   https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&icon_names=add,arrow_forward,...
   ```
 
   An icon whose glyph is missing from the subset renders as its literal name.
-- **Icon `<span>`s are marked `aria-hidden` automatically** by `site.js`. A
-  button or link whose only content is an icon therefore needs its own
-  `aria-label`, or screen readers announce nothing.
+- **Icon `<span>`s are `aria-hidden` in the markup** (`site.js` repeats that
+  and strips any leftover text). A button or link whose only content is an
+  icon therefore needs its own `aria-label`, or screen readers announce nothing.
 - **Colour**: `primary` (`#1f3a89`) is for fills. On dark backgrounds it fails
   contrast as text, so use `primary-text` (`#8FA8F0`) there.
 

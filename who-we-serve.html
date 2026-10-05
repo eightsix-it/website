@@ -26,7 +26,7 @@
 <meta name="twitter:image" content="https://eightsixit.com/og-image.png"/>
 <link rel="preload" href="fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin/>
 <link rel="preload" href="fonts/material-symbols-subset.woff2" as="font" type="font/woff2" crossorigin/>
-<link href="fonts.css?v=20260929" rel="stylesheet"/>
+<link href="fonts.css?v=20261005" rel="stylesheet"/>
 <link href="tailwind.css?v=20261001" rel="stylesheet"/>
 <style>
     :root { --panel-line:0.12; --panel-shadow:0.07; --panel-decal:0.05; }
@@ -67,7 +67,7 @@
             <a href="https://console.eightsix.co" target="_blank" rel="noopener" class="hidden rounded bg-white/5 px-4 py-2 text-sm font-semibold text-white transition-all hover:bg-white/10 sm:block">Client Login</a>
             <a href="/assessment" class="e86-btn-shine hidden lg:block rounded bg-primary px-5 py-2 text-sm font-bold text-white shadow-[0_0_20px_rgba(31,58,137,0.4)] transition-all hover:scale-105 hover:bg-primary/90">Free Assessment</a>
         <button id="mobile-menu-btn" class="lg:hidden flex items-center justify-center p-2 rounded text-slate-400 hover:text-white hover:bg-white/10 transition-colors" aria-label="Toggle menu">
-            <span class="material-symbols-outlined" id="menu-icon">menu</span>
+            <span class="material-symbols-outlined" id="menu-icon" data-icon="menu" aria-hidden="true"></span>
         </button>
         </div>
     </div>
@@ -99,12 +99,12 @@
         <div class="mx-auto max-w-7xl px-6 relative z-10">
             <div class="mb-8 flex items-center gap-2 text-xs text-slate-400">
                 <a href="/" class="hover:text-slate-300 transition-colors">Home</a>
-                <span class="material-symbols-outlined" style="font-size:14px">chevron_right</span>
+                <span class="material-symbols-outlined" style="font-size:14px" data-icon="chevron_right" aria-hidden="true"></span>
                 <span class="text-slate-300">Who We Serve</span>
             </div>
             <div class="max-w-3xl hero-stagger">
                 <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-primary-text">
-                    <span class="material-symbols-outlined text-sm">hub</span>
+                    <span class="material-symbols-outlined text-sm" data-icon="hub" aria-hidden="true"></span>
                     Specialized Industry Expertise
                 </div>
                 <h1 class="text-4xl font-bold leading-tight tracking-tight text-white md:text-5xl lg:text-6xl">
@@ -147,7 +147,7 @@
             <div class="grid gap-16 lg:grid-cols-2 items-start">
                 <div>
                     <div class="mb-5 inline-flex items-center gap-2 rounded-lg border border-accent-yellow/30 bg-accent-yellow/5 px-3 py-1.5 text-xs font-bold uppercase tracking-widest text-accent-yellow">
-                        <span class="material-symbols-outlined text-sm">medical_services</span>
+                        <span class="material-symbols-outlined text-sm" data-icon="medical_services" aria-hidden="true"></span>
                         Sector 01
                     </div>
                     <h2 class="text-3xl font-bold text-white md:text-4xl">Healthcare &amp; Clinics</h2>
@@ -163,28 +163,28 @@
                         <p class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-4">Common Challenges We Solve</p>
                         <div class="space-y-3">
                             <div class="flex items-start gap-3 rounded-lg border border-white/5 bg-card-dark p-4">
-                                <span class="material-symbols-outlined text-accent-red text-base mt-0.5 shrink-0">close</span>
+                                <span class="material-symbols-outlined text-accent-red text-base mt-0.5 shrink-0" data-icon="close" aria-hidden="true"></span>
                                 <div>
                                     <p class="text-sm font-semibold text-white">EMR connectivity and performance issues</p>
                                     <p class="text-xs text-slate-400 mt-0.5">Slow eClinicalWorks, Epic, or Athenahealth logins that frustrate providers and delay appointments.</p>
                                 </div>
                             </div>
                             <div class="flex items-start gap-3 rounded-lg border border-white/5 bg-card-dark p-4">
-                                <span class="material-symbols-outlined text-accent-red text-base mt-0.5 shrink-0">close</span>
+                                <span class="material-symbols-outlined text-accent-red text-base mt-0.5 shrink-0" data-icon="close" aria-hidden="true"></span>
                                 <div>
                                     <p class="text-sm font-semibold text-white">HIPAA audit exposure</p>
                                     <p class="text-xs text-slate-400 mt-0.5">Missing risk assessments, unsecured devices, or undocumented access controls that create regulatory liability.</p>
                                 </div>
                             </div>
                             <div class="flex items-start gap-3 rounded-lg border border-white/5 bg-card-dark p-4">
-                                <span class="material-symbols-outlined text-accent-red text-base mt-0.5 shrink-0">close</span>
+                                <span class="material-symbols-outlined text-accent-red text-base mt-0.5 shrink-0" data-icon="close" aria-hidden="true"></span>
                                 <div>
                                     <p class="text-sm font-semibold text-white">Ransomware with no recovery plan</p>
                                     <p class="text-xs text-slate-400 mt-0.5">Backups that exist on paper but have never been tested — discovered only when it's too late.</p>
                                 </div>
                             </div>
                             <div class="flex items-start gap-3 rounded-lg border border-white/5 bg-card-dark p-4">
-                                <span class="material-symbols-outlined text-accent-red text-base mt-0.5 shrink-0">close</span>
+                                <span class="material-symbols-outlined text-accent-red text-base mt-0.5 shrink-0" data-icon="close" aria-hidden="true"></span>
                                 <div>
                                     <p class="text-sm font-semibold text-white">Multiple locations, inconsistent IT</p>
                                     <p class="text-xs text-slate-400 mt-0.5">One well-secured site and three that became the weak link — with branch clinics that can't reliably reach the EMR.</p>
@@ -199,7 +199,7 @@
                     <p class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-4">What We Deliver</p>
                     <div class="rounded-xl border border-primary/20 bg-primary/5 p-6 flex items-start gap-4">
                         <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/15 text-primary-text">
-                            <span class="material-symbols-outlined">health_and_safety</span>
+                            <span class="material-symbols-outlined" data-icon="health_and_safety" aria-hidden="true"></span>
                         </div>
                         <div>
                             <p class="font-semibold text-white text-sm">Full HIPAA Technical Safeguards</p>
@@ -208,7 +208,7 @@
                     </div>
                     <div class="rounded-xl border border-white/5 bg-card-dark p-6 flex items-start gap-4">
                         <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary-text">
-                            <span class="material-symbols-outlined">medical_information</span>
+                            <span class="material-symbols-outlined" data-icon="medical_information" aria-hidden="true"></span>
                         </div>
                         <div>
                             <p class="font-semibold text-white text-sm">EMR / EHR Integration & Support</p>
@@ -217,7 +217,7 @@
                     </div>
                     <div class="rounded-xl border border-white/5 bg-card-dark p-6 flex items-start gap-4">
                         <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary-text">
-                            <span class="material-symbols-outlined">radiology</span>
+                            <span class="material-symbols-outlined" data-icon="radiology" aria-hidden="true"></span>
                         </div>
                         <div>
                             <p class="font-semibold text-white text-sm">Imaging &amp; Radiology Expertise</p>
@@ -226,7 +226,7 @@
                     </div>
                     <div class="rounded-xl border border-white/5 bg-card-dark p-6 flex items-start gap-4">
                         <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary-text">
-                            <span class="material-symbols-outlined">lan</span>
+                            <span class="material-symbols-outlined" data-icon="lan" aria-hidden="true"></span>
                         </div>
                         <div>
                             <p class="font-semibold text-white text-sm">Multi-Site Connectivity &amp; Unified Policy</p>
@@ -235,16 +235,16 @@
                     </div>
                     <div class="rounded-xl border border-white/5 bg-card-dark p-6 flex items-start gap-4">
                         <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary-text">
-                            <span class="material-symbols-outlined">backup</span>
+                            <span class="material-symbols-outlined" data-icon="backup" aria-hidden="true"></span>
                         </div>
                         <div>
-                            <p class="font-semibold text-white text-sm">Immutable Backup with Tested Recovery</p>
-                            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Air-gapped backups of your clinical data with monthly automated recovery tests. You'll never wonder if your backup works — we prove it monthly.</p>
+                            <p class="font-semibold text-white text-sm">Cove Immutable Backup with Tested Recovery</p>
+                            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Air-gapped N-able Cove backups of your clinical data with monthly automated recovery tests. You'll never wonder if your backup works — we prove it monthly.</p>
                         </div>
                     </div>
                     <div class="rounded-xl border border-white/5 bg-card-dark p-6 flex items-start gap-4">
                         <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary-text">
-                            <span class="material-symbols-outlined">headset_mic</span>
+                            <span class="material-symbols-outlined" data-icon="headset_mic" aria-hidden="true"></span>
                         </div>
                         <div>
                             <p class="font-semibold text-white text-sm">After-Hours & Weekend Support</p>
@@ -253,7 +253,7 @@
                     </div>
                     <div class="rounded-xl border border-accent-yellow/25 bg-accent-yellow/5 p-6 flex items-start gap-4">
                         <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-accent-yellow/10 text-accent-yellow">
-                            <span class="material-symbols-outlined">smart_toy</span>
+                            <span class="material-symbols-outlined" data-icon="smart_toy" aria-hidden="true"></span>
                         </div>
                         <div>
                             <p class="font-semibold text-white text-sm">Clinical AI: Scribe &amp; MIPS Intelligence</p>
@@ -274,7 +274,7 @@
             <div class="grid gap-16 lg:grid-cols-2 items-start">
                 <div>
                     <div class="mb-5 inline-flex items-center gap-2 rounded-lg border border-accent-yellow/30 bg-accent-yellow/5 px-3 py-1.5 text-xs font-bold uppercase tracking-widest text-accent-yellow">
-                        <span class="material-symbols-outlined text-sm">work</span>
+                        <span class="material-symbols-outlined text-sm" data-icon="work" aria-hidden="true"></span>
                         Sector 02
                     </div>
                     <h2 class="text-3xl font-bold text-white md:text-4xl">Legal &amp; Professional Offices</h2>
@@ -288,28 +288,28 @@
                         <p class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-4">Common Challenges We Solve</p>
                         <div class="space-y-3">
                             <div class="flex items-start gap-3 rounded-lg border border-white/5 bg-card-dark p-4">
-                                <span class="material-symbols-outlined text-accent-red text-base mt-0.5 shrink-0">close</span>
+                                <span class="material-symbols-outlined text-accent-red text-base mt-0.5 shrink-0" data-icon="close" aria-hidden="true"></span>
                                 <div>
                                     <p class="text-sm font-semibold text-white">Business email compromise (BEC)</p>
                                     <p class="text-xs text-slate-400 mt-0.5">Spoofed partner emails that trick staff into wire transfers or disclosure of sensitive client information.</p>
                                 </div>
                             </div>
                             <div class="flex items-start gap-3 rounded-lg border border-white/5 bg-card-dark p-4">
-                                <span class="material-symbols-outlined text-accent-red text-base mt-0.5 shrink-0">close</span>
+                                <span class="material-symbols-outlined text-accent-red text-base mt-0.5 shrink-0" data-icon="close" aria-hidden="true"></span>
                                 <div>
                                     <p class="text-sm font-semibold text-white">Unsecured remote work environments</p>
                                     <p class="text-xs text-slate-400 mt-0.5">Staff accessing confidential files from personal devices or unmanaged home networks without VPN or MFA.</p>
                                 </div>
                             </div>
                             <div class="flex items-start gap-3 rounded-lg border border-white/5 bg-card-dark p-4">
-                                <span class="material-symbols-outlined text-accent-red text-base mt-0.5 shrink-0">close</span>
+                                <span class="material-symbols-outlined text-accent-red text-base mt-0.5 shrink-0" data-icon="close" aria-hidden="true"></span>
                                 <div>
                                     <p class="text-sm font-semibold text-white">No technology strategy or roadmap</p>
                                     <p class="text-xs text-slate-400 mt-0.5">IT decisions made reactively — replacing hardware only when it breaks, with no budget planning or lifecycle management.</p>
                                 </div>
                             </div>
                             <div class="flex items-start gap-3 rounded-lg border border-white/5 bg-card-dark p-4">
-                                <span class="material-symbols-outlined text-accent-red text-base mt-0.5 shrink-0">close</span>
+                                <span class="material-symbols-outlined text-accent-red text-base mt-0.5 shrink-0" data-icon="close" aria-hidden="true"></span>
                                 <div>
                                     <p class="text-sm font-semibold text-white">Downtime during filing deadlines</p>
                                     <p class="text-xs text-slate-400 mt-0.5">When a court e-filing window is closing, a dead workstation or offline document system isn't an inconvenience — it's a malpractice risk.</p>
@@ -322,7 +322,7 @@
                     <p class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-4">What We Deliver</p>
                     <div class="rounded-xl border border-primary/20 bg-primary/5 p-6 flex items-start gap-4">
                         <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/15 text-primary-text">
-                            <span class="material-symbols-outlined">shield</span>
+                            <span class="material-symbols-outlined" data-icon="shield" aria-hidden="true"></span>
                         </div>
                         <div>
                             <p class="font-semibold text-white text-sm">Enterprise Security for SMB Budgets</p>
@@ -331,7 +331,7 @@
                     </div>
                     <div class="rounded-xl border border-white/5 bg-card-dark p-6 flex items-start gap-4">
                         <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary-text">
-                            <span class="material-symbols-outlined">work_history</span>
+                            <span class="material-symbols-outlined" data-icon="work_history" aria-hidden="true"></span>
                         </div>
                         <div>
                             <p class="font-semibold text-white text-sm">Microsoft 365 &amp; Productivity Management</p>
@@ -340,7 +340,7 @@
                     </div>
                     <div class="rounded-xl border border-white/5 bg-card-dark p-6 flex items-start gap-4">
                         <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary-text">
-                            <span class="material-symbols-outlined">home_work</span>
+                            <span class="material-symbols-outlined" data-icon="home_work" aria-hidden="true"></span>
                         </div>
                         <div>
                             <p class="font-semibold text-white text-sm">Secure Remote Work Infrastructure</p>
@@ -349,7 +349,7 @@
                     </div>
                     <div class="rounded-xl border border-white/5 bg-card-dark p-6 flex items-start gap-4">
                         <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary-text">
-                            <span class="material-symbols-outlined">groups</span>
+                            <span class="material-symbols-outlined" data-icon="groups" aria-hidden="true"></span>
                         </div>
                         <div>
                             <p class="font-semibold text-white text-sm">vCIO Technology Strategy</p>
@@ -358,7 +358,7 @@
                     </div>
                     <div class="rounded-xl border border-accent-yellow/25 bg-accent-yellow/5 p-6 flex items-start gap-4">
                         <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-accent-yellow/10 text-accent-yellow">
-                            <span class="material-symbols-outlined">smart_toy</span>
+                            <span class="material-symbols-outlined" data-icon="smart_toy" aria-hidden="true"></span>
                         </div>
                         <div>
                             <p class="font-semibold text-white text-sm">Document AI &amp; Copilot Rollout</p>
@@ -379,7 +379,7 @@
             <div class="grid gap-16 lg:grid-cols-2 items-start">
                 <div>
                     <div class="mb-5 inline-flex items-center gap-2 rounded-lg border border-accent-yellow/30 bg-accent-yellow/5 px-3 py-1.5 text-xs font-bold uppercase tracking-widest text-accent-yellow">
-                        <span class="material-symbols-outlined text-sm">pets</span>
+                        <span class="material-symbols-outlined text-sm" data-icon="pets" aria-hidden="true"></span>
                         Sector 03
                     </div>
                     <h2 class="text-3xl font-bold text-white md:text-4xl">Veterinary Clinics &amp; Hospitals</h2>
@@ -393,21 +393,21 @@
                         <p class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-4">Common Challenges We Solve</p>
                         <div class="space-y-3">
                             <div class="flex items-start gap-3 rounded-lg border border-white/5 bg-card-dark p-4">
-                                <span class="material-symbols-outlined text-accent-red text-base mt-0.5 shrink-0">close</span>
+                                <span class="material-symbols-outlined text-accent-red text-base mt-0.5 shrink-0" data-icon="close" aria-hidden="true"></span>
                                 <div>
                                     <p class="text-sm font-semibold text-white">Practice software downtime</p>
                                     <p class="text-xs text-slate-400 mt-0.5">When the practice management system is down, schedules, records, and invoices all stop — and the whole hospital queues up at the front desk.</p>
                                 </div>
                             </div>
                             <div class="flex items-start gap-3 rounded-lg border border-white/5 bg-card-dark p-4">
-                                <span class="material-symbols-outlined text-accent-red text-base mt-0.5 shrink-0">close</span>
+                                <span class="material-symbols-outlined text-accent-red text-base mt-0.5 shrink-0" data-icon="close" aria-hidden="true"></span>
                                 <div>
                                     <p class="text-sm font-semibold text-white">No in-house IT</p>
                                     <p class="text-xs text-slate-400 mt-0.5">The practice manager doubles as tech support, losing hours to printers, Wi-Fi, and workstation issues between clients.</p>
                                 </div>
                             </div>
                             <div class="flex items-start gap-3 rounded-lg border border-white/5 bg-card-dark p-4">
-                                <span class="material-symbols-outlined text-accent-red text-base mt-0.5 shrink-0">close</span>
+                                <span class="material-symbols-outlined text-accent-red text-base mt-0.5 shrink-0" data-icon="close" aria-hidden="true"></span>
                                 <div>
                                     <p class="text-sm font-semibold text-white">Unprotected records and imaging</p>
                                     <p class="text-xs text-slate-400 mt-0.5">Years of patient records and digital X-rays sitting on one aging server — with no tested backup behind them.</p>
@@ -420,7 +420,7 @@
                     <p class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-4">What We Deliver</p>
                     <div class="rounded-xl border border-primary/20 bg-primary/5 p-6 flex items-start gap-4">
                         <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/15 text-primary-text">
-                            <span class="material-symbols-outlined">medical_information</span>
+                            <span class="material-symbols-outlined" data-icon="medical_information" aria-hidden="true"></span>
                         </div>
                         <div>
                             <p class="font-semibold text-white text-sm">Practice Management Software Support</p>
@@ -429,7 +429,7 @@
                     </div>
                     <div class="rounded-xl border border-white/5 bg-card-dark p-6 flex items-start gap-4">
                         <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary-text">
-                            <span class="material-symbols-outlined">radiology</span>
+                            <span class="material-symbols-outlined" data-icon="radiology" aria-hidden="true"></span>
                         </div>
                         <div>
                             <p class="font-semibold text-white text-sm">Imaging &amp; Diagnostic Equipment Connectivity</p>
@@ -438,16 +438,16 @@
                     </div>
                     <div class="rounded-xl border border-white/5 bg-card-dark p-6 flex items-start gap-4">
                         <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary-text">
-                            <span class="material-symbols-outlined">backup</span>
+                            <span class="material-symbols-outlined" data-icon="backup" aria-hidden="true"></span>
                         </div>
                         <div>
                             <p class="font-semibold text-white text-sm">Backup &amp; Recovery for Clinical Records</p>
-                            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Immutable, tested backups of patient records and imaging — so one failed server never erases a decade of history.</p>
+                            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Immutable, tested N-able Cove backups of patient records and imaging — so one failed server never erases a decade of history.</p>
                         </div>
                     </div>
                     <div class="rounded-xl border border-white/5 bg-card-dark p-6 flex items-start gap-4">
                         <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary-text">
-                            <span class="material-symbols-outlined">headset_mic</span>
+                            <span class="material-symbols-outlined" data-icon="headset_mic" aria-hidden="true"></span>
                         </div>
                         <div>
                             <p class="font-semibold text-white text-sm">Helpdesk for Busy Front Desks</p>
@@ -456,7 +456,7 @@
                     </div>
                     <div class="rounded-xl border border-accent-yellow/25 bg-accent-yellow/5 p-6 flex items-start gap-4">
                         <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-accent-yellow/10 text-accent-yellow">
-                            <span class="material-symbols-outlined">smart_toy</span>
+                            <span class="material-symbols-outlined" data-icon="smart_toy" aria-hidden="true"></span>
                         </div>
                         <div>
                             <p class="font-semibold text-white text-sm">Automation &amp; AI for the Practice</p>
@@ -477,7 +477,7 @@
             <div class="grid gap-16 lg:grid-cols-2 items-start">
                 <div>
                     <div class="mb-5 inline-flex items-center gap-2 rounded-lg border border-accent-yellow/30 bg-accent-yellow/5 px-3 py-1.5 text-xs font-bold uppercase tracking-widest text-accent-yellow">
-                        <span class="material-symbols-outlined text-sm">factory</span>
+                        <span class="material-symbols-outlined text-sm" data-icon="factory" aria-hidden="true"></span>
                         Sector 04
                     </div>
                     <h2 class="text-3xl font-bold text-white md:text-4xl">Manufacturing &amp; Industrial Operations</h2>
@@ -491,21 +491,21 @@
                         <p class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-4">Common Challenges We Solve</p>
                         <div class="space-y-3">
                             <div class="flex items-start gap-3 rounded-lg border border-white/5 bg-card-dark p-4">
-                                <span class="material-symbols-outlined text-accent-red text-base mt-0.5 shrink-0">close</span>
+                                <span class="material-symbols-outlined text-accent-red text-base mt-0.5 shrink-0" data-icon="close" aria-hidden="true"></span>
                                 <div>
                                     <p class="text-sm font-semibold text-white">Downtime that stops production</p>
                                     <p class="text-xs text-slate-400 mt-0.5">A dead server or network switch idles crews, trucks, and machines — and the losses compound by the hour.</p>
                                 </div>
                             </div>
                             <div class="flex items-start gap-3 rounded-lg border border-white/5 bg-card-dark p-4">
-                                <span class="material-symbols-outlined text-accent-red text-base mt-0.5 shrink-0">close</span>
+                                <span class="material-symbols-outlined text-accent-red text-base mt-0.5 shrink-0" data-icon="close" aria-hidden="true"></span>
                                 <div>
                                     <p class="text-sm font-semibold text-white">Harsh plant environments</p>
                                     <p class="text-xs text-slate-400 mt-0.5">Dust, heat, vibration, and long distances between buildings kill consumer-grade gear and Wi-Fi that was never designed for an industrial site.</p>
                                 </div>
                             </div>
                             <div class="flex items-start gap-3 rounded-lg border border-white/5 bg-card-dark p-4">
-                                <span class="material-symbols-outlined text-accent-red text-base mt-0.5 shrink-0">close</span>
+                                <span class="material-symbols-outlined text-accent-red text-base mt-0.5 shrink-0" data-icon="close" aria-hidden="true"></span>
                                 <div>
                                     <p class="text-sm font-semibold text-white">Ransomware targeting manufacturers</p>
                                     <p class="text-xs text-slate-400 mt-0.5">Manufacturing is now among the most-attacked industries — and flat networks let one infected office PC reach production systems.</p>
@@ -518,7 +518,7 @@
                     <p class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-4">What We Deliver</p>
                     <div class="rounded-xl border border-primary/20 bg-primary/5 p-6 flex items-start gap-4">
                         <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/15 text-primary-text">
-                            <span class="material-symbols-outlined">router</span>
+                            <span class="material-symbols-outlined" data-icon="router" aria-hidden="true"></span>
                         </div>
                         <div>
                             <p class="font-semibold text-white text-sm">Industrial-Grade Networking</p>
@@ -527,7 +527,7 @@
                     </div>
                     <div class="rounded-xl border border-white/5 bg-card-dark p-6 flex items-start gap-4">
                         <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary-text">
-                            <span class="material-symbols-outlined">safety_divider</span>
+                            <span class="material-symbols-outlined" data-icon="safety_divider" aria-hidden="true"></span>
                         </div>
                         <div>
                             <p class="font-semibold text-white text-sm">Office / Plant Network Segmentation</p>
@@ -536,7 +536,7 @@
                     </div>
                     <div class="rounded-xl border border-white/5 bg-card-dark p-6 flex items-start gap-4">
                         <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary-text">
-                            <span class="material-symbols-outlined">precision_manufacturing</span>
+                            <span class="material-symbols-outlined" data-icon="precision_manufacturing" aria-hidden="true"></span>
                         </div>
                         <div>
                             <p class="font-semibold text-white text-sm">Business &amp; Production Systems Support</p>
@@ -545,16 +545,16 @@
                     </div>
                     <div class="rounded-xl border border-white/5 bg-card-dark p-6 flex items-start gap-4">
                         <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary-text">
-                            <span class="material-symbols-outlined">backup</span>
+                            <span class="material-symbols-outlined" data-icon="backup" aria-hidden="true"></span>
                         </div>
                         <div>
                             <p class="font-semibold text-white text-sm">Backup &amp; Rapid Recovery</p>
-                            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Immutable backups and tested recovery plans built around one question: how fast can production be running again?</p>
+                            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Immutable N-able Cove backups and tested recovery plans built around one question: how fast can production be running again?</p>
                         </div>
                     </div>
                     <div class="rounded-xl border border-accent-yellow/25 bg-accent-yellow/5 p-6 flex items-start gap-4">
                         <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-accent-yellow/10 text-accent-yellow">
-                            <span class="material-symbols-outlined">smart_toy</span>
+                            <span class="material-symbols-outlined" data-icon="smart_toy" aria-hidden="true"></span>
                         </div>
                         <div>
                             <p class="font-semibold text-white text-sm">Practical AI for Operations</p>
@@ -575,7 +575,7 @@
             <div class="grid gap-16 lg:grid-cols-2 items-start">
                 <div>
                     <div class="mb-5 inline-flex items-center gap-2 rounded-lg border border-accent-yellow/30 bg-accent-yellow/5 px-3 py-1.5 text-xs font-bold uppercase tracking-widest text-accent-yellow">
-                        <span class="material-symbols-outlined text-sm">science</span>
+                        <span class="material-symbols-outlined text-sm" data-icon="science" aria-hidden="true"></span>
                         Sector 05
                     </div>
                     <h2 class="text-3xl font-bold text-white md:text-4xl">Labs, Calibration &amp; Certification</h2>
@@ -589,21 +589,21 @@
                         <p class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-4">Common Challenges We Solve</p>
                         <div class="space-y-3">
                             <div class="flex items-start gap-3 rounded-lg border border-white/5 bg-card-dark p-4">
-                                <span class="material-symbols-outlined text-accent-red text-base mt-0.5 shrink-0">close</span>
+                                <span class="material-symbols-outlined text-accent-red text-base mt-0.5 shrink-0" data-icon="close" aria-hidden="true"></span>
                                 <div>
                                     <p class="text-sm font-semibold text-white">Records that can't be lost</p>
                                     <p class="text-xs text-slate-400 mt-0.5">Losing calibration history isn't an inconvenience — it undermines every certificate you've ever issued.</p>
                                 </div>
                             </div>
                             <div class="flex items-start gap-3 rounded-lg border border-white/5 bg-card-dark p-4">
-                                <span class="material-symbols-outlined text-accent-red text-base mt-0.5 shrink-0">close</span>
+                                <span class="material-symbols-outlined text-accent-red text-base mt-0.5 shrink-0" data-icon="close" aria-hidden="true"></span>
                                 <div>
                                     <p class="text-sm font-semibold text-white">Instrument-connected workstations</p>
                                     <p class="text-xs text-slate-400 mt-0.5">Specialized vendor software on aging PCs, tied to expensive instruments — often unpatched because nobody dares touch them.</p>
                                 </div>
                             </div>
                             <div class="flex items-start gap-3 rounded-lg border border-white/5 bg-card-dark p-4">
-                                <span class="material-symbols-outlined text-accent-red text-base mt-0.5 shrink-0">close</span>
+                                <span class="material-symbols-outlined text-accent-red text-base mt-0.5 shrink-0" data-icon="close" aria-hidden="true"></span>
                                 <div>
                                     <p class="text-sm font-semibold text-white">The audit scramble</p>
                                     <p class="text-xs text-slate-400 mt-0.5">Certificates and supporting records scattered across shared drives and inboxes — right when the auditor asks for them.</p>
@@ -616,16 +616,16 @@
                     <p class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-4">What We Deliver</p>
                     <div class="rounded-xl border border-primary/20 bg-primary/5 p-6 flex items-start gap-4">
                         <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/15 text-primary-text">
-                            <span class="material-symbols-outlined">backup</span>
+                            <span class="material-symbols-outlined" data-icon="backup" aria-hidden="true"></span>
                         </div>
                         <div>
                             <p class="font-semibold text-white text-sm">Data Integrity &amp; Tested Backup</p>
-                            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Immutable, versioned backups of calibration records and certificates, with recovery that's tested — not assumed.</p>
+                            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Immutable, versioned N-able Cove backups of calibration records and certificates, with recovery that's tested — not assumed.</p>
                         </div>
                     </div>
                     <div class="rounded-xl border border-white/5 bg-card-dark p-6 flex items-start gap-4">
                         <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary-text">
-                            <span class="material-symbols-outlined">description</span>
+                            <span class="material-symbols-outlined" data-icon="description" aria-hidden="true"></span>
                         </div>
                         <div>
                             <p class="font-semibold text-white text-sm">Secure Certificate &amp; Document Workflows</p>
@@ -634,7 +634,7 @@
                     </div>
                     <div class="rounded-xl border border-white/5 bg-card-dark p-6 flex items-start gap-4">
                         <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary-text">
-                            <span class="material-symbols-outlined">monitor</span>
+                            <span class="material-symbols-outlined" data-icon="monitor" aria-hidden="true"></span>
                         </div>
                         <div>
                             <p class="font-semibold text-white text-sm">Instrument Workstation Management</p>
@@ -643,7 +643,7 @@
                     </div>
                     <div class="rounded-xl border border-white/5 bg-card-dark p-6 flex items-start gap-4">
                         <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary-text">
-                            <span class="material-symbols-outlined">mail</span>
+                            <span class="material-symbols-outlined" data-icon="mail" aria-hidden="true"></span>
                         </div>
                         <div>
                             <p class="font-semibold text-white text-sm">Microsoft 365 &amp; Email Security</p>
@@ -652,7 +652,7 @@
                     </div>
                     <div class="rounded-xl border border-accent-yellow/25 bg-accent-yellow/5 p-6 flex items-start gap-4">
                         <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-accent-yellow/10 text-accent-yellow">
-                            <span class="material-symbols-outlined">smart_toy</span>
+                            <span class="material-symbols-outlined" data-icon="smart_toy" aria-hidden="true"></span>
                         </div>
                         <div>
                             <p class="font-semibold text-white text-sm">Document Automation &amp; AI</p>
@@ -695,7 +695,7 @@
                             Get Your Free Assessment
                         </a>
                         <a class="flex items-center gap-2 text-lg font-bold" href="tel:+17877149556">
-                            <span class="material-symbols-outlined">call</span>
+                            <span class="material-symbols-outlined" data-icon="call" aria-hidden="true"></span>
                             (787) 714-9556
                         </a>
                     </div>
@@ -749,16 +749,16 @@
                 <h3 class="mb-6 text-sm font-bold uppercase tracking-widest text-white">Contact</h3>
                 <ul class="space-y-4 text-sm">
                     <li class="flex items-start gap-3">
-                        <span class="material-symbols-outlined text-primary-text text-sm mt-0.5">location_on</span>
+                        <span class="material-symbols-outlined text-primary-text text-sm mt-0.5" data-icon="location_on" aria-hidden="true"></span>
                         <span>San Juan, Puerto Rico</span>
                     </li>
                     <li class="flex items-start gap-3">
-                        <span class="material-symbols-outlined text-primary-text text-sm mt-0.5">phone</span>
+                        <span class="material-symbols-outlined text-primary-text text-sm mt-0.5" data-icon="phone" aria-hidden="true"></span>
                         <a class="hover:text-primary-text transition-colors" href="tel:+17877149556">(787) 714-9556</a>
                     </li>
                     <li class="flex items-start gap-3">
-                        <span class="material-symbols-outlined text-primary-text text-sm mt-0.5">mail</span>
-                        <a class="hover:text-primary-text transition-colors" href="mailto:info@eightsix.co">info@eightsix.co</a>
+                        <span class="material-symbols-outlined text-primary-text text-sm mt-0.5" data-icon="mail" aria-hidden="true"></span>
+                        <a class="hover:text-primary-text transition-colors" href="mailto:info@eightsixit.com">info@eightsixit.com</a>
                     </li>
                 </ul>
             </div>
@@ -777,7 +777,7 @@
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.4/dist/lenis.min.js" defer></script>
-<script src="site.js?v=20260929" defer></script>
+<script src="site.js?v=20261005" defer></script>
 <script src="experience.js?v=20260929" defer></script>
 </body>
 </html>

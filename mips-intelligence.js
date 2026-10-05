@@ -69,7 +69,7 @@
 
         formError.classList.add('hidden');
         submitBtn.disabled = true;
-        submitBtn.innerHTML = '<span class="material-symbols-outlined" aria-hidden="true">progress_activity</span> Sending...';
+        submitBtn.innerHTML = '<span class="material-symbols-outlined" aria-hidden="true" data-icon="progress_activity"></span> Sending...';
 
         try {
             const response = await fetch('https://api.web3forms.com/submit', {
@@ -83,7 +83,7 @@
         } catch (err) {
             showError('Something went wrong. Please try again or call us directly.');
             submitBtn.disabled = false;
-            submitBtn.innerHTML = '<span class="material-symbols-outlined" aria-hidden="true">send</span> Request demo';
+            submitBtn.innerHTML = '<span class="material-symbols-outlined" aria-hidden="true" data-icon="send"></span> Request demo';
         }
     });
 })();

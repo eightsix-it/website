@@ -77,7 +77,7 @@
             <a href="/assessment" class="e86-btn-shine hidden lg:block rounded bg-primary px-5 py-2 text-sm font-bold text-white shadow-[0_0_20px_rgba(31,58,137,0.4)] transition-all hover:scale-105 hover:bg-primary/90">Free Assessment</a>
         </div>
         <button id="mobile-menu-btn" class="lg:hidden flex items-center justify-center p-2 rounded text-slate-400 hover:text-white hover:bg-white/10 transition-colors" aria-label="Toggle menu">
-            <span class="material-symbols-outlined" id="menu-icon">menu</span>
+            <span class="material-symbols-outlined" id="menu-icon" data-icon="menu" aria-hidden="true"></span>
         </button>
     </div>
     <!-- Mobile menu -->
@@ -107,7 +107,7 @@
     </div>
     <div class="mx-auto max-w-7xl px-6 relative z-10 text-center hero-stagger">
         <div class="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-primary-text">
-            <span class="material-symbols-outlined text-sm">construction</span>
+            <span class="material-symbols-outlined text-sm" data-icon="construction" aria-hidden="true"></span>
             Free Security Tools
         </div>
         <h1 class="mt-4 text-3xl font-bold text-white md:text-5xl">Know Your Risk. <span class="text-primary-text">For Free.</span></h1>
@@ -122,7 +122,7 @@
         <!-- ── TOOL 1: Password Strength Checker ── -->
         <div class="tool-card p-8">
             <div class="flex items-center gap-3 mb-6">
-                <span class="material-symbols-outlined text-primary-text text-3xl">lock</span>
+                <span class="material-symbols-outlined text-primary-text text-3xl" data-icon="lock" aria-hidden="true"></span>
                 <div>
                     <h2 class="text-xl font-bold text-white">Password Strength Checker</h2>
                     <p class="text-sm text-slate-400">Real-time analysis — nothing is sent over the network.</p>
@@ -131,7 +131,7 @@
             <div class="relative mb-4">
                 <input id="pw-input" type="password" placeholder="Type or paste a password..." class="w-full rounded-lg bg-white/5 border border-white/10 px-4 py-3 pr-12 text-white placeholder-slate-500 focus:outline-none focus:border-primary/60 transition-colors"/>
                 <button type="button" id="pw-toggle" class="absolute right-2 top-1/2 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded text-slate-400 hover:text-white" title="Show/hide" aria-label="Show or hide the password">
-                    <span class="material-symbols-outlined text-xl" id="pw-eye">visibility</span>
+                    <span class="material-symbols-outlined text-xl" id="pw-eye" data-icon="visibility" aria-hidden="true"></span>
                 </button>
             </div>
             <!-- Strength bar -->
@@ -156,7 +156,7 @@
         <!-- ── TOOL 2: Password Generator ── -->
         <div class="tool-card p-8">
             <div class="flex items-center gap-3 mb-6">
-                <span class="material-symbols-outlined text-primary-text text-3xl">key</span>
+                <span class="material-symbols-outlined text-primary-text text-3xl" data-icon="key" aria-hidden="true"></span>
                 <div>
                     <h2 class="text-xl font-bold text-white">Password Generator</h2>
                     <p class="text-sm text-slate-400">Generate a strong random password instantly.</p>
@@ -166,7 +166,7 @@
             <div class="flex gap-2 mb-6">
                 <div id="gen-output" class="flex-1 rounded-lg bg-white/5 border border-white/10 px-4 py-3 text-white font-mono text-sm tracking-wider break-all select-all">Click Generate to create a password</div>
                 <button type="button" id="gen-copy" aria-label="Copy password to clipboard" class="flex-shrink-0 flex items-center gap-1 rounded-lg bg-white/5 border border-white/10 px-4 py-3 text-sm font-semibold text-slate-300 hover:bg-white/10 hover:text-white transition-colors">
-                    <span class="material-symbols-outlined text-base" id="copy-icon">content_copy</span>
+                    <span class="material-symbols-outlined text-base" id="copy-icon" data-icon="content_copy" aria-hidden="true"></span>
                 </button>
             </div>
             <!-- Length slider -->
@@ -185,14 +185,14 @@
                 <label class="flex items-center gap-2 cursor-pointer text-sm text-slate-300"><input id="gen-syms" type="checkbox" checked class="accent-primary"/> Symbols</label>
             </div>
             <button id="gen-btn" class="w-full rounded-lg bg-primary px-6 py-3 text-sm font-bold text-white hover:bg-primary/90 transition-colors flex items-center justify-center gap-2">
-                <span class="material-symbols-outlined text-base">refresh</span> Generate Password
+                <span class="material-symbols-outlined text-base" data-icon="refresh" aria-hidden="true"></span> Generate Password
             </button>
         </div>
 
         <!-- ── TOOL 3: Breach Email Checker ── -->
         <div class="tool-card p-8">
             <div class="flex items-center gap-3 mb-2">
-                <span class="material-symbols-outlined text-primary-text text-3xl">gpp_bad</span>
+                <span class="material-symbols-outlined text-primary-text text-3xl" data-icon="gpp_bad" aria-hidden="true"></span>
                 <div>
                     <h2 class="text-xl font-bold text-white">Email Breach Checker</h2>
                     <p class="text-sm text-slate-400">Check if your email has appeared in a known data breach.</p>
@@ -209,7 +209,7 @@
         <!-- ── TOOL 4: Phishing URL Analyzer ── -->
         <div class="tool-card p-8">
             <div class="flex items-center gap-3 mb-2">
-                <span class="material-symbols-outlined text-primary-text text-3xl">phishing</span>
+                <span class="material-symbols-outlined text-primary-text text-3xl" data-icon="phishing" aria-hidden="true"></span>
                 <div>
                     <h2 class="text-xl font-bold text-white">Phishing URL Analyzer</h2>
                     <p class="text-sm text-slate-400">Analyzes a URL for common phishing indicators — runs entirely in your browser.</p>
@@ -226,7 +226,7 @@
         <!-- ── TOOL 5: HIPAA Readiness Quiz ── -->
         <div class="tool-card p-8">
             <div class="flex items-center gap-3 mb-2">
-                <span class="material-symbols-outlined text-primary-text text-3xl">health_and_safety</span>
+                <span class="material-symbols-outlined text-primary-text text-3xl" data-icon="health_and_safety" aria-hidden="true"></span>
                 <div>
                     <h2 class="text-xl font-bold text-white">HIPAA Readiness Quiz</h2>
                     <p class="text-sm text-slate-400">10 quick questions to gauge your organization's HIPAA posture.</p>
@@ -236,7 +236,7 @@
             <div id="quiz-container" class="space-y-6"></div>
             <div id="quiz-result" class="hidden mt-8 rounded-xl p-6 border"></div>
             <button id="quiz-submit" class="hidden mt-6 w-full rounded-lg bg-primary px-6 py-3 text-sm font-bold text-white hover:bg-primary/90 transition-colors flex items-center justify-center gap-2">
-                <span class="material-symbols-outlined text-base">check_circle</span> See My Results
+                <span class="material-symbols-outlined text-base" data-icon="check_circle" aria-hidden="true"></span> See My Results
             </button>
             <button id="quiz-reset" class="hidden mt-3 w-full rounded-lg bg-white/5 border border-white/10 px-6 py-3 text-sm font-semibold text-slate-300 hover:bg-white/10 transition-colors">Retake Quiz</button>
         </div>
@@ -244,7 +244,7 @@
         <!-- ── TOOL 6: AI Readiness Quiz ── -->
         <div class="tool-card p-8">
             <div class="flex items-center gap-3 mb-2">
-                <span class="material-symbols-outlined text-primary-text text-3xl">smart_toy</span>
+                <span class="material-symbols-outlined text-primary-text text-3xl" data-icon="smart_toy" aria-hidden="true"></span>
                 <div>
                     <h2 class="text-xl font-bold text-white">AI Readiness Quiz</h2>
                     <p class="text-sm text-slate-400">10 quick questions to gauge how ready your business is to adopt AI safely.</p>
@@ -254,7 +254,7 @@
             <div id="ai-quiz-container" class="space-y-6"></div>
             <div id="ai-quiz-result" class="hidden mt-8 rounded-xl p-6 border"></div>
             <button id="ai-quiz-submit" class="hidden mt-6 w-full rounded-lg bg-primary px-6 py-3 text-sm font-bold text-white hover:bg-primary/90 transition-colors flex items-center justify-center gap-2">
-                <span class="material-symbols-outlined text-base">check_circle</span> See My Results
+                <span class="material-symbols-outlined text-base" data-icon="check_circle" aria-hidden="true"></span> See My Results
             </button>
             <button id="ai-quiz-reset" class="hidden mt-3 w-full rounded-lg bg-white/5 border border-white/10 px-6 py-3 text-sm font-semibold text-slate-300 hover:bg-white/10 transition-colors">Retake Quiz</button>
         </div>
@@ -276,7 +276,7 @@
                 <div class="mt-10 flex flex-col items-center justify-center gap-6 sm:flex-row">
                     <a href="/assessment" class="rounded-lg bg-white px-8 py-4 text-lg font-bold text-primary shadow-md transition-all hover:bg-slate-50 hover:shadow-lg">Book Your Free Assessment</a>
                     <a class="flex items-center gap-2 text-lg font-bold" href="tel:+17877149556">
-                        <span class="material-symbols-outlined">call</span>
+                        <span class="material-symbols-outlined" data-icon="call" aria-hidden="true"></span>
                         (787) 714-9556
                     </a>
                 </div>
@@ -329,16 +329,16 @@
                 <h3 class="mb-6 text-sm font-bold uppercase tracking-widest text-white">Contact</h3>
                 <ul class="space-y-4 text-sm">
                     <li class="flex items-start gap-3">
-                        <span class="material-symbols-outlined text-primary-text text-sm mt-0.5">location_on</span>
+                        <span class="material-symbols-outlined text-primary-text text-sm mt-0.5" data-icon="location_on" aria-hidden="true"></span>
                         <span>San Juan, Puerto Rico</span>
                     </li>
                     <li class="flex items-start gap-3">
-                        <span class="material-symbols-outlined text-primary-text text-sm mt-0.5">phone</span>
+                        <span class="material-symbols-outlined text-primary-text text-sm mt-0.5" data-icon="phone" aria-hidden="true"></span>
                         <a class="hover:text-primary-text transition-colors" href="tel:+17877149556">(787) 714-9556</a>
                     </li>
                     <li class="flex items-start gap-3">
-                        <span class="material-symbols-outlined text-primary-text text-sm mt-0.5">mail</span>
-                        <a class="hover:text-primary-text transition-colors" href="mailto:info@eightsix.co">info@eightsix.co</a>
+                        <span class="material-symbols-outlined text-primary-text text-sm mt-0.5" data-icon="mail" aria-hidden="true"></span>
+                        <a class="hover:text-primary-text transition-colors" href="mailto:info@eightsixit.com">info@eightsixit.com</a>
                     </li>
                 </ul>
             </div>
@@ -423,7 +423,8 @@
     pwToggle.addEventListener('click', function () {
         var show = pwInput.type === 'password';
         pwInput.type = show ? 'text' : 'password';
-        pwEye.textContent = show ? 'visibility_off' : 'visibility';
+        pwEye.dataset.icon = show ? 'visibility_off' : 'visibility';
+        pwEye.textContent = '';
     });
 
     /* ══════════════════════════════════════
@@ -475,8 +476,9 @@
         var text = genOutput.textContent;
         if (!text || text === 'Select at least one character type.') return;
         navigator.clipboard.writeText(text).then(function () {
-            copyIcon.textContent = 'check';
-            setTimeout(function () { copyIcon.textContent = 'content_copy'; }, 1500);
+            copyIcon.dataset.icon = 'check';
+            copyIcon.textContent = '';
+            setTimeout(function () { copyIcon.dataset.icon = 'content_copy'; copyIcon.textContent = ''; }, 1500);
         });
     });
 
@@ -607,7 +609,7 @@
               }).join('');
 
         urlResult.className = 'rounded-lg p-4 border ' + borderColor;
-        urlResult.innerHTML = '<div class="flex items-center gap-2 mb-1"><span class="material-symbols-outlined ' + riskColor + '">security</span><span class="font-bold ' + riskColor + '">' + riskLabel + '</span><span class="text-xs text-slate-400 ml-1">(' + flags.length + ' indicator' + (flags.length !== 1 ? 's' : '') + ')</span></div>' + flagsHtml;
+        urlResult.innerHTML = '<div class="flex items-center gap-2 mb-1"><span class="material-symbols-outlined ' + riskColor + '" data-icon="security" aria-hidden="true"></span><span class="font-bold ' + riskColor + '">' + riskLabel + '</span><span class="text-xs text-slate-400 ml-1">(' + flags.length + ' indicator' + (flags.length !== 1 ? 's' : '') + ')</span></div>' + flagsHtml;
     });
 
     /* ══════════════════════════════════════
@@ -676,7 +678,7 @@
             '<div><p class="font-bold text-white">' + level + '</p><p class="text-xs text-slate-400">' + yes + ' of ' + quizQuestions.length + ' safeguards in place</p></div>' +
             '</div>' +
             '<p class="text-sm text-slate-300 mb-4">' + advice + '</p>' +
-            '<a href="/assessment" class="inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-2.5 text-sm font-bold text-white hover:bg-primary/90 transition-colors"><span class="material-symbols-outlined text-base">arrow_forward</span>Get a Professional Assessment</a>';
+            '<a href="/assessment" class="inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-2.5 text-sm font-bold text-white hover:bg-primary/90 transition-colors"><span class="material-symbols-outlined text-base" data-icon="arrow_forward" aria-hidden="true"></span>Get a Professional Assessment</a>';
         quizResult.classList.remove('hidden');
         quizSubmit.classList.add('hidden');
         quizReset.classList.remove('hidden');
@@ -758,7 +760,7 @@
             '<div><p class="font-bold text-white">' + level + '</p><p class="text-xs text-slate-400">' + yes + ' of ' + aiQuizQuestions.length + ' readiness checks in place</p></div>' +
             '</div>' +
             '<p class="text-sm text-slate-300 mb-4">' + advice + '</p>' +
-            '<a href="/assessment" class="inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-2.5 text-sm font-bold text-white hover:bg-primary/90 transition-colors"><span class="material-symbols-outlined text-base">arrow_forward</span>Get a Free Assessment</a>';
+            '<a href="/assessment" class="inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-2.5 text-sm font-bold text-white hover:bg-primary/90 transition-colors"><span class="material-symbols-outlined text-base" data-icon="arrow_forward" aria-hidden="true"></span>Get a Free Assessment</a>';
         aiQuizResult.classList.remove('hidden');
         aiQuizSubmit.classList.add('hidden');
         aiQuizReset.classList.remove('hidden');
