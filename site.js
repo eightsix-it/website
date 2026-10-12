@@ -31,17 +31,23 @@
         menuBtn.addEventListener('click', function () {
             var isOpen = !menu.classList.contains('hidden');
             menu.classList.toggle('hidden');
-            menuIcon.textContent = isOpen ? 'menu' : 'close';
+            menuIcon.dataset.icon = isOpen ? 'menu' : 'close';
+            menuIcon.textContent = '';
             menuBtn.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
         });
     }
 
-    /* ── Icon glyphs are decorative: keep them out of the accessibility tree ──
-       Without this a screen reader reads "arrow forward", "smart toy" and the
-       like in the middle of headings, links and button labels. */
+    /* ── Icon glyphs are decorative ──
+       Markup keeps the ligature in data-icon (so the text version of the page
+       never contains "arrow_forward") and sets aria-hidden. This pass covers
+       any span that still has the name as text. */
     var icons = document.querySelectorAll('.material-symbols-outlined');
     for (var ic = 0; ic < icons.length; ic++) {
-        icons[ic].setAttribute('aria-hidden', 'true');
+        var icon = icons[ic];
+        icon.setAttribute('aria-hidden', 'true');
+        var label = (icon.getAttribute('data-icon') || icon.textContent || '').trim();
+        if (label) icon.setAttribute('data-icon', label);
+        if (icon.textContent) icon.textContent = '';
     }
 
     /* ───────────────────────────── Header scrolled state ── */
@@ -73,7 +79,7 @@
     var topBtn = document.createElement('button');
     topBtn.className = 'e86-top';
     topBtn.setAttribute('aria-label', 'Back to top');
-    topBtn.innerHTML = '<span class="material-symbols-outlined" aria-hidden="true">arrow_upward</span>';
+    topBtn.innerHTML = '<span class="material-symbols-outlined" aria-hidden="true" data-icon="arrow_upward"></span>';
     document.body.appendChild(topBtn);
     topBtn.addEventListener('click', function () {
         if (window.E86_LENIS) { window.E86_LENIS.scrollTo(0); return; }

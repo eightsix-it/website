@@ -60,4 +60,18 @@
     -webkit-font-feature-settings: 'liga';
     font-feature-settings: 'liga';
     -webkit-font-smoothing: antialiased;
+    /* Clip to one em so a missed font never spills the ligature name into the line. */
+    width: 1em;
+    height: 1em;
+    overflow: hidden;
+    vertical-align: -0.15em;
+}
+
+/* The ligature name lives in data-icon, not a text node. Screen readers skip the
+   span (aria-hidden), and text browsers / search snippets never see "arrow_forward".
+   font-display:block above keeps the name invisible while the 11 KB subset loads. */
+.material-symbols-outlined::before {
+    content: attr(data-icon);
+    font-feature-settings: 'liga';
+    -webkit-font-feature-settings: 'liga';
 }
