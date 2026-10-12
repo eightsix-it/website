@@ -41,11 +41,9 @@
 .mips-step-heading { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; }
 .mips-step { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; flex: 0 0 28px; border: 1px solid #718cb155; color: #b6cced; font: 12px monospace; border-radius: 50%; }
 .mips-walkthrough h3, .mips-review-strip h3 { font-size: 17px; color: #fff; font-weight: 600; line-height: 1.5; }
-.mips-synthetic { font-size: 9px; letter-spacing: .06em; color: #f9d966; border: 1px solid #f4c43050; padding: 4px 6px; border-radius: 4px; margin-left: auto; }
 .mips-report-type { color: #abbcd3; font-size: 12px; margin-top: 24px; }
 .mips-report blockquote { font-size: 22px; color: #eef4ff; line-height: 1.6; margin-top: 14px; }
 .mips-report mark { color: #dbe7ff; background: #779bea20; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
-.mips-small { color: #a4b5cd; font-size: 12px; line-height: 1.65; margin-top: 22px; }
 .mips-reasoning { padding: 10px 28px; }
 .mips-reasoning li { display: flex; gap: 16px; padding: 19px 0; border-bottom: 1px solid #ffffff14; }
 .mips-reasoning li:last-child { border-bottom: 0; }
@@ -142,7 +140,6 @@ body:has(.mips-hero) a:focus-visible, body:has(.mips-hero) button:focus-visible,
     .mips-benefits p { margin-top: 2px; }
     .mips-report { padding: 22px; }
     .mips-report blockquote { font-size: 19px; }
-    .mips-synthetic { margin-left: 0; }
     .mips-reasoning { padding: 4px 20px; }
     .mips-reasoning li { gap: 12px; }
     .mips-rule-note { padding: 14px 16px; }
