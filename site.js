@@ -19,6 +19,19 @@
 
     if (gsapMode) docEl.classList.add('e86-gsap');
 
+    /* GA4: one delegated listener for every mailto: and tel: link.
+       link_url is the href only — form field values are never sent. */
+    document.addEventListener('click', function (e) {
+        var link = e.target && e.target.closest && e.target.closest('a[href]');
+        if (!link || typeof window.gtag !== 'function') return;
+        var href = link.getAttribute('href') || '';
+        if (href.indexOf('mailto:') === 0) {
+            window.gtag('event', 'contact_email_click', { link_url: href });
+        } else if (href.indexOf('tel:') === 0) {
+            window.gtag('event', 'contact_phone_click', { link_url: href });
+        }
+    });
+
     /* ───────────────────────────── Mobile menu ── */
     var menuBtn = document.getElementById('mobile-menu-btn');
     var menu = document.getElementById('mobile-menu');

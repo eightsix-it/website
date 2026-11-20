@@ -79,6 +79,9 @@
             const result = await response.json();
             if (!response.ok || !result.success) throw new Error('Submission failed');
             try { localStorage.setItem(RATE_KEY, String(Date.now())); } catch (err) {}
+            if (typeof window.gtag === 'function') {
+                window.gtag('event', 'generate_lead', { form_name: 'mips_demo' });
+            }
             showSuccess();
         } catch (err) {
             showError('Something went wrong. Please try again or call us directly.');
