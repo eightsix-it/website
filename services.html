@@ -26,7 +26,7 @@
 <meta name="twitter:image" content="https://eightsixit.com/og-image.png"/>
 <link rel="preload" href="fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin/>
 <link rel="preload" href="fonts/material-symbols-subset.woff2" as="font" type="font/woff2" crossorigin/>
-<link href="fonts.css?v=20260929" rel="stylesheet"/>
+<link href="fonts.css?v=20261005" rel="stylesheet"/>
 <link href="tailwind.css?v=20261001" rel="stylesheet"/>
 <style>
     :root { --panel-line:0.12; --panel-shadow:0.07; --panel-decal:0.05; }
@@ -67,7 +67,7 @@
             <a href="https://console.eightsix.co" target="_blank" rel="noopener" class="hidden rounded bg-white/5 px-4 py-2 text-sm font-semibold text-white transition-all hover:bg-white/10 sm:block">Client Login</a>
             <a href="/assessment" class="e86-btn-shine hidden lg:block rounded bg-primary px-5 py-2 text-sm font-bold text-white shadow-[0_0_20px_rgba(31,58,137,0.4)] transition-all hover:scale-105 hover:bg-primary/90">Free Assessment</a>
         <button id="mobile-menu-btn" class="lg:hidden flex items-center justify-center p-2 rounded text-slate-400 hover:text-white hover:bg-white/10 transition-colors" aria-label="Toggle menu">
-            <span class="material-symbols-outlined" id="menu-icon">menu</span>
+            <span class="material-symbols-outlined" id="menu-icon" data-icon="menu" aria-hidden="true"></span>
         </button>
         </div>
     </div>
@@ -99,12 +99,12 @@
         <div class="mx-auto max-w-7xl px-6 relative z-10">
             <div class="mb-8 flex items-center gap-2 text-xs text-slate-400">
                 <a href="/" class="hover:text-slate-300 transition-colors">Home</a>
-                <span class="material-symbols-outlined" style="font-size:14px">chevron_right</span>
+                <span class="material-symbols-outlined" style="font-size:14px" data-icon="chevron_right" aria-hidden="true"></span>
                 <span class="text-slate-300">Managed IT</span>
             </div>
             <div class="max-w-3xl hero-stagger">
                 <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-primary-text">
-                    <span class="material-symbols-outlined text-sm">build</span>
+                    <span class="material-symbols-outlined text-sm" data-icon="build" aria-hidden="true"></span>
                     Outcome-Focused Engineering
                 </div>
                 <h1 class="text-4xl font-bold leading-tight tracking-tight text-white md:text-5xl lg:text-6xl">
@@ -115,11 +115,11 @@
                 </p>
                 <div class="mt-8 flex flex-col gap-3 sm:flex-row">
                     <a href="/assessment" class="flex items-center justify-center gap-2 rounded-lg bg-primary px-8 py-4 text-base font-bold text-white shadow-[0_0_25px_rgba(31,58,138,0.4)] transition-all hover:bg-primary/90 uppercase tracking-wider">
-                        <span class="material-symbols-outlined">arrow_forward</span>
+                        <span class="material-symbols-outlined" data-icon="arrow_forward" aria-hidden="true"></span>
                         Get a Free Assessment
                     </a>
                     <a href="tel:+17877149556" class="flex items-center justify-center gap-2 rounded-lg border border-white/10 bg-white/5 px-8 py-4 text-base font-bold text-white transition-all hover:bg-white/10">
-                        <span class="material-symbols-outlined">call</span>
+                        <span class="material-symbols-outlined" data-icon="call" aria-hidden="true"></span>
                         (787) 714-9556
                     </a>
                 </div>
@@ -146,7 +146,7 @@
                     <div class="p-10 flex flex-col justify-between gap-8">
                         <div>
                             <div class="mb-5 flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10 text-primary-text">
-                                <span class="material-symbols-outlined text-3xl">computer</span>
+                                <span class="material-symbols-outlined text-3xl" data-icon="computer" aria-hidden="true"></span>
                             </div>
                             <h3 class="text-2xl font-bold text-white mb-3">Managed IT Services</h3>
                             <p class="text-slate-400 leading-relaxed">
@@ -160,37 +160,37 @@
                             <span class="px-3 py-1.5 bg-primary/10 rounded-lg text-xs font-semibold text-primary-text">Proactive</span>
                         </div>
                         <a href="/assessment" class="inline-flex items-center gap-2 text-sm font-bold text-primary-text hover:text-white transition-colors">
-                            Get started <span class="material-symbols-outlined text-base">arrow_forward</span>
+                            Get started <span class="material-symbols-outlined text-base" data-icon="arrow_forward" aria-hidden="true"></span>
                         </a>
                     </div>
                     <div class="border-t border-white/5 lg:border-t-0 lg:border-l p-10 grid sm:grid-cols-2 gap-4 content-start">
                         <div class="rounded-xl border border-white/5 bg-background-dark p-5">
-                            <span class="material-symbols-outlined text-primary-text mb-2 block">support_agent</span>
+                            <span class="material-symbols-outlined text-primary-text mb-2 block" data-icon="support_agent" aria-hidden="true"></span>
                             <p class="font-semibold text-white text-sm mb-1">Helpdesk & Remote Support</p>
                             <p class="text-xs text-slate-400 leading-relaxed">Unlimited remote support handled directly by an engineer — no tiers, no ticket runaround.</p>
                         </div>
                         <div class="rounded-xl border border-white/5 bg-background-dark p-5">
-                            <span class="material-symbols-outlined text-primary-text mb-2 block">engineering</span>
+                            <span class="material-symbols-outlined text-primary-text mb-2 block" data-icon="engineering" aria-hidden="true"></span>
                             <p class="font-semibold text-white text-sm mb-1">On-Site Field Engineering</p>
                             <p class="text-xs text-slate-400 leading-relaxed">Scheduled and emergency on-site visits across Puerto Rico. Hardware repairs, installations, and hands-on troubleshooting.</p>
                         </div>
                         <div class="rounded-xl border border-white/5 bg-background-dark p-5">
-                            <span class="material-symbols-outlined text-primary-text mb-2 block">monitoring</span>
+                            <span class="material-symbols-outlined text-primary-text mb-2 block" data-icon="monitoring" aria-hidden="true"></span>
                             <p class="font-semibold text-white text-sm mb-1">Proactive Monitoring (RMM)</p>
                             <p class="text-xs text-slate-400 leading-relaxed">Every endpoint, server, and network device watched in real time. Issues are caught and resolved before they become outages.</p>
                         </div>
                         <div class="rounded-xl border border-white/5 bg-background-dark p-5">
-                            <span class="material-symbols-outlined text-primary-text mb-2 block">system_update</span>
+                            <span class="material-symbols-outlined text-primary-text mb-2 block" data-icon="system_update" aria-hidden="true"></span>
                             <p class="font-semibold text-white text-sm mb-1">Patch Management</p>
                             <p class="text-xs text-slate-400 leading-relaxed">Automated OS and software patching across your fleet, scheduled to minimize disruption and eliminate vulnerability windows.</p>
                         </div>
                         <div class="rounded-xl border border-white/5 bg-background-dark p-5">
-                            <span class="material-symbols-outlined text-primary-text mb-2 block">devices</span>
+                            <span class="material-symbols-outlined text-primary-text mb-2 block" data-icon="devices" aria-hidden="true"></span>
                             <p class="font-semibold text-white text-sm mb-1">Device Lifecycle Management</p>
                             <p class="text-xs text-slate-400 leading-relaxed">Procurement, provisioning, asset tracking, and end-of-life replacement planning for all workstations and hardware.</p>
                         </div>
                         <div class="rounded-xl border border-white/5 bg-background-dark p-5">
-                            <span class="material-symbols-outlined text-primary-text mb-2 block">inventory_2</span>
+                            <span class="material-symbols-outlined text-primary-text mb-2 block" data-icon="inventory_2" aria-hidden="true"></span>
                             <p class="font-semibold text-white text-sm mb-1">IT Asset Inventory</p>
                             <p class="text-xs text-slate-400 leading-relaxed">A complete, up-to-date map of every device, software license, and config in your environment — always audit-ready.</p>
                         </div>
@@ -204,7 +204,7 @@
                     <div class="p-10 flex flex-col justify-between gap-8">
                         <div>
                             <div class="mb-5 flex h-14 w-14 items-center justify-center rounded-xl bg-primary/15 text-primary-text">
-                                <span class="material-symbols-outlined text-3xl">shield</span>
+                                <span class="material-symbols-outlined text-3xl" data-icon="shield" aria-hidden="true"></span>
                             </div>
                             <h3 class="text-2xl font-bold text-white mb-3">Cybersecurity Defense</h3>
                             <p class="text-slate-400 leading-relaxed">
@@ -218,37 +218,37 @@
                             <span class="px-3 py-1.5 bg-primary/15 rounded-lg text-xs font-semibold text-primary-text">Zero-Trust</span>
                         </div>
                         <a href="/cybersecurity" class="inline-flex items-center gap-2 text-sm font-bold text-primary-text hover:text-white transition-colors">
-                            View full details <span class="material-symbols-outlined text-base">arrow_forward</span>
+                            View full details <span class="material-symbols-outlined text-base" data-icon="arrow_forward" aria-hidden="true"></span>
                         </a>
                     </div>
                     <div class="border-t border-white/5 lg:border-t-0 lg:border-l border-primary/15 p-10 grid sm:grid-cols-2 gap-4 content-start">
                         <div class="rounded-xl border border-primary/15 bg-background-dark p-5">
-                            <span class="material-symbols-outlined text-primary-text mb-2 block">monitor_heart</span>
+                            <span class="material-symbols-outlined text-primary-text mb-2 block" data-icon="monitor_heart" aria-hidden="true"></span>
                             <p class="font-semibold text-white text-sm mb-1">EDR / MDR</p>
                             <p class="text-xs text-slate-400 leading-relaxed">Huntress-powered endpoint protection with 24/7 threat hunting and automated isolation.</p>
                         </div>
                         <div class="rounded-xl border border-primary/15 bg-background-dark p-5">
-                            <span class="material-symbols-outlined text-primary-text mb-2 block">radar</span>
+                            <span class="material-symbols-outlined text-primary-text mb-2 block" data-icon="radar" aria-hidden="true"></span>
                             <p class="font-semibold text-white text-sm mb-1">SOC Monitoring</p>
                             <p class="text-xs text-slate-400 leading-relaxed">Round-the-clock Security Operations Center with SIEM correlation and expert triage.</p>
                         </div>
                         <div class="rounded-xl border border-primary/15 bg-background-dark p-5">
-                            <span class="material-symbols-outlined text-primary-text mb-2 block">mail_lock</span>
+                            <span class="material-symbols-outlined text-primary-text mb-2 block" data-icon="mail_lock" aria-hidden="true"></span>
                             <p class="font-semibold text-white text-sm mb-1">Email Security</p>
                             <p class="text-xs text-slate-400 leading-relaxed">AI-powered filtering that blocks phishing, BEC, and malicious attachments before delivery.</p>
                         </div>
                         <div class="rounded-xl border border-primary/15 bg-background-dark p-5">
-                            <span class="material-symbols-outlined text-primary-text mb-2 block">health_and_safety</span>
+                            <span class="material-symbols-outlined text-primary-text mb-2 block" data-icon="health_and_safety" aria-hidden="true"></span>
                             <p class="font-semibold text-white text-sm mb-1">HIPAA Security</p>
                             <p class="text-xs text-slate-400 leading-relaxed">Risk assessments, technical safeguard implementation, and audit-ready documentation.</p>
                         </div>
                         <div class="rounded-xl border border-primary/15 bg-background-dark p-5">
-                            <span class="material-symbols-outlined text-primary-text mb-2 block">passkey</span>
+                            <span class="material-symbols-outlined text-primary-text mb-2 block" data-icon="passkey" aria-hidden="true"></span>
                             <p class="font-semibold text-white text-sm mb-1">Zero-Trust & MFA</p>
                             <p class="text-xs text-slate-400 leading-relaxed">Identity-first architecture — no user or device trusted by default, with full MFA enforcement.</p>
                         </div>
                         <div class="rounded-xl border border-primary/15 bg-background-dark p-5">
-                            <span class="material-symbols-outlined text-primary-text mb-2 block">manage_search</span>
+                            <span class="material-symbols-outlined text-primary-text mb-2 block" data-icon="manage_search" aria-hidden="true"></span>
                             <p class="font-semibold text-white text-sm mb-1">Vulnerability Management</p>
                             <p class="text-xs text-slate-400 leading-relaxed">Continuous scanning, CVSS-scored prioritization, and patch SLA enforcement across all assets.</p>
                         </div>
@@ -262,51 +262,52 @@
                     <div class="p-10 flex flex-col justify-between gap-8">
                         <div>
                             <div class="mb-5 flex h-14 w-14 items-center justify-center rounded-xl bg-accent-yellow/10 text-accent-yellow">
-                                <span class="material-symbols-outlined text-3xl">backup</span>
+                                <span class="material-symbols-outlined text-3xl" data-icon="backup" aria-hidden="true"></span>
                             </div>
                             <h3 class="text-2xl font-bold text-white mb-3">Backup &amp; Disaster Recovery</h3>
                             <p class="text-slate-400 leading-relaxed">
-                                Ransomware-proof immutable backups with tested recovery procedures. When the worst happens, you're back online in minutes — not days — with zero data loss.
+                                Ransomware-proof immutable N-able Cove backups with tested recovery procedures. When the worst happens, you're back online in minutes — not days — with zero data loss.
                             </p>
                         </div>
                         <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1.5 bg-accent-yellow/10 rounded-lg text-xs font-semibold text-accent-yellow">N-able Cove</span>
                             <span class="px-3 py-1.5 bg-accent-yellow/10 rounded-lg text-xs font-semibold text-accent-yellow">Immutable</span>
                             <span class="px-3 py-1.5 bg-accent-yellow/10 rounded-lg text-xs font-semibold text-accent-yellow">Air-Gapped</span>
                             <span class="px-3 py-1.5 bg-accent-yellow/10 rounded-lg text-xs font-semibold text-accent-yellow">Off-Site</span>
                             <span class="px-3 py-1.5 bg-accent-yellow/10 rounded-lg text-xs font-semibold text-accent-yellow">Tested</span>
                         </div>
                         <a href="/assessment" class="inline-flex items-center gap-2 text-sm font-bold text-accent-yellow hover:text-white transition-colors">
-                            Assess my backup risk <span class="material-symbols-outlined text-base">arrow_forward</span>
+                            Assess my backup risk <span class="material-symbols-outlined text-base" data-icon="arrow_forward" aria-hidden="true"></span>
                         </a>
                     </div>
                     <div class="border-t border-white/5 lg:border-t-0 lg:border-l p-10 grid sm:grid-cols-2 gap-4 content-start">
                         <div class="rounded-xl border border-white/5 bg-background-dark p-5">
-                            <span class="material-symbols-outlined text-accent-yellow mb-2 block">lock</span>
-                            <p class="font-semibold text-white text-sm mb-1">Immutable Backup Repositories</p>
-                            <p class="text-xs text-slate-400 leading-relaxed">Write-once backup storage that ransomware cannot encrypt, delete, or modify — even with admin credentials.</p>
+                            <span class="material-symbols-outlined text-accent-yellow mb-2 block" data-icon="lock" aria-hidden="true"></span>
+                            <p class="font-semibold text-white text-sm mb-1">Cove Immutable Repositories</p>
+                            <p class="text-xs text-slate-400 leading-relaxed">N-able Cove write-once backup storage that ransomware cannot encrypt, delete, or modify — even with admin credentials.</p>
                         </div>
                         <div class="rounded-xl border border-white/5 bg-background-dark p-5">
-                            <span class="material-symbols-outlined text-accent-yellow mb-2 block">cloud_sync</span>
+                            <span class="material-symbols-outlined text-accent-yellow mb-2 block" data-icon="cloud_sync" aria-hidden="true"></span>
                             <p class="font-semibold text-white text-sm mb-1">Off-Site &amp; Cloud Replication</p>
                             <p class="text-xs text-slate-400 leading-relaxed">Geographically redundant copies ensure your data survives local disasters, power events, and hardware failures.</p>
                         </div>
                         <div class="rounded-xl border border-white/5 bg-background-dark p-5">
-                            <span class="material-symbols-outlined text-accent-yellow mb-2 block">fact_check</span>
+                            <span class="material-symbols-outlined text-accent-yellow mb-2 block" data-icon="fact_check" aria-hidden="true"></span>
                             <p class="font-semibold text-white text-sm mb-1">Automated DR Testing</p>
                             <p class="text-xs text-slate-400 leading-relaxed">Monthly automated recovery tests verify your backups actually restore. No surprises when it counts.</p>
                         </div>
                         <div class="rounded-xl border border-white/5 bg-background-dark p-5">
-                            <span class="material-symbols-outlined text-accent-yellow mb-2 block">speed</span>
+                            <span class="material-symbols-outlined text-accent-yellow mb-2 block" data-icon="speed" aria-hidden="true"></span>
                             <p class="font-semibold text-white text-sm mb-1">Defined RTO / RPO</p>
                             <p class="text-xs text-slate-400 leading-relaxed">Recovery Time and Recovery Point Objectives defined per workload — clear restore targets, tested against real backups.</p>
                         </div>
                         <div class="rounded-xl border border-white/5 bg-background-dark p-5">
-                            <span class="material-symbols-outlined text-accent-yellow mb-2 block">description</span>
+                            <span class="material-symbols-outlined text-accent-yellow mb-2 block" data-icon="description" aria-hidden="true"></span>
                             <p class="font-semibold text-white text-sm mb-1">DR Runbook &amp; Documentation</p>
                             <p class="text-xs text-slate-400 leading-relaxed">Step-by-step recovery playbooks for every failure scenario, kept current and accessible when your team needs them most.</p>
                         </div>
                         <div class="rounded-xl border border-white/5 bg-background-dark p-5">
-                            <span class="material-symbols-outlined text-accent-yellow mb-2 block">emergency_home</span>
+                            <span class="material-symbols-outlined text-accent-yellow mb-2 block" data-icon="emergency_home" aria-hidden="true"></span>
                             <p class="font-semibold text-white text-sm mb-1">Emergency Recovery Response</p>
                             <p class="text-xs text-slate-400 leading-relaxed">Priority response for active ransomware or data-loss events — we execute the recovery, not just advise.</p>
                         </div>
@@ -330,7 +331,7 @@
             <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                 <div class="group rounded-xl border border-white/5 bg-card-dark p-8 transition-all hover:border-primary/40 hover:shadow-[0_0_30px_rgba(31,58,137,0.15)]">
                     <div class="mb-5 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary-text">
-                        <span class="material-symbols-outlined text-2xl">router</span>
+                        <span class="material-symbols-outlined text-2xl" data-icon="router" aria-hidden="true"></span>
                     </div>
                     <h3 class="mb-3 text-lg font-bold text-white">Network Infrastructure</h3>
                     <p class="text-sm leading-relaxed text-slate-400 mb-5">Structured cabling, enterprise Wi-Fi design, firewall management, SD-WAN deployment, and VLAN segmentation for secure, high-performance networks.</p>
@@ -341,7 +342,7 @@
                 </div>
                 <div class="group rounded-xl border border-white/5 bg-card-dark p-8 transition-all hover:border-primary/40 hover:shadow-[0_0_30px_rgba(31,58,137,0.15)]">
                     <div class="mb-5 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary-text">
-                        <span class="material-symbols-outlined text-2xl">cloud</span>
+                        <span class="material-symbols-outlined text-2xl" data-icon="cloud" aria-hidden="true"></span>
                     </div>
                     <h3 class="mb-3 text-lg font-bold text-white">Cloud Services</h3>
                     <p class="text-sm leading-relaxed text-slate-400 mb-5">Microsoft 365 and Azure administration, AWS deployments, and full cloud migration planning with zero-downtime cutovers for production environments.</p>
@@ -353,7 +354,7 @@
                 </div>
                 <div class="group rounded-xl border border-white/5 bg-card-dark p-8 transition-all hover:border-primary/40 hover:shadow-[0_0_30px_rgba(31,58,137,0.15)]">
                     <div class="mb-5 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary-text">
-                        <span class="material-symbols-outlined text-2xl">groups</span>
+                        <span class="material-symbols-outlined text-2xl" data-icon="groups" aria-hidden="true"></span>
                     </div>
                     <h3 class="mb-3 text-lg font-bold text-white">vCIO &amp; IT Consulting</h3>
                     <p class="text-sm leading-relaxed text-slate-400 mb-5">Strategic IT leadership on demand. Technology roadmaps, budget planning, vendor management, and board-level reporting without the cost of a full-time CIO.</p>
@@ -365,7 +366,7 @@
                 </div>
                 <div class="group rounded-xl border border-white/5 bg-card-dark p-8 transition-all hover:border-primary/40 hover:shadow-[0_0_30px_rgba(31,58,137,0.15)]">
                     <div class="mb-5 flex h-12 w-12 items-center justify-center rounded-lg bg-accent-yellow/10 text-accent-yellow">
-                        <span class="material-symbols-outlined text-2xl">medical_services</span>
+                        <span class="material-symbols-outlined text-2xl" data-icon="medical_services" aria-hidden="true"></span>
                     </div>
                     <h3 class="mb-3 text-lg font-bold text-white">EMR / EHR Integration</h3>
                     <p class="text-sm leading-relaxed text-slate-400 mb-5">Secure connectivity and support for major EMR/EHR platforms — eClinicalWorks, Epic, Athenahealth — including interface configuration and HL7 troubleshooting.</p>
@@ -377,7 +378,7 @@
                 </div>
                 <div class="group rounded-xl border border-white/5 bg-card-dark p-8 transition-all hover:border-primary/40 hover:shadow-[0_0_30px_rgba(31,58,137,0.15)]">
                     <div class="mb-5 flex h-12 w-12 items-center justify-center rounded-lg bg-accent-yellow/10 text-accent-yellow">
-                        <span class="material-symbols-outlined text-2xl">radiology</span>
+                        <span class="material-symbols-outlined text-2xl" data-icon="radiology" aria-hidden="true"></span>
                     </div>
                     <h3 class="mb-3 text-lg font-bold text-white">PACS &amp; Imaging Networks</h3>
                     <p class="text-sm leading-relaxed text-slate-400 mb-5">High-throughput network architecture for DICOM imaging workflows. Storage design, PACS server management, and radiologist workstation optimization.</p>
@@ -389,7 +390,7 @@
                 </div>
                 <div class="group rounded-xl border border-white/5 bg-card-dark p-8 transition-all hover:border-primary/40 hover:shadow-[0_0_30px_rgba(31,58,137,0.15)]">
                     <div class="mb-5 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary-text">
-                        <span class="material-symbols-outlined text-2xl">headset_mic</span>
+                        <span class="material-symbols-outlined text-2xl" data-icon="headset_mic" aria-hidden="true"></span>
                     </div>
                     <h3 class="mb-3 text-lg font-bold text-white">VoIP &amp; Communications</h3>
                     <p class="text-sm leading-relaxed text-slate-400 mb-5">Hosted VoIP systems, unified communications, and secure fax solutions fully integrated with your clinical workflows and HIPAA requirements.</p>
@@ -417,7 +418,7 @@
                     <div class="mt-10 space-y-4">
                         <div class="flex items-start gap-4">
                             <div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary-text mt-0.5">
-                                <span class="material-symbols-outlined text-sm">check</span>
+                                <span class="material-symbols-outlined text-sm" data-icon="check" aria-hidden="true"></span>
                             </div>
                             <div>
                                 <p class="font-semibold text-white text-sm">Flat monthly pricing</p>
@@ -426,7 +427,7 @@
                         </div>
                         <div class="flex items-start gap-4">
                             <div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary-text mt-0.5">
-                                <span class="material-symbols-outlined text-sm">check</span>
+                                <span class="material-symbols-outlined text-sm" data-icon="check" aria-hidden="true"></span>
                             </div>
                             <div>
                                 <p class="font-semibold text-white text-sm">Dedicated account engineer</p>
@@ -435,7 +436,7 @@
                         </div>
                         <div class="flex items-start gap-4">
                             <div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary-text mt-0.5">
-                                <span class="material-symbols-outlined text-sm">check</span>
+                                <span class="material-symbols-outlined text-sm" data-icon="check" aria-hidden="true"></span>
                             </div>
                             <div>
                                 <p class="font-semibold text-white text-sm">Monthly reporting</p>
@@ -444,7 +445,7 @@
                         </div>
                         <div class="flex items-start gap-4">
                             <div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary-text mt-0.5">
-                                <span class="material-symbols-outlined text-sm">check</span>
+                                <span class="material-symbols-outlined text-sm" data-icon="check" aria-hidden="true"></span>
                             </div>
                             <div>
                                 <p class="font-semibold text-white text-sm">Scalable as you grow</p>
@@ -516,20 +517,20 @@
                     <h3 class="text-2xl font-bold text-white md:text-3xl">Well-Run IT Is What Makes AI Possible</h3>
                     <p class="mt-4 text-slate-400 leading-relaxed">Clean identity, governed data, hardened endpoints, and monitored infrastructure aren't just good hygiene — they're the prerequisites for adopting AI safely. Clients on our managed IT are AI-ready by default.</p>
                     <a href="/ai-solutions" class="mt-6 inline-flex items-center gap-2 text-sm font-bold text-primary-text hover:text-white transition-colors">
-                        See our AI practice <span class="material-symbols-outlined text-base">arrow_forward</span>
+                        See our AI practice <span class="material-symbols-outlined text-base" data-icon="arrow_forward" aria-hidden="true"></span>
                     </a>
                 </div>
                 <ul class="space-y-4">
                     <li class="flex items-start gap-3">
-                        <span class="material-symbols-outlined text-primary-text mt-0.5">check_circle</span>
+                        <span class="material-symbols-outlined text-primary-text mt-0.5" data-icon="check_circle" aria-hidden="true"></span>
                         <span class="text-sm text-slate-300">Identity &amp; access ready for AI tools — SSO, MFA, least privilege</span>
                     </li>
                     <li class="flex items-start gap-3">
-                        <span class="material-symbols-outlined text-primary-text mt-0.5">check_circle</span>
+                        <span class="material-symbols-outlined text-primary-text mt-0.5" data-icon="check_circle" aria-hidden="true"></span>
                         <span class="text-sm text-slate-300">Data organized and governed, so AI answers from clean sources</span>
                     </li>
                     <li class="flex items-start gap-3">
-                        <span class="material-symbols-outlined text-primary-text mt-0.5">check_circle</span>
+                        <span class="material-symbols-outlined text-primary-text mt-0.5" data-icon="check_circle" aria-hidden="true"></span>
                         <span class="text-sm text-slate-300">A security posture that can say yes to AI — safely</span>
                     </li>
                 </ul>
@@ -553,7 +554,7 @@
                             Book Your Free Assessment
                         </a>
                         <a class="flex items-center gap-2 text-lg font-bold" href="tel:+17877149556">
-                            <span class="material-symbols-outlined">call</span>
+                            <span class="material-symbols-outlined" data-icon="call" aria-hidden="true"></span>
                             (787) 714-9556
                         </a>
                     </div>
@@ -607,16 +608,16 @@
                 <h3 class="mb-6 text-sm font-bold uppercase tracking-widest text-white">Contact</h3>
                 <ul class="space-y-4 text-sm">
                     <li class="flex items-start gap-3">
-                        <span class="material-symbols-outlined text-primary-text text-sm mt-0.5">location_on</span>
+                        <span class="material-symbols-outlined text-primary-text text-sm mt-0.5" data-icon="location_on" aria-hidden="true"></span>
                         <span>San Juan, Puerto Rico</span>
                     </li>
                     <li class="flex items-start gap-3">
-                        <span class="material-symbols-outlined text-primary-text text-sm mt-0.5">phone</span>
+                        <span class="material-symbols-outlined text-primary-text text-sm mt-0.5" data-icon="phone" aria-hidden="true"></span>
                         <a class="hover:text-primary-text transition-colors" href="tel:+17877149556">(787) 714-9556</a>
                     </li>
                     <li class="flex items-start gap-3">
-                        <span class="material-symbols-outlined text-primary-text text-sm mt-0.5">mail</span>
-                        <a class="hover:text-primary-text transition-colors" href="mailto:info@eightsix.co">info@eightsix.co</a>
+                        <span class="material-symbols-outlined text-primary-text text-sm mt-0.5" data-icon="mail" aria-hidden="true"></span>
+                        <a class="hover:text-primary-text transition-colors" href="mailto:info@eightsixit.com">info@eightsixit.com</a>
                     </li>
                 </ul>
             </div>
@@ -635,7 +636,7 @@
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.4/dist/lenis.min.js" defer></script>
-<script src="site.js?v=20260929" defer></script>
+<script src="site.js?v=20261005" defer></script>
 <script src="experience.js?v=20260929" defer></script>
 </body>
 </html>

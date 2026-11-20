@@ -26,7 +26,7 @@
 <meta name="twitter:image" content="https://eightsixit.com/og-image.png"/>
 <link rel="preload" href="fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin/>
 <link rel="preload" href="fonts/material-symbols-subset.woff2" as="font" type="font/woff2" crossorigin/>
-<link href="fonts.css?v=20260929" rel="stylesheet"/>
+<link href="fonts.css?v=20261005" rel="stylesheet"/>
 <link href="tailwind.css?v=20261001" rel="stylesheet"/>
 <style>
     :root {
@@ -88,7 +88,7 @@
                 Free Assessment
             </a>
         <button id="mobile-menu-btn" class="lg:hidden flex items-center justify-center p-2 rounded text-slate-400 hover:text-white hover:bg-white/10 transition-colors" aria-label="Toggle menu">
-            <span class="material-symbols-outlined" id="menu-icon">menu</span>
+            <span class="material-symbols-outlined" id="menu-icon" data-icon="menu" aria-hidden="true"></span>
         </button>
         </div>
     </div>
@@ -149,11 +149,11 @@
                 <div class="mt-12 flex flex-col gap-4 sm:flex-row">
                     <a href="/assessment" data-magnetic class="e86-btn-shine flex min-w-[240px] items-center justify-center gap-2 rounded-lg bg-primary px-10 py-5 text-lg font-black text-white shadow-[0_0_25px_rgba(31,58,138,0.5)] transition-all hover:bg-primary/90 hover:shadow-[0_0_45px_rgba(31,58,138,0.7)] uppercase tracking-wider">
                         Get a Free Assessment
-                        <span class="material-symbols-outlined">arrow_forward</span>
+                        <span class="material-symbols-outlined" data-icon="arrow_forward" aria-hidden="true"></span>
                     </a>
                     <a href="#practices" class="group flex min-w-[200px] items-center justify-center gap-2 rounded-lg border border-white/10 bg-white/5 px-8 py-4 text-lg font-bold text-white backdrop-blur-sm transition-all hover:bg-white/10 hover:border-primary/40">
                         Explore Our Practices
-                        <span class="material-symbols-outlined transition-transform group-hover:translate-x-1">chevron_right</span>
+                        <span class="material-symbols-outlined transition-transform group-hover:translate-x-1" data-icon="chevron_right" aria-hidden="true"></span>
                     </a>
                 </div>
             </div>
@@ -202,10 +202,10 @@
                 <!-- AI door -->
                 <a href="/ai-solutions" data-reveal="left" class="e86-glow-card e86-tilt group relative block overflow-hidden rounded-2xl border border-primary/40 bg-primary/10 p-9 transition-all hover:border-primary/70 hover:shadow-[0_0_35px_rgba(31,58,137,0.3)]">
                     <div class="absolute -right-6 -top-6 opacity-10 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6">
-                        <span class="material-symbols-outlined text-9xl text-primary-text">smart_toy</span>
+                        <span class="material-symbols-outlined text-9xl text-primary-text" data-icon="smart_toy" aria-hidden="true"></span>
                     </div>
                     <div class="mb-6 flex h-13 w-13 items-center justify-center rounded-xl bg-primary/25 p-3 text-primary-text">
-                        <span class="material-symbols-outlined text-3xl">smart_toy</span>
+                        <span class="material-symbols-outlined text-3xl" data-icon="smart_toy" aria-hidden="true"></span>
                     </div>
                     <h3 class="mb-3 text-2xl font-bold text-white">AI Consulting &amp; Automation</h3>
                     <p class="text-sm leading-relaxed text-slate-400">AI that ships: custom tools built around your workflows, secure rollout of Copilot, ChatGPT &amp; Claude, and the governance that keeps your data yours.</p>
@@ -215,25 +215,25 @@
                         <span class="px-2.5 py-1 bg-primary/20 rounded text-[10px] font-semibold text-primary-text">Govern</span>
                         <span class="px-2.5 py-1 bg-primary/20 rounded text-[10px] font-semibold text-primary-text">Automation</span>
                     </div>
-                    <span class="mt-7 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-primary-text transition-all duration-300 group-hover:gap-3">Explore AI Solutions <span class="material-symbols-outlined text-sm">arrow_forward</span></span>
+                    <span class="mt-7 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-primary-text transition-all duration-300 group-hover:gap-3">Explore AI Solutions <span class="material-symbols-outlined text-sm" data-icon="arrow_forward" aria-hidden="true"></span></span>
                 </a>
                 <!-- IT door -->
                 <a href="/services" data-reveal="right" class="e86-glow-card e86-tilt group relative block overflow-hidden rounded-2xl border border-accent-yellow/25 bg-accent-yellow/5 p-9 transition-all hover:border-accent-yellow/50 hover:shadow-[0_0_35px_rgba(244,196,48,0.15)]">
                     <div class="absolute -right-6 -top-6 opacity-10 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6">
-                        <span class="material-symbols-outlined text-9xl text-accent-yellow">dns</span>
+                        <span class="material-symbols-outlined text-9xl text-accent-yellow" data-icon="dns" aria-hidden="true"></span>
                     </div>
                     <div class="mb-6 flex h-13 w-13 items-center justify-center rounded-xl bg-accent-yellow/10 p-3 text-accent-yellow">
-                        <span class="material-symbols-outlined text-3xl">dns</span>
+                        <span class="material-symbols-outlined text-3xl" data-icon="dns" aria-hidden="true"></span>
                     </div>
                     <h3 class="mb-3 text-2xl font-bold text-white">Managed IT &amp; Cybersecurity</h3>
-                    <p class="text-sm leading-relaxed text-slate-400">The discipline your business runs on: 24/7 monitoring and helpdesk, Huntress-powered EDR, zero-trust security, and immutable backup — engineered so your operations don't stop.</p>
+                    <p class="text-sm leading-relaxed text-slate-400">The discipline your business runs on: 24/7 monitoring and helpdesk, Huntress-powered EDR, zero-trust security, and immutable N-able Cove backups — engineered so your operations don't stop.</p>
                     <div class="mt-6 flex flex-wrap gap-2">
                         <span class="px-2.5 py-1 bg-accent-yellow/10 rounded text-[10px] font-semibold text-accent-yellow">Managed IT</span>
                         <span class="px-2.5 py-1 bg-accent-yellow/10 rounded text-[10px] font-semibold text-accent-yellow">EDR &amp; SOC</span>
                         <span class="px-2.5 py-1 bg-accent-yellow/10 rounded text-[10px] font-semibold text-accent-yellow">Backup &amp; DR</span>
                         <span class="px-2.5 py-1 bg-accent-yellow/10 rounded text-[10px] font-semibold text-accent-yellow">HIPAA</span>
                     </div>
-                    <span class="mt-7 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-accent-yellow transition-all duration-300 group-hover:gap-3">Explore Managed IT <span class="material-symbols-outlined text-sm">arrow_forward</span></span>
+                    <span class="mt-7 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-accent-yellow transition-all duration-300 group-hover:gap-3">Explore Managed IT <span class="material-symbols-outlined text-sm" data-icon="arrow_forward" aria-hidden="true"></span></span>
                 </a>
                 <!-- seam -->
                 <div class="pointer-events-none absolute left-1/2 top-1/2 z-10 hidden h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-background-dark text-xl font-bold text-white shadow-[0_0_30px_rgba(0,0,0,0.6)] md:flex" aria-hidden="true">+</div>
@@ -250,25 +250,27 @@
             <div class="e86-marquee-track items-center text-slate-400">
                 <!-- Set 1 -->
                 <div class="flex items-center gap-16 px-8 shrink-0">
-                    <div class="flex items-center gap-2 opacity-70 transition-opacity hover:opacity-100"><span class="material-symbols-outlined text-3xl">smart_toy</span><span class="text-xl font-bold">Copilot</span></div>
-                    <div class="flex items-center gap-2 opacity-70 transition-opacity hover:opacity-100"><span class="material-symbols-outlined text-3xl">neurology</span><span class="text-xl font-bold">OpenAI</span></div>
-                    <div class="flex items-center gap-2 opacity-70 transition-opacity hover:opacity-100"><span class="material-symbols-outlined text-3xl">psychology</span><span class="text-xl font-bold">Claude</span></div>
-                    <div class="flex items-center gap-2 opacity-70 transition-opacity hover:opacity-100"><span class="material-symbols-outlined text-3xl">cloud</span><span class="text-xl font-bold">Azure AI</span></div>
-                    <div class="flex items-center gap-2 opacity-70 transition-opacity hover:opacity-100"><span class="material-symbols-outlined text-3xl">grid_view</span><span class="text-xl font-bold">Microsoft 365</span></div>
-                    <div class="flex items-center gap-2 opacity-70 transition-opacity hover:opacity-100"><span class="material-symbols-outlined text-3xl">account_tree</span><span class="text-xl font-bold">n8n</span></div>
-                    <div class="flex items-center gap-2 opacity-70 transition-opacity hover:opacity-100"><span class="material-symbols-outlined text-3xl">bolt</span><span class="text-xl font-bold">Zapier</span></div>
+                    <div class="flex items-center gap-2 opacity-70 transition-opacity hover:opacity-100"><span class="material-symbols-outlined text-3xl" data-icon="smart_toy" aria-hidden="true"></span><span class="text-xl font-bold">Copilot</span></div>
+                    <div class="flex items-center gap-2 opacity-70 transition-opacity hover:opacity-100"><span class="material-symbols-outlined text-3xl" data-icon="neurology" aria-hidden="true"></span><span class="text-xl font-bold">OpenAI</span></div>
+                    <div class="flex items-center gap-2 opacity-70 transition-opacity hover:opacity-100"><span class="material-symbols-outlined text-3xl" data-icon="psychology" aria-hidden="true"></span><span class="text-xl font-bold">Claude</span></div>
+                    <div class="flex items-center gap-2 opacity-70 transition-opacity hover:opacity-100"><span class="material-symbols-outlined text-3xl" data-icon="cloud" aria-hidden="true"></span><span class="text-xl font-bold">Azure AI</span></div>
+                    <div class="flex items-center gap-2 opacity-70 transition-opacity hover:opacity-100"><span class="material-symbols-outlined text-3xl" data-icon="grid_view" aria-hidden="true"></span><span class="text-xl font-bold">Microsoft 365</span></div>
+                    <div class="flex items-center gap-2 opacity-70 transition-opacity hover:opacity-100"><span class="material-symbols-outlined text-3xl" data-icon="account_tree" aria-hidden="true"></span><span class="text-xl font-bold">n8n</span></div>
+                    <div class="flex items-center gap-2 opacity-70 transition-opacity hover:opacity-100"><span class="material-symbols-outlined text-3xl" data-icon="bolt" aria-hidden="true"></span><span class="text-xl font-bold">Zapier</span></div>
                     <div class="flex items-center gap-2 opacity-70 transition-opacity hover:opacity-100"><img class="h-8 w-auto" src="huntress-mark.png?v=20260615" alt="Huntress logo"/><span class="text-xl font-bold">Huntress</span></div>
+                    <div class="flex items-center gap-2 opacity-70 transition-opacity hover:opacity-100"><span class="material-symbols-outlined text-3xl" data-icon="backup" aria-hidden="true"></span><span class="text-xl font-bold">Cove</span></div>
                 </div>
                 <!-- Set 2 (duplicate for seamless loop) -->
                 <div class="flex items-center gap-16 px-8 shrink-0" aria-hidden="true">
-                    <div class="flex items-center gap-2 opacity-70 transition-opacity hover:opacity-100"><span class="material-symbols-outlined text-3xl">smart_toy</span><span class="text-xl font-bold">Copilot</span></div>
-                    <div class="flex items-center gap-2 opacity-70 transition-opacity hover:opacity-100"><span class="material-symbols-outlined text-3xl">neurology</span><span class="text-xl font-bold">OpenAI</span></div>
-                    <div class="flex items-center gap-2 opacity-70 transition-opacity hover:opacity-100"><span class="material-symbols-outlined text-3xl">psychology</span><span class="text-xl font-bold">Claude</span></div>
-                    <div class="flex items-center gap-2 opacity-70 transition-opacity hover:opacity-100"><span class="material-symbols-outlined text-3xl">cloud</span><span class="text-xl font-bold">Azure AI</span></div>
-                    <div class="flex items-center gap-2 opacity-70 transition-opacity hover:opacity-100"><span class="material-symbols-outlined text-3xl">grid_view</span><span class="text-xl font-bold">Microsoft 365</span></div>
-                    <div class="flex items-center gap-2 opacity-70 transition-opacity hover:opacity-100"><span class="material-symbols-outlined text-3xl">account_tree</span><span class="text-xl font-bold">n8n</span></div>
-                    <div class="flex items-center gap-2 opacity-70 transition-opacity hover:opacity-100"><span class="material-symbols-outlined text-3xl">bolt</span><span class="text-xl font-bold">Zapier</span></div>
+                    <div class="flex items-center gap-2 opacity-70 transition-opacity hover:opacity-100"><span class="material-symbols-outlined text-3xl" data-icon="smart_toy" aria-hidden="true"></span><span class="text-xl font-bold">Copilot</span></div>
+                    <div class="flex items-center gap-2 opacity-70 transition-opacity hover:opacity-100"><span class="material-symbols-outlined text-3xl" data-icon="neurology" aria-hidden="true"></span><span class="text-xl font-bold">OpenAI</span></div>
+                    <div class="flex items-center gap-2 opacity-70 transition-opacity hover:opacity-100"><span class="material-symbols-outlined text-3xl" data-icon="psychology" aria-hidden="true"></span><span class="text-xl font-bold">Claude</span></div>
+                    <div class="flex items-center gap-2 opacity-70 transition-opacity hover:opacity-100"><span class="material-symbols-outlined text-3xl" data-icon="cloud" aria-hidden="true"></span><span class="text-xl font-bold">Azure AI</span></div>
+                    <div class="flex items-center gap-2 opacity-70 transition-opacity hover:opacity-100"><span class="material-symbols-outlined text-3xl" data-icon="grid_view" aria-hidden="true"></span><span class="text-xl font-bold">Microsoft 365</span></div>
+                    <div class="flex items-center gap-2 opacity-70 transition-opacity hover:opacity-100"><span class="material-symbols-outlined text-3xl" data-icon="account_tree" aria-hidden="true"></span><span class="text-xl font-bold">n8n</span></div>
+                    <div class="flex items-center gap-2 opacity-70 transition-opacity hover:opacity-100"><span class="material-symbols-outlined text-3xl" data-icon="bolt" aria-hidden="true"></span><span class="text-xl font-bold">Zapier</span></div>
                     <div class="flex items-center gap-2 opacity-70 transition-opacity hover:opacity-100"><img class="h-8 w-auto" src="huntress-mark.png?v=20260615" alt="Huntress logo"/><span class="text-xl font-bold">Huntress</span></div>
+                    <div class="flex items-center gap-2 opacity-70 transition-opacity hover:opacity-100"><span class="material-symbols-outlined text-3xl" data-icon="backup" aria-hidden="true"></span><span class="text-xl font-bold">Cove</span></div>
                 </div>
             </div>
         </div>
@@ -289,7 +291,7 @@
                 </div>
                 <a href="/ai-solutions" class="group inline-flex items-center gap-2 text-sm font-bold text-primary-text hover:text-white transition-colors" data-reveal="up" data-delay="200">
                     Explore AI Solutions
-                    <span class="material-symbols-outlined text-base transition-transform group-hover:translate-x-1">arrow_forward</span>
+                    <span class="material-symbols-outlined text-base transition-transform group-hover:translate-x-1" data-icon="arrow_forward" aria-hidden="true"></span>
                 </a>
             </div>
             <div class="grid gap-6 md:grid-cols-3">
@@ -297,34 +299,34 @@
                 <a href="/ai-solutions#build" data-reveal="up" class="e86-glow-card e86-tilt group relative block overflow-hidden rounded-xl border border-white/5 bg-card-dark p-8 transition-all hover:border-primary/50 hover:shadow-[0_0_30px_rgba(31,58,137,0.2)]">
                     <div class="absolute top-4 right-4 h-1.5 w-1.5 rounded-full bg-accent-yellow shadow-[0_0_8px_#F4C430]"></div>
                     <div class="absolute -right-4 -top-4 opacity-10 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6">
-                        <span class="material-symbols-outlined text-8xl text-primary-text">build</span>
+                        <span class="material-symbols-outlined text-8xl text-primary-text" data-icon="build" aria-hidden="true"></span>
                     </div>
-                    <span class="material-symbols-outlined mb-4 text-4xl text-primary-text transition-transform duration-300 group-hover:scale-110">build</span>
+                    <span class="material-symbols-outlined mb-4 text-4xl text-primary-text transition-transform duration-300 group-hover:scale-110" data-icon="build" aria-hidden="true"></span>
                     <h3 class="mb-3 text-xl font-bold text-white">Build</h3>
                     <p class="text-sm leading-relaxed text-slate-400">Custom AI tools and workflow automation built around your actual processes — internal copilots, document assistants, and agents that remove the busywork.</p>
-                    <span class="mt-5 inline-flex items-center gap-1 text-xs font-bold uppercase tracking-wider text-primary-text opacity-0 -translate-x-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0">Learn more <span class="material-symbols-outlined text-sm">arrow_forward</span></span>
+                    <span class="mt-5 inline-flex items-center gap-1 text-xs font-bold uppercase tracking-wider text-primary-text opacity-0 -translate-x-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0">Learn more <span class="material-symbols-outlined text-sm" data-icon="arrow_forward" aria-hidden="true"></span></span>
                 </a>
                 <!-- Integrate -->
                 <a href="/ai-solutions#integrate" data-reveal="up" data-delay="120" class="e86-glow-card e86-tilt group relative block overflow-hidden rounded-xl border border-white/5 bg-card-dark p-8 transition-all hover:border-primary/50 hover:shadow-[0_0_30px_rgba(31,58,137,0.2)]">
                     <div class="absolute top-4 right-4 h-1.5 w-1.5 rounded-full bg-accent-yellow shadow-[0_0_8px_#F4C430]"></div>
                     <div class="absolute -right-4 -top-4 opacity-10 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6">
-                        <span class="material-symbols-outlined text-8xl text-primary-text">extension</span>
+                        <span class="material-symbols-outlined text-8xl text-primary-text" data-icon="extension" aria-hidden="true"></span>
                     </div>
-                    <span class="material-symbols-outlined mb-4 text-4xl text-primary-text transition-transform duration-300 group-hover:scale-110">extension</span>
+                    <span class="material-symbols-outlined mb-4 text-4xl text-primary-text transition-transform duration-300 group-hover:scale-110" data-icon="extension" aria-hidden="true"></span>
                     <h3 class="mb-3 text-xl font-bold text-white">Integrate</h3>
                     <p class="text-sm leading-relaxed text-slate-400">Adopt the tools your team already wants — Copilot, ChatGPT Enterprise, Claude — selected, securely configured, connected to your data, and actually rolled out.</p>
-                    <span class="mt-5 inline-flex items-center gap-1 text-xs font-bold uppercase tracking-wider text-primary-text opacity-0 -translate-x-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0">Learn more <span class="material-symbols-outlined text-sm">arrow_forward</span></span>
+                    <span class="mt-5 inline-flex items-center gap-1 text-xs font-bold uppercase tracking-wider text-primary-text opacity-0 -translate-x-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0">Learn more <span class="material-symbols-outlined text-sm" data-icon="arrow_forward" aria-hidden="true"></span></span>
                 </a>
                 <!-- Govern -->
                 <a href="/ai-solutions#govern" data-reveal="up" data-delay="240" class="e86-glow-card e86-tilt group relative block overflow-hidden rounded-xl border border-white/5 bg-card-dark p-8 transition-all hover:border-primary/50 hover:shadow-[0_0_30px_rgba(31,58,137,0.2)]">
                     <div class="absolute top-4 right-4 h-1.5 w-1.5 rounded-full bg-accent-yellow shadow-[0_0_8px_#F4C430]"></div>
                     <div class="absolute -right-4 -top-4 opacity-10 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6">
-                        <span class="material-symbols-outlined text-8xl text-primary-text">verified_user</span>
+                        <span class="material-symbols-outlined text-8xl text-primary-text" data-icon="verified_user" aria-hidden="true"></span>
                     </div>
-                    <span class="material-symbols-outlined mb-4 text-4xl text-primary-text transition-transform duration-300 group-hover:scale-110">verified_user</span>
+                    <span class="material-symbols-outlined mb-4 text-4xl text-primary-text transition-transform duration-300 group-hover:scale-110" data-icon="verified_user" aria-hidden="true"></span>
                     <h3 class="mb-3 text-xl font-bold text-white">Govern</h3>
                     <p class="text-sm leading-relaxed text-slate-400">The part nobody else does: data privacy, access controls, shadow-AI discovery, acceptable-use policy, and HIPAA-aware data handling where it's needed.</p>
-                    <span class="mt-5 inline-flex items-center gap-1 text-xs font-bold uppercase tracking-wider text-primary-text opacity-0 -translate-x-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0">Learn more <span class="material-symbols-outlined text-sm">arrow_forward</span></span>
+                    <span class="mt-5 inline-flex items-center gap-1 text-xs font-bold uppercase tracking-wider text-primary-text opacity-0 -translate-x-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0">Learn more <span class="material-symbols-outlined text-sm" data-icon="arrow_forward" aria-hidden="true"></span></span>
                 </a>
             </div>
         </div>
@@ -348,7 +350,7 @@
                 <div data-reveal="up" class="e86-glow-card group flex flex-col rounded-2xl border border-white/5 bg-card-dark p-8 transition-all hover:border-primary/50 hover:shadow-[0_0_30px_rgba(31,58,137,0.2)]">
                     <div class="mb-6 flex items-center">
                         <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary-text">
-                            <span class="material-symbols-outlined text-2xl">radar</span>
+                            <span class="material-symbols-outlined text-2xl" data-icon="radar" aria-hidden="true"></span>
                         </div>
                     </div>
                     <h3 class="text-xl font-bold text-white mb-3">AI Cybersecurity Analysis</h3>
@@ -363,7 +365,7 @@
                 <a href="/mips-intelligence" data-reveal="up" data-delay="120" class="e86-glow-card group flex flex-col rounded-2xl border border-primary/30 bg-primary/5 p-8 transition-all hover:shadow-[0_0_30px_rgba(31,58,137,0.2)]">
                     <div class="mb-6 flex items-center">
                         <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-accent-yellow/10 text-accent-yellow">
-                            <span class="material-symbols-outlined text-2xl">query_stats</span>
+                            <span class="material-symbols-outlined text-2xl" data-icon="query_stats" aria-hidden="true"></span>
                         </div>
                     </div>
                     <h3 class="text-xl font-bold text-white mb-3">MIPS Intelligence</h3>
@@ -373,13 +375,13 @@
                         <span class="px-2 py-1 bg-accent-yellow/10 rounded text-[10px] text-accent-yellow">Score</span>
                         <span class="px-2 py-1 bg-accent-yellow/10 rounded text-[10px] text-accent-yellow">Forecast</span>
                     </div>
-                    <span class="mt-5 inline-flex items-center gap-1 text-xs font-bold uppercase tracking-wider text-accent-yellow">See the product <span class="material-symbols-outlined text-sm">arrow_forward</span></span>
+                    <span class="mt-5 inline-flex items-center gap-1 text-xs font-bold uppercase tracking-wider text-accent-yellow">See the product <span class="material-symbols-outlined text-sm" data-icon="arrow_forward" aria-hidden="true"></span></span>
                 </a>
                 <!-- Product 3: AI Medical Scribe -->
                 <div data-reveal="up" data-delay="240" class="e86-glow-card group flex flex-col rounded-2xl border border-white/5 bg-card-dark p-8 transition-all hover:border-primary/50 hover:shadow-[0_0_30px_rgba(31,58,137,0.2)]">
                     <div class="mb-6 flex items-center">
                         <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary-text">
-                            <span class="material-symbols-outlined text-2xl">clinical_notes</span>
+                            <span class="material-symbols-outlined text-2xl" data-icon="clinical_notes" aria-hidden="true"></span>
                         </div>
                     </div>
                     <h3 class="text-xl font-bold text-white mb-3">AI Medical Scribe</h3>
@@ -394,7 +396,7 @@
             <div class="mt-12 text-center" data-reveal="up">
                 <a href="/assessment" class="e86-btn-shine inline-flex items-center gap-2 rounded-lg bg-primary px-8 py-4 text-base font-bold text-white shadow-[0_0_25px_rgba(31,58,138,0.4)] transition-all hover:bg-primary/90 uppercase tracking-wider">
                     Have a workflow in mind? Let's scope it
-                    <span class="material-symbols-outlined">arrow_forward</span>
+                    <span class="material-symbols-outlined" data-icon="arrow_forward" aria-hidden="true"></span>
                 </a>
             </div>
         </div>
@@ -407,31 +409,31 @@
             <div class="grid items-center gap-16 lg:grid-cols-2">
                 <div data-reveal="left">
                     <div class="mb-6 flex items-center gap-2 text-primary-text">
-                        <span class="material-symbols-outlined">verified_user</span>
+                        <span class="material-symbols-outlined" data-icon="verified_user" aria-hidden="true"></span>
                         <span class="text-xs font-bold uppercase tracking-widest">The IT Practice</span>
                     </div>
                     <h2 class="text-4xl font-bold text-white">Managed IT &amp; Cybersecurity, Done Right</h2>
                     <p class="mt-6 text-lg leading-relaxed text-slate-400">
-                        This is the practice the company was built on: fourteen years running and securing <span class="text-white font-semibold">business infrastructure</span> across Puerto Rico. It keeps your operations online every day — and it's exactly why our AI can be trusted with your data.
+                        This is the practice the company was built on: 15+ years running and securing <span class="text-white font-semibold">business infrastructure</span> across Puerto Rico. It keeps your operations online every day — and it's exactly why our AI can be trusted with your data.
                     </p>
                     <ul class="mt-8 space-y-4">
                         <li class="flex items-start gap-3" data-reveal="left" data-delay="100">
-                            <span class="material-symbols-outlined text-primary-text mt-0.5">check_circle</span>
+                            <span class="material-symbols-outlined text-primary-text mt-0.5" data-icon="check_circle" aria-hidden="true"></span>
                             <span class="text-slate-300">Managed IT that keeps the lights on — proactive monitoring, helpdesk, and 24/7 response</span>
                         </li>
                         <li class="flex items-start gap-3" data-reveal="left" data-delay="200">
-                            <span class="material-symbols-outlined text-primary-text mt-0.5">check_circle</span>
+                            <span class="material-symbols-outlined text-primary-text mt-0.5" data-icon="check_circle" aria-hidden="true"></span>
                             <span class="text-slate-300">Cybersecurity that protects the data your AI touches — EDR, SOC monitoring, zero-trust</span>
                         </li>
                         <li class="flex items-start gap-3" data-reveal="left" data-delay="300">
-                            <span class="material-symbols-outlined text-primary-text mt-0.5">check_circle</span>
-                            <span class="text-slate-300">Immutable backup, so nothing you build is ever one mistake away from gone</span>
+                            <span class="material-symbols-outlined text-primary-text mt-0.5" data-icon="check_circle" aria-hidden="true"></span>
+                            <span class="text-slate-300">Immutable N-able Cove backups, so nothing you build is ever one mistake away from gone</span>
                         </li>
                     </ul>
                     <div class="mt-10 p-6 rounded-lg bg-primary/5 border border-primary/20" data-reveal="left" data-delay="400">
                         <div class="flex items-center gap-4">
                             <div class="flex h-12 w-12 items-center justify-center rounded-full bg-accent-yellow/10 text-accent-yellow">
-                                <span class="material-symbols-outlined">lock</span>
+                                <span class="material-symbols-outlined" data-icon="lock" aria-hidden="true"></span>
                             </div>
                             <div>
                                 <p class="text-sm font-bold text-white">Your Data Stays Yours</p>
@@ -442,59 +444,31 @@
                 </div>
                 <div class="relative" data-reveal="right">
                     <div class="glass-panel relative z-10 rounded-2xl p-8 shadow-2xl">
-                        <div class="e86-scanline" aria-hidden="true"></div>
-                        <div class="mb-8 flex items-center justify-between">
-                            <div class="flex items-center gap-3">
-                                <div class="h-3 w-3 rounded-full bg-accent-red"></div>
-                                <div class="h-3 w-3 rounded-full bg-accent-yellow"></div>
-                                <div class="h-3 w-3 rounded-full bg-primary"></div>
-                            </div>
-                            <div class="text-xs font-mono text-slate-400">TRUST_LAYER_V4.0</div>
-                        </div>
-                        <div class="space-y-6">
-                            <div class="rounded bg-black/40 p-4 border-l-2 border-primary">
-                                <div class="flex justify-between text-xs mb-2">
-                                    <span class="text-slate-400">Infrastructure Security</span>
-                                    <span class="text-primary-text"><span data-count="98" data-count-suffix="%">98%</span> OPTIMAL</span>
+                        <p class="text-xs font-bold uppercase tracking-widest text-accent-yellow">The stack we run</p>
+                        <h3 class="mt-3 text-2xl font-bold text-white">Named tools, plain language</h3>
+                        <ul class="mt-8 space-y-5">
+                            <li class="flex items-start gap-4">
+                                <span class="material-symbols-outlined text-primary-text mt-0.5" data-icon="check_circle" aria-hidden="true"></span>
+                                <div>
+                                    <p class="font-semibold text-white">24/7 endpoint monitoring via Huntress</p>
+                                    <p class="mt-1 text-sm leading-relaxed text-slate-400">Endpoint detection and threat hunting on the machines the business uses.</p>
                                 </div>
-                                <div class="h-1 w-full bg-white/10 rounded-full overflow-hidden">
-                                    <div class="e86-bar h-full bg-primary" data-bar="98" style="width:98%"></div>
+                            </li>
+                            <li class="flex items-start gap-4">
+                                <span class="material-symbols-outlined text-accent-yellow mt-0.5" data-icon="check_circle" aria-hidden="true"></span>
+                                <div>
+                                    <p class="font-semibold text-white">Immutable backups with N-able Cove</p>
+                                    <p class="mt-1 text-sm leading-relaxed text-slate-400">Cove backups kept immutable, with restores we test.</p>
                                 </div>
-                            </div>
-                            <div class="rounded bg-black/40 p-4 border-l-2 border-accent-yellow">
-                                <div class="flex justify-between text-xs mb-2">
-                                    <span class="text-slate-400">AI Data Governance</span>
-                                    <span class="text-accent-yellow">ENFORCED</span>
+                            </li>
+                            <li class="flex items-start gap-4">
+                                <span class="material-symbols-outlined text-primary-text mt-0.5" data-icon="check_circle" aria-hidden="true"></span>
+                                <div>
+                                    <p class="font-semibold text-white">Managed IT</p>
+                                    <p class="mt-1 text-sm leading-relaxed text-slate-400">Monitoring, helpdesk, and the day-to-day systems the business runs on.</p>
                                 </div>
-                                <div class="h-1 w-full bg-white/10 rounded-full overflow-hidden">
-                                    <div class="e86-bar h-full bg-accent-yellow" data-bar="92" style="width:92%"></div>
-                                </div>
-                            </div>
-                            <div class="rounded bg-black/40 p-4 border-l-2 border-primary">
-                                <div class="flex justify-between text-xs mb-2">
-                                    <span class="text-slate-400">Immutable Backups</span>
-                                    <span class="text-primary-text">PROTECTED</span>
-                                </div>
-                                <div class="h-1 w-full bg-white/10 rounded-full overflow-hidden">
-                                    <div class="e86-bar h-full bg-primary" data-bar="100" style="width:100%"></div>
-                                </div>
-                            </div>
-                            <div class="rounded bg-black/40 p-4 border-l-2 border-accent-red">
-                                <div class="flex justify-between text-[10px] mb-1 font-mono">
-                                    <span class="text-accent-red uppercase tracking-widest animate-pulse">Shadow-AI Detection</span>
-                                    <span class="text-slate-400">SCANNING</span>
-                                </div>
-                                <div class="flex gap-1">
-                                    <div class="h-1 flex-1 bg-accent-red/20 rounded-full"></div>
-                                    <div class="h-1 flex-1 bg-accent-red/20 rounded-full"></div>
-                                    <div class="h-1 flex-1 bg-accent-red/20 rounded-full"></div>
-                                    <div class="h-1 flex-1 bg-accent-red/20 rounded-full"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="e86-pulse-glow mt-8 rounded bg-primary py-3 text-center text-sm font-bold text-white">
-                            AI DEPLOYED ON SECURE FOUNDATION
-                        </div>
+                            </li>
+                        </ul>
                     </div>
                     <div class="absolute -bottom-6 -right-6 -z-0 h-64 w-64 rounded-full bg-primary/20 blur-[100px] e86-float-slow"></div>
                     <div class="absolute -top-6 -left-6 -z-0 h-48 w-48 rounded-full bg-accent-red/10 blur-[80px] e86-float-rev"></div>
@@ -566,12 +540,12 @@
                     <p class="mt-4 text-slate-400 leading-relaxed" data-reveal="left" data-delay="120">Straight answers, no jargon. Don't see your question? Call us — an engineer picks up.</p>
                     <div class="mt-8 flex flex-col gap-3" data-reveal="left" data-delay="200">
                         <a href="tel:+17877149556" class="inline-flex items-center gap-2 text-lg font-bold text-white hover:text-primary-text transition-colors">
-                            <span class="material-symbols-outlined text-primary-text">call</span>
+                            <span class="material-symbols-outlined text-primary-text" data-icon="call" aria-hidden="true"></span>
                             (787) 714-9556
                         </a>
                         <a href="/assessment" class="e86-btn-shine mt-2 inline-flex w-fit items-center gap-2 rounded-lg bg-primary px-6 py-3 text-sm font-bold text-white shadow-[0_0_20px_rgba(31,58,137,0.4)] transition-all hover:bg-primary/90 uppercase tracking-wider">
                             Get a Free Assessment
-                            <span class="material-symbols-outlined text-base">arrow_forward</span>
+                            <span class="material-symbols-outlined text-base" data-icon="arrow_forward" aria-hidden="true"></span>
                         </a>
                     </div>
                 </div>
@@ -579,42 +553,42 @@
                     <div class="e86-faq-item rounded-xl border border-white/5 bg-card-dark" data-reveal="up">
                         <button class="e86-faq-q flex w-full items-center justify-between gap-4 p-5 text-left" aria-expanded="false">
                             <span class="font-semibold text-white text-sm md:text-base">Is our data safe if we start using AI?</span>
-                            <span class="e86-faq-icon material-symbols-outlined text-primary-text shrink-0">add</span>
+                            <span class="e86-faq-icon material-symbols-outlined text-primary-text shrink-0" data-icon="add" aria-hidden="true"></span>
                         </button>
                         <div class="e86-faq-a"><div><p class="px-5 pb-5 text-sm text-slate-400 leading-relaxed">Yes — that's the whole point of working with us. We use private, governed deployments; your data isn't used to train public models, access is controlled and logged, and where compliance applies (like HIPAA) we build to it from day one.</p></div></div>
                     </div>
                     <div class="e86-faq-item rounded-xl border border-white/5 bg-card-dark" data-reveal="up" data-delay="80">
                         <button class="e86-faq-q flex w-full items-center justify-between gap-4 p-5 text-left" aria-expanded="false">
                             <span class="font-semibold text-white text-sm md:text-base">How fast do you respond when something breaks?</span>
-                            <span class="e86-faq-icon material-symbols-outlined text-primary-text shrink-0">add</span>
+                            <span class="e86-faq-icon material-symbols-outlined text-primary-text shrink-0" data-icon="add" aria-hidden="true"></span>
                         </button>
                         <div class="e86-faq-a"><div><p class="px-5 pb-5 text-sm text-slate-400 leading-relaxed">Fast. You reach the engineer directly — no ticket queue or call center — and our monitoring and alerting stack runs 24/7/365, so critical security incidents are treated as drop-everything priorities, including weekends and holidays.</p></div></div>
                     </div>
                     <div class="e86-faq-item rounded-xl border border-white/5 bg-card-dark" data-reveal="up" data-delay="160">
                         <button class="e86-faq-q flex w-full items-center justify-between gap-4 p-5 text-left" aria-expanded="false">
                             <span class="font-semibold text-white text-sm md:text-base">Do you lock clients into long-term contracts?</span>
-                            <span class="e86-faq-icon material-symbols-outlined text-primary-text shrink-0">add</span>
+                            <span class="e86-faq-icon material-symbols-outlined text-primary-text shrink-0" data-icon="add" aria-hidden="true"></span>
                         </button>
                         <div class="e86-faq-a"><div><p class="px-5 pb-5 text-sm text-slate-400 leading-relaxed">No. Flat monthly pricing, no expensive exit clauses. We believe you should stay because the service is exceptional — not because leaving is painful.</p></div></div>
                     </div>
                     <div class="e86-faq-item rounded-xl border border-white/5 bg-card-dark" data-reveal="up" data-delay="240">
                         <button class="e86-faq-q flex w-full items-center justify-between gap-4 p-5 text-left" aria-expanded="false">
                             <span class="font-semibold text-white text-sm md:text-base">What's a realistic first project?</span>
-                            <span class="e86-faq-icon material-symbols-outlined text-primary-text shrink-0">add</span>
+                            <span class="e86-faq-icon material-symbols-outlined text-primary-text shrink-0" data-icon="add" aria-hidden="true"></span>
                         </button>
                         <div class="e86-faq-a"><div><p class="px-5 pb-5 text-sm text-slate-400 leading-relaxed">One painful, repetitive workflow. We pilot it in weeks, prove the time or money saved, and expand from there — no year-long roadmap before you see value.</p></div></div>
                     </div>
                     <div class="e86-faq-item rounded-xl border border-white/5 bg-card-dark" data-reveal="up" data-delay="320">
                         <button class="e86-faq-q flex w-full items-center justify-between gap-4 p-5 text-left" aria-expanded="false">
                             <span class="font-semibold text-white text-sm md:text-base">Are you an AI company or an IT company?</span>
-                            <span class="e86-faq-icon material-symbols-outlined text-primary-text shrink-0">add</span>
+                            <span class="e86-faq-icon material-symbols-outlined text-primary-text shrink-0" data-icon="add" aria-hidden="true"></span>
                         </button>
                         <div class="e86-faq-a"><div><p class="px-5 pb-5 text-sm text-slate-400 leading-relaxed">Both — that's the point. One engineering team runs your infrastructure, defends it, and builds AI on top of it. One accountable partner instead of three vendors pointing fingers. <a href="/services" class="text-primary-text hover:underline">See our managed IT</a>.</p></div></div>
                     </div>
                     <div class="e86-faq-item rounded-xl border border-white/5 bg-card-dark" data-reveal="up" data-delay="400">
                         <button class="e86-faq-q flex w-full items-center justify-between gap-4 p-5 text-left" aria-expanded="false">
                             <span class="font-semibold text-white text-sm md:text-base">Can you support HIPAA-regulated AI use?</span>
-                            <span class="e86-faq-icon material-symbols-outlined text-primary-text shrink-0">add</span>
+                            <span class="e86-faq-icon material-symbols-outlined text-primary-text shrink-0" data-icon="add" aria-hidden="true"></span>
                         </button>
                         <div class="e86-faq-a"><div><p class="px-5 pb-5 text-sm text-slate-400 leading-relaxed">Yes. We've built clinical AI tools — like our speech-to-SOAP scribe — designed around HIPAA's security expectations: encryption, access controls, and audit trails included from the start, not bolted on later. Compliance is ultimately an organizational process, but we engineer the technical side in from day one.</p></div></div>
                     </div>
@@ -641,7 +615,7 @@
                             Book Your Free Assessment
                         </a>
                         <a class="group flex items-center gap-2 text-lg font-bold" href="tel:+17877149556">
-                            <span class="material-symbols-outlined transition-transform group-hover:rotate-12">call</span>
+                            <span class="material-symbols-outlined transition-transform group-hover:rotate-12" data-icon="call" aria-hidden="true"></span>
                             Speak to an Engineer
                         </a>
                     </div>
@@ -694,16 +668,16 @@
                 <h3 class="mb-6 text-sm font-bold uppercase tracking-widest text-white">Contact</h3>
                 <ul class="space-y-4 text-sm">
                     <li class="flex items-start gap-3">
-                        <span class="material-symbols-outlined text-primary-text text-sm mt-0.5">location_on</span>
+                        <span class="material-symbols-outlined text-primary-text text-sm mt-0.5" data-icon="location_on" aria-hidden="true"></span>
                         <span>San Juan, Puerto Rico</span>
                     </li>
                     <li class="flex items-start gap-3">
-                        <span class="material-symbols-outlined text-primary-text text-sm mt-0.5">phone</span>
+                        <span class="material-symbols-outlined text-primary-text text-sm mt-0.5" data-icon="phone" aria-hidden="true"></span>
                         <a class="hover:text-primary-text transition-colors" href="tel:+17877149556">(787) 714-9556</a>
                     </li>
                     <li class="flex items-start gap-3">
-                        <span class="material-symbols-outlined text-primary-text text-sm mt-0.5">mail</span>
-                        <a class="hover:text-primary-text transition-colors" href="mailto:info@eightsix.co">info@eightsix.co</a>
+                        <span class="material-symbols-outlined text-primary-text text-sm mt-0.5" data-icon="mail" aria-hidden="true"></span>
+                        <a class="hover:text-primary-text transition-colors" href="mailto:info@eightsixit.com">info@eightsixit.com</a>
                     </li>
                 </ul>
             </div>
@@ -722,7 +696,7 @@
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.4/dist/lenis.min.js" defer></script>
-<script src="site.js?v=20260929" defer></script>
+<script src="site.js?v=20261005" defer></script>
 <script src="experience.js?v=20260929" defer></script>
 </body>
 </html>
